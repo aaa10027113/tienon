@@ -21,17 +21,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
      });*/
      var searchCondition="";
      function aad() {
-    	 var beginTime=$("#beginTime").val();
-       	 if(beginTime!="" && null!=beginTime){
-       		 beginTime = beginTime+" 00:00:00";
-       	 }
-       	 
-       	 var endTime=$("#endTime").val();
-       	 if(endTime!="" && null!=endTime){
-       		endTime = endTime+" 23:59:59";
-       	 }
-       	 search ={beginTime:beginTime,endTime:endTime};
-       	 searchCondition={searchCondition:search};
        	 return searchCondition;
 	};
     //商标列表
