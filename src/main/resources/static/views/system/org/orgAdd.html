@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+<style>
+.layui-form-label{
+	width : 170px;
+	padding : 9px 0px;
+}
+.layui-input-block{
+	margin-left : 190px;
+}
+</style>	
+</head>
+<body>
+<div class="layui-fluid form-container">
+	<div class="layui-card">
+		<div class="layui-card-body">
+		    <form class="layui-form">
+		    		<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md6">
+		    			<label class="layui-form-label neccesary">机构代码:</label>
+							<div class="layui-input-block">
+								<input id="orgNo" name="orgNo" class="layui-input" lay-verify="required">
+								<input type="hidden" name="orgAuth" value="1"/>
+								<input type="hidden" name="orgMode" value="0"/>
+								<input type="hidden" name="delayFlag" value="0"/>
+							</div>
+		    		</div>
+		    		<div class="layui-col-md6">
+		    			<label class="layui-form-label neccesary">机构名称:</label>
+						<div class="layui-input-block">
+							<input id="orgName" name="orgName" class="layui-input" lay-verify="required">
+						</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md6">
+		    			<label class="layui-form-label neccesary">机构简称:</label>
+							<div class="layui-input-block">
+								<input id="orgShortName" name="orgShortName" class="layui-input" lay-verify="required"">
+							</div>
+		    		</div>
+		    		<div class="layui-col-md6">
+		    			<label class="layui-form-label neccesary">英文简称:</label>
+							<div class="layui-input-block">
+								<input id="orgShortNameEn" name="orgShortNameEn" class="layui-input" lay-verify="required">
+							</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md6">
+		    			<label class="layui-form-label neccesary">机构类型:</label>
+		    			<div class="layui-input-block">
+							<select id="orgType" name="orgType" lay-verify="required">
+								<option value=""></option>
+			                    <option value="01">银联</option>
+			                    <option value="02">商户</option>
+			                    <option value="03">银行</option>
+			                </select>
+		                </div>
+		    		</div>
+		    		<div class="layui-col-md6">
+		    			<label class="layui-form-label">机构状态:</label>
+							<div class="layui-input-block">
+								<select id="orgState" name="orgState" >
+									<option value=""></option>
+									<option value="1">启用</option>
+									<option value="0">停用</option>
+								</select>
+							</div>
+		    		</div>
+		    	</div>
+		    	<div class="layui-form-item layui-row">
+		    		<div class="layui-col-md6">
+		    			<label class="layui-form-label">联系人:</label>
+							<div class="layui-input-block">
+								<input id="orgMnger" name="orgMnger" class="layui-input">
+							</div>
+		    		</div>
+		    		<div class="layui-col-md6">
+		    			<div class="layui-form-item ">
+			    			<label class="layui-form-label">联系电话:</label>
+							<div class="layui-input-block">
+								<input id="orgTel" name="orgTel" class="layui-input" lay-verify="phone">
+							</div>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	
+		    	
+		    	<div class="layui-form-item layui-row">
+			    	<div class="layui-col-md6">
+			    		<div class="layui-form-item">
+			    			<label class="layui-form-label">联系地址:</label>
+								<div class="layui-input-block">
+									<input id="orgAddr" name="orgAddr" class="layui-input">
+								</div>
+			    		</div>
+			    	</div>
+		    		<div class="layui-col-md6">
+		    			<label class="layui-form-label">邮政编码:</label>
+							<div class="layui-input-block">
+								<input id="orgZip" name="orgZip" class="layui-input">
+							</div>
+		    		</div>
+		    	</div>
+				<div class="layui-form-item layui-layout-admin">
+						<div class="layui-input-block">
+							<div class="layui-footer" style="left: 0;">
+								<button type="button" class="layui-btn" lay-submit
+									lay-filter="addOrg">立即添加</button>
+								<button id="close" type="button"
+									class="layui-btn layui-btn-primary">关闭</button>
+							</div>
+						</div>
+					</div>
+		     </form>
+	   	</div>
+	</div>   	
+</div>
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>	
+<script>
+		layui.config({
+			base : '../../../layuiadmin/' //静态资源所在路径
+		}).extend({
+			index : 'lib/index' //主入口模块
+		}).use([ 'index','org/orgAdd'], function() {
+		});
+	</script>
+</body>
+</html>

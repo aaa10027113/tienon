@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/public.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+<style>
+.layui-form-label{
+	width : 170px;
+	padding : 9px 0px;
+}
+.layui-input-block{
+	margin-left : 190px;
+}
+</style>	
+</head>
+<body class="childrenBody">
+<div class="layui-card">
+<div class="layui-card-body">
+<form class="layui-form">
+<div class="layui-form-item layui-row">
+	<div class="layui-col-md5 layui-form-item">
+		<label class="layui-form-label neccesary">登录名：</label>
+		 <div class="layui-input-block">
+			<input type="text" class="layui-input loginName" name="loginName" lay-verify="required" placeholder="请输入登录名">
+			<!-- <a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="userName" type="button" ></a> -->
+			<a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="loginName" type="button" ></a>
+		</div>
+	</div>
+	
+	<div class="layui-form-item layui-row layui-col-md5">
+		<label class="layui-form-label neccesary">用户姓名：</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input userName" name="userName" lay-verify="required" placeholder="">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+        <label class="layui-form-label neccesary">机构名称：</label>
+        <div class="layui-input-inline">
+          <input type="text" class="layui-input orgName" name="orgName" lay-verify="required" id="orgName" style="margin-left: 20px;" disabled="disabled">
+        </div>
+        <div class="layui-input-inline layui-btn-container" style="width: auto;">
+          <a class="layui-btn layui-btn-primary" type="button" id="orgInfo_btn" >机构信息</a>
+        </div>
+     </div>
+	<div class="layui-form-item layui-row layui-col-md5">
+		<label class="layui-form-label">机构编号：</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input orgNo" name="orgNo" id="orgNo"  disabled="disabled">
+		</div>
+	</div>
+	<div class="layui-form-item layui-row layui-col-md5">
+		<label class="layui-form-label neccesary">手机号码：</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input phone" name="phone" lay-verify="phone" placeholder="">
+		</div>
+	</div>
+	<div class="layui-form-item layui-row layui-col-md5">
+		<label class="layui-form-label">工作邮箱：</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input email" name="email" lay-verify="email" placeholder="请输入邮箱">
+		</div>
+	</div>
+	<div class="layui-row">
+		<div class="magb15 layui-col-md4 layui-col-md5">
+			<label class="layui-form-label">用户状态：</label>
+			<div class="layui-input-block">
+				<select name="enable" class="enable" lay-filter="enable">
+					<option value="1">正常使用</option>
+					<option value="0">限制用户</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="layui-form-item layui-row layui-col-xs12">
+	 <div class="layui-inline">
+      <label class="layui-form-label neccesary">启用日期：</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input enableDate" id="enableDate" name="enableDate" placeholder="yyyyMMdd" lay-key="1" lay-verify="required">
+      </div>
+    </div>
+	 <div class="layui-inline">
+      <label class="layui-form-label neccesary">失效日期：</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input invalidDate" id="invalidDate" name="invalidDate" placeholder="yyyyMMdd" lay-key="2" lay-verify="required">
+      </div>
+    </div>
+    </div>
+	
+	<div class="layui-form-item layui-layout-admin">
+		<div class="layui-input-block">
+			<div class="layui-footer" style="left: 0;">
+				<button type="button" class="layui-btn" lay-submit
+					lay-filter="addUser">立即添加</button>
+				<button id="addClose" type="button"
+					class="layui-btn layui-btn-primary">关闭</button>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+	</div>
+	</div>
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<script>
+	layui.config({
+		base : '../../../layuiadmin/' //静态资源所在路径
+	}).extend({
+		index : 'lib/index' //主入口模块
+	}).use([ 'index','user/userAddAndUpdate'], function() {
+	});
+</script>
+
+</body>
+</html>

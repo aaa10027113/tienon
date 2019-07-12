@@ -1,0 +1,120 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>文章列表--layui后台管理模板 2.0</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+<style type="text/css">
+		/* 去除页眉页脚 */
+        @page { margin: 0; }
+</style>	
+</head>
+<body>
+<!--startprint-->
+<div id="out">
+	<img src="printTemplate.jpg">
+	<!-- 公司名称 -->
+	<span id="companyName" style="position:absolute; z-index:2; left: 120px;top: 175px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 申请年 -->
+	<span id="acceptYear" style="position:absolute; z-index:2; left: 280px;top: 260px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 申请月 -->
+	<span id="acceptMounth" style="position:absolute; z-index:2; left: 480px;top: 260px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 申请日 -->
+	<span id="acceptDay" style="position:absolute; z-index:2; left: 620px;top: 260px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 表格序号写死 -->
+	<span style="position:absolute; z-index:2; left: 150px;top: 770px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;">1</span>
+	
+	<!-- 表格商标名称上 一行八个汉字-->
+	<span id="trademarkName_top" style="position:absolute; z-index:2; left: 230px;top: 700px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 表格商标名称中 一行八个汉字-->
+	<span id="trademarkName_center" style="position:absolute; z-index:2; left: 230px;top: 770px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 表格商标名称下 一行八个汉字-->
+	<span id="trademarkName_down" style="position:absolute; z-index:2; left: 230px;top: 840px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	
+	<!-- 表格受理类型上 一行六个汉字-->
+	<span id="acceptTypeName_top" style="position:absolute; z-index:2; left: 510px;top: 700px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 表格受理类型中 一行六个汉字-->
+	<span id="acceptTypeName_center" style="position:absolute; z-index:2; left: 510px;top: 770px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 表格受理类型下 一行六个汉字-->
+	<span id="acceptTypeName_down" style="position:absolute; z-index:2; left: 510px;top: 840px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 表格类别上 一行十一个汉字-->
+	<span id="addType_top" style="position:absolute; z-index:2; left: 704px;top: 700px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 表格类别中 一行十一个汉字-->
+	<span id="addType_center" style="position:absolute; z-index:2; left: 704px;top: 770px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 表格类别下 一行十一个汉字-->
+	<span id="addType_down" style="position:absolute; z-index:2; left: 704px;top: 840px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	<!-- <span style="position:absolute; z-index:2; left: 170px;top: 1200px; font-size: 30px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;">二维码</span> -->
+	<div id="code" style="position:absolute; left: 280px;top: 1365px; font-size: 690px;width:60px;height:60px;border: 0px solid;"></div>
+	<!-- <div style="position:absolute; z-index:2; left: 136px;top: 160px;border: 1px solid;width:10px;height:10px">
+　　</div> -->
+</div>
+<!--endprint-->
+<!-- <div id="code"></div> -->
+<!-- <button type="button" class="layui-btn" lay-submit lay-filter="updateRole"  id="print1">打印</button> -->
+
+	<div class="layui-form-item layui-layout-admin">
+		<div class="layui-input-block">
+			<div class="layui-footer" style="left: 0;">
+				<button id="print1" type="button" class="layui-btn" lay-submit lay-filter="print1">立即打印</button>
+				<button id="close" type="button" class="layui-btn layui-btn-primary">关闭</button>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="../../../layuiadmin/qrcode/jquery-2.1.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<!-- <script type="text/javascript" src="../../../layuiadmin/qrcode/jquery.jqprint-0.3.js"></script> -->
+<script type="text/javascript" src="../../../layuiadmin/qrcode/jquery.qrcode.min.js"></script>
+
+<script>
+        layui.config({
+            base : '../../../layuiadmin/' //静态资源所在路径
+        }).extend({
+            index : 'lib/index' //主入口模块
+        }).use([ 'index','operate/printData','laydate'], function() {
+            
+        	 var laydate = layui.laydate;
+        	 laydate.render({
+        	     elem: '#test13'
+        	     ,format: 'yyyyMMdd'
+        	   });
+        });
+</script>
+ 
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>商标新增</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/public.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/formSelects-v4.css" media="all"/>
+<style>
+.layui-form-label{
+	width : 170px;
+	padding : 9px 0px;
+}
+.layui-input-block{
+	margin-left : 190px;
+}
+</style>
+</head>
+<body>
+<div class="layui-fluid form-container">
+	<div class="layui-card">
+		<div class="layui-card-body" style="padding: 15px;">
+			<form class="layui-form">
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label"><span style="color:red">*</span>公司企业名称：</label>
+						<div class="layui-input-block">
+							<input name="companyName" id="companyName" lay-verify="required" class="layui-input companyName"  placeholder="请输入公司企业名称">
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label"><span style="color:red">*</span>自然人名称：</label>
+						<div class="layui-input-block">
+							<input type="text" name="humanName" id="humanName" class="layui-input humanName" lay-verify="required"  placeholder="请输入自然人名称">
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label"><span style="color:red">*</span>身份证号：</label>
+						<div class="layui-input-block">
+							<input type="text" name="idCardNo" id="idCardNo" class="layui-input idCardNo"
+							maxlength="18" lay-verify="identity" placeholder="请输入18位身份证号">
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label"><span style="color:red">*</span>商标名称：</label>
+						<div class="layui-input-block">
+							<input type="text" name="trademarkName" id="trademarkName" class="layui-input trademarkName" 
+							lay-verify="required" placeholder="请输入商标名称">
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6" id = "type">
+						<label class="layui-form-label"><span style="color:red">*</span>受理类型：</label>
+						<div class="layui-input-block">
+							<select name="acceptType" class="acceptType" id="acceptType" lay-filter=acceptType lay-verify="required"></select>
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">类别：</label>
+						<div class="layui-input-block" style="width: 355px">
+							<select name="addType" id="addType" xm-select="select1" >
+							    <option value="类型1">类型1</option>
+							    <option value="类型2">类型2</option>
+							    <option value="类型3">类型3</option>
+							    <option value="类型4">类型4</option>
+							    <option value="类型5">类型5</option>
+							    <option value="类型6">类型6</option>
+							    <option value="类型7">类型7</option>
+							    <option value="类型8">类型8</option>
+							    <option value="类型9">类型9</option>
+							    <option value="类型10">类型10</option>
+							    <option value="类型11">类型11</option>
+							    <option value="类型12">类型12</option>
+							    <option value="类型13">类型13</option>
+							    <option value="类型14">类型14</option>
+							    <option value="类型15">类型15</option>
+							    <option value="类型16">类型16</option>
+							    <option value="类型17">类型17</option>
+							    <option value="类型18">类型18</option>
+							    <option value="类型19">类型19</option>
+							    <option value="类型20">类型20</option>
+							    <option value="类型21">类型21</option>
+							    <option value="类型22">类型22</option>
+							    <option value="类型23">类型23</option>
+							    <option value="类型24">类型24</option>
+							    <option value="类型25">类型25</option>
+							    <option value="类型26">类型26</option>
+							    <option value="类型27">类型27</option>
+							    <option value="类型28">类型28</option>
+							    <option value="类型29">类型29</option>
+							    <option value="类型30">类型30</option>
+							    <option value="类型31">类型31</option>
+							    <option value="类型32">类型32</option>
+							    <option value="类型33">类型33</option>
+							    <option value="类型34">类型34</option>
+							    <option value="类型35">类型35</option>
+							    <option value="类型36">类型36</option>
+							    <option value="类型37">类型37</option>
+							    <option value="类型38">类型38</option>
+							    <option value="类型39">类型39</option>
+							    <option value="类型40">类型40</option>
+							    <option value="类型41">类型41</option>
+							    <option value="类型42">类型42</option>
+							    <option value="类型43">类型43</option>
+							    <option value="类型44">类型44</option>
+							    <option value="类型45">类型45</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">总金额：</label>
+						<div class="layui-input-block">
+							<input type="text" name="amt" id="amt" class="layui-input amt"  placeholder="0.00" disabled="disabled">
+						</div>
+					</div>
+					<div class="layui-col-md6">
+						<input id="operator" class="operator" name="operator" hidden="true"/>
+					</div>
+				</div>
+			
+				
+				<div class="layui-form-item layui-layout-admin">
+					<div class="layui-input-block">
+						<div class="layui-footer" style="left: 0;">
+							<button type="button" class="layui-btn" lay-submit lay-filter="addRole">立即添加</button>
+							<button id="close" type="button" class="layui-btn layui-btn-primary">关闭</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			
+			
+			
+		</div>
+	</div>
+</div>	
+
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>	
+<script>
+        layui.config({
+            base : '../../../layuiadmin/' //静态资源所在路径
+        }).extend({
+            index : 'lib/index' //主入口模块
+        }).use([ 'index','operate/addNew','laydate'], function() {
+        	
+        	  var laydate = layui.laydate;
+        	  laydate.render({
+        	      elem: '#test13',
+        	      format: 'yyyyMMdd'
+        	    });
+        	
+        });
+</script>
+ 
+</body>
+</html>

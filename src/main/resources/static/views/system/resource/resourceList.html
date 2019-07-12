@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style type="text/css">
+  	body {
+  		overflow-y: scroll;
+  	}
+    .form-container .layui-col-md4{
+      margin-bottom: 15px;
+    }
+    .toggleForm {
+      cursor: pointer;
+    }
+	.layui-table-fixed-r {
+    left: auto;
+    right: -1px;
+    border-width: 0 0 0 1px;
+    display: inline !important;
+    box-shadow: -1px 0 8px rgba(0, 0, 0, .08);
+    }
+  </style>
+</head>
+<body>
+	<input type="hidden" id="resourceListHidden" value="noClick"/>
+    <div class="layui-fluid form-container">
+    <div class="layui-card">
+      <div class="layui-card-body">
+        <div class="operate-btn layui-bottom-space">
+		    <a class="layui-btn add-user">新增 </a>
+		    <a class="layui-btn update-resource">修改</a>
+	    </div>
+        
+              
+        <table class="layui-hide" id="test-table-resetPage" lay-filter="test-table-resetPage"></table>
+        <script type="text/html" id="test-table-bar">
+          <button class="layui-btn layui-btn-xs layui-bg-red"  lay-event="del">删除</button> 
+        </script>
+                          
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<script>
+	layui.config({
+		base : '../../../layuiadmin/' //静态资源所在路径
+	}).extend({
+		index : 'lib/index' //主入口模块
+	}).use([ 'index','resource/resourceList'], function() {
+	});
+</script> 
+</body>
+</html>

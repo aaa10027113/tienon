@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>用户管理</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/layuiadmin/layui/css/public.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+	<style>
+.layui-form-label{
+	width : 170px;
+	padding : 9px 0px;
+}
+.layui-input-block{
+	margin-left : 190px;
+}
+.layui-div-width{
+	width: 50%;
+}
+</style>
+</head>
+<body>
+<div class="layui-fluid form-container">
+	<div class="layui-card">
+		<div class="layui-card-body" style="padding: 15px;">
+			<form class="layui-form">
+				<div class="layui-form-item layui-row">
+					<div class="layui-div-width">
+						<label class="layui-form-label neccesary">原始密码：</label>
+						<div class="layui-input-block">
+							<input type="password" name="adminPwd" id="adminPwd" class="layui-input adminPwd" lay-verify="required">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item layui-row">
+					<div class="layui-div-width">
+						<label class="layui-form-label neccesary">新密码：</label>
+						<div class="layui-input-block">
+							<input type="password" name="userPwd" class="layui-input userPwd" lay-verify="required">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item layui-row">
+					<div class="layui-div-width">
+						<label class="layui-form-label neccesary">密码确认：</label>
+						<div class="layui-input-block">
+							<input type="password" name="userPwd_sub" class="layui-input userPwd_sub" lay-verify="required">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item layui-row">
+					<div class="layui-input-block">
+						<div class="layui-footer" style="left: 0;">
+							<button id="updatePwd" type="button" class="layui-btn" lay-submit lay-filter="updatePwd">立即修改</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<script>
+	layui.config({
+		base : '../../../layuiadmin/' //静态资源所在路径
+	}).extend({
+		index : 'lib/index' //主入口模块
+	}).use([ 'index','user/updatePersonalPwd'], function() {
+	});
+</script>
+</body>
+</html>

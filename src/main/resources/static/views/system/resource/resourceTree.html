@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layui树</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style type="text/css">
+    .form-container .layui-col-md4{
+      margin-bottom: 15px;
+    }
+    .form-container .layui-form-label {
+      /*默认： 80*/
+      /*width: 120px;*/
+    }
+    .form-container .layui-input-block {
+      /*默认：110*/
+      /*margin-left: 150px;*/
+    }
+    .search_hint_text {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <div class="layui-col-md6">
+	<label class="layui-form-label">机构名称:</label>
+	<div class="layui-input-block">
+		<input id="searchTree" name="searchTree" class="layui-input layui-input-inline" style="width: 200px;">
+	</div>
+  </div>
+</div>
+<div style="display: inline-block; padding: 10px 80px 0px 50px; overflow: auto;" id="main">
+  <ul id="demo1"></ul>
+</div>
+
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+		base : '../../../layuiadmin/' //静态资源所在路径
+	}).extend({
+		index : 'lib/index', //主入口模块
+	}).use([ 'index','resource/resourceTree'], function() {
+	});
+  </script>
+</body>
+</html>

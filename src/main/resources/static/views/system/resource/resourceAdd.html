@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>表单组合</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <style type="text/css">
+    .form-container .layui-col-md6{
+      margin-bottom: 15px;
+    }
+    .require-mark {
+      color: red;
+    }
+    /*带右侧图标的input*/
+    .layui-input-icon-right,
+    .layui-input-icon-right:before{
+      position:absolute;
+      top:0px;
+      right:2px;
+      line-height:36px;
+      font-size:28px;
+    }
+	.layui-form-label{
+		width : 170px;
+		padding : 9px 0px;
+	}
+	.layui-input-block{
+		margin-left : 190px;
+	}
+  </style>
+</head>
+<body>
+
+  <div class="layui-fluid form-container">
+    <div class="layui-card">
+      <div class="layui-card-header">添加页面资源信息</div>
+      <div class="layui-card-body" style="padding: 15px;">
+
+        <form class="layui-form">
+          <div class="layui-form-item layui-row">
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>主键编号:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="id" lay-verify="required" placeholder="主键编号" autocomplete="off" class="layui-input">
+                <!-- <a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="userID" type="button" ></a> -->
+              </div>
+            </div>
+            
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>名称:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="displayName" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>图标:
+              </label>
+              <div class="layui-input-block">
+                <input type="text" name="resourceName" id="resourceName" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+          		      地址:
+              </label>
+              <div class="layui-input-block">
+                <input type="tel" name="functionUrl" lay-verify="" autocomplete="off" class="layui-input">
+                
+              </div>
+            </div>
+            
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+          		 <span class="require-mark">*</span>序号:
+              </label>
+              <div class="layui-input-block">
+                <input type="number" name="seqSn" lay-verify="required" autocomplete="off" class="layui-input">
+                
+              </div>
+            </div>
+          
+            <div class="layui-col-md6">
+              <label class="layui-form-label">
+                <span class="require-mark">*</span>状态:
+              </label>
+              <div class="layui-input-block">
+                <select name="status" lay-filter="enable">
+                  <option value="1">启用</option>
+                  <option value="0">停用</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="layui-col-md6" >
+               <label class="layui-form-label" >
+                	 上级菜单编号:
+              </label> 
+              <div class="layui-input-block">
+                <input type='text' name="superiorId" id="superiorId" lay-verify="" placeholder="上级菜单编号" autocomplete="off" class="layui-input" disabled="disabled">
+                <input type="hidden" name="resourceType" value="1">
+              </div>
+            </div>
+            
+            <div class="layui-col-md6">
+       		  <label class="layui-btn layui-btn-primary" type="button" id="superiorName_btn">
+                	上级菜单信息
+              </label>
+            </div>
+
+          </div>
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <button type="button" class="layui-btn addUser" lay-submit="" lay-filter="addUser">立即提交</button>
+                <button type="button" class="layui-btn close layui-btn-primary">关闭</button>
+              </div>
+            </div>
+          </div>  
+          
+        </form>
+
+      </div>
+    </div>
+  </div>
+ <script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<script>
+	layui.config({
+		base : '../../../layuiadmin/' //静态资源所在路径
+	}).extend({
+		index : 'lib/index' //主入口模块
+	}).use([ 'index','resource/resourceAdd'], function() {
+	});
+</script> 
+</body>
+</html>
