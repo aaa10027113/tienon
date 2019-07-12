@@ -30,7 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
-import com.tienon.boot.constant.Constant;
+import com.tienon.boot.constant.CommonStatic;
 import com.tienon.boot.domain.ApplyInfo;
 import com.tienon.boot.mapper.OperateMapper;
 import com.tienon.boot.util.ExcelUtil;
@@ -76,7 +76,7 @@ public class OperateService {
 		}catch (Exception e) {
 		  e.printStackTrace(); 
 		  log.error("查询批量装载表出现异常：[" + e.getMessage() + "]"); 
-		  throw new EjxError(Constant.R_029, "查询批量装载表出现异常：[" + e.getMessage() + "]"); 
+		  throw new EjxError(CommonStatic.R_029, "查询批量装载表出现异常：[" + e.getMessage() + "]"); 
 		}
 	}
 	/** 
@@ -107,7 +107,7 @@ public class OperateService {
 		}catch (Exception e) {
 		  e.printStackTrace(); 
 		  log.error("添加新商标出现异常：[" + e.getMessage() + "]"); 
-		  throw new EjxError(Constant.R_029, "添加新商标出现异常：[" + e.getMessage() + "]"); 
+		  throw new EjxError(CommonStatic.R_029, "添加新商标出现异常：[" + e.getMessage() + "]"); 
 		}
 	}
 	/** 
@@ -136,7 +136,7 @@ public class OperateService {
 		}catch (Exception e) {
 		  e.printStackTrace(); 
 		  log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
-		  throw new EjxError(Constant.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
+		  throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
 		}
 		
 	}
@@ -157,7 +157,7 @@ public class OperateService {
 		}catch (Exception e) {
 		  e.printStackTrace(); 
 		  log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
-		  throw new EjxError(Constant.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
+		  throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
 		}
 	}
 	
@@ -182,7 +182,7 @@ public class OperateService {
 		}catch (Exception e) {
 			  e.printStackTrace(); 
 			  log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
-			  throw new EjxError(Constant.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
+			  throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]"); 
 			}
 	}
 	
@@ -209,7 +209,7 @@ public class OperateService {
 		}catch (Exception e) {
 		  e.printStackTrace(); 
 		  log.error("查询导出Excel数据出现异常：[" + e.getMessage() + "]"); 
-		  throw new EjxError(Constant.R_029, "查询导出Excel数据出现异常：[" + e.getMessage() + "]"); 
+		  throw new EjxError(CommonStatic.R_029, "查询导出Excel数据出现异常：[" + e.getMessage() + "]"); 
 		}
 	}
 	
@@ -235,7 +235,7 @@ public class OperateService {
 		}catch (Exception e) {
 		  e.printStackTrace(); 
 		  log.error("查询下载Excel数据出现异常：[" + e.getMessage() + "]"); 
-		  throw new EjxError(Constant.R_029, "查询下载Excel数据出现异常：[" + e.getMessage() + "]"); 
+		  throw new EjxError(CommonStatic.R_029, "查询下载Excel数据出现异常：[" + e.getMessage() + "]"); 
 		}
 	}
 	/**
