@@ -33,12 +33,7 @@ public class GetJsonController {
 	 */
 	@RequestMapping(value = "/iconJson", method = {RequestMethod.POST})
 	@ResponseBody
-	public JSONArray iconJson() throws Exception {
-		/*File jsonFile = ResourceUtils.getFile("classpath:static/layuiadmin/json/iconInfo.json");
-		String json = FileUtils.readFileToString(jsonFile);
-		JSONArray jsonArray = JSON.parseArray(json);
-	    return jsonArray;*/
-		
+	public JSONArray iconJson() throws Exception {		
 		String json = "";
 		ClassPathResource cpr = new ClassPathResource("static/layuiadmin/json/iconInfo.json");
 		try {
