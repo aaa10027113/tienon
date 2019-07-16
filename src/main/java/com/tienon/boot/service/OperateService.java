@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -201,6 +202,18 @@ public class OperateService {
 	 */
 	public Object reportList(PageGrid pg) {
 		try {
+			if(pg.getSearchCondition().isEmpty()) {
+				Calendar calendar = Calendar.getInstance();
+				Date date = new Date();
+		        calendar.setTime(date);
+		        calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - 7);
+		        Date today = calendar.getTime();
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		        String beginTime = sdf.format(today) + " 00:00:00";
+				String endTime= sdf.format(date)+" 23:59:59";
+				pg.getSearchCondition().put("beginTime",beginTime);
+				pg.getSearchCondition().put("endTime",endTime);
+			}
 			log.info("获取导出Excel数据入参：searchCondition="+JSON.toJSONString(pg.getSearchCondition()));
 			//查询 
 			PageList<ApplyInfo> pageList =operateMapper.reportList(pg.getSearchCondition());
