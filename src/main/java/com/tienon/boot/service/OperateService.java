@@ -77,6 +77,11 @@ public class OperateService {
 					"********pageBounds="+JSON.toJSONString(pageBounds));
 			//查询 
 			PageList<ApplyInfo> pageList =operateMapper.queryList(pg.getSearchCondition(),pageBounds);
+			if(null != pageList) {
+				for(ApplyInfo info: pageList) {
+					info.setAcceptDate(info.getAcceptDate().split(" ")[0]);
+				}
+			}
 			log.info("获取商标注册列表出参："+JSON.toJSONString(pageList));
 		    // 获取查询结果总条数 
 			int total = pageList.getPaginator().getTotalCount();
