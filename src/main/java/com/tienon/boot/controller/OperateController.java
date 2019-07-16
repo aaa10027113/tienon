@@ -103,19 +103,7 @@ public class OperateController {
 		if(null==list) {
 			new ActionResult(false, "根据时间段未获取到需要下载的数据");
 		}
-		String localpath="";
-		String path="";
-		for(int i =0; i<=(list.size()/44);i++){
-			int toIndex = 0;
-			if((i+1)*44>=list.size()) {
-				toIndex = list.size();
-			}else {
-				toIndex = (i+1)*44;
-			}
-			List<ApplyInfo> newList = list.subList(i*44, toIndex);
-			operateService.download(newList,response,beginTime,endTime);
-			path=localpath+"("+i+")";
-		}
-//		return path;
+		operateService.download(list,response,beginTime,endTime);
+		
 	}
 }
