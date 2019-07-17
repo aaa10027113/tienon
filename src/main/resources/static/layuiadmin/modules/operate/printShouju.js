@@ -23,29 +23,12 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
             	$("#acceptYear").html(msg.acceptTypeName);
             	$("#sum").html(moneyToCapital(msg.amt));
             	preview();
-            	//商标名称
-            	/*if(msg.trademarkName.length<=8){
-            		$("#trademarkName_center").html(msg.trademarkName);
-            	}else if(msg.trademarkName.length<=16){
-            		$("#trademarkName_top").html(msg.trademarkName.slice(0,8));
-            		$("#trademarkName_center").html(msg.trademarkName.slice(9));
-            	}else{
-            		$("#trademarkName_top").html(msg.trademarkName.slice(0,8));
-            		$("#trademarkName_center").html(msg.trademarkName.slice(8,16));
-            		$("#trademarkName_down").html(msg.trademarkName.slice(16));
-            	}*/
              },"json");
         	
         	var index = parent.layer.getFrameIndex(window.name);
 	 		parent.layer.close(index);
 	 		layer.closeAll();
     });
-	//=======================================
-  /*  var form = layui.form
-        layer = parent.layer === undefined ? layui.layer : top.layer,
-        comExt = layui.comExt,
-        $ = layui.jquery,
-        layedit = layui.layedit;*/
 
     function preview(){
         bdhtml=window.document.body.innerHTML;//获取当前页的html代码
@@ -58,9 +41,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
         window.document.body.innerHTML=bdhtml;
     }
 
-// 	  exports('role/roleUpdate', {});
-    
-    
     function moneyToCapital(num) {
         var fuhao = "";
         var text = num + "";
