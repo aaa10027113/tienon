@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>文章列表--layui后台管理模板 2.0</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+<style type="text/css">
+		/* 去除页眉页脚 */
+        @page { margin: 0; }
+</style>	
+</head>
+<body>
+<!--startprint-->
+<div id="out">
+	<!-- <img src="template.jpg"> -->
+	<!-- 公司名称 -->
+	<span id="companyName" style="position:absolute; z-index:2; left: 313px;top: 154px; font-size: 25px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 申请年 -->
+	<span id="acceptYear" style="position:absolute; z-index:2; left: 313px;top: 245px; font-size: 25px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+	<!-- 金额大写 -->
+	<span id="sum" style="position:absolute; z-index:2; left: 356px;top: 197px; font-size: 25px; line-height: 115%; 
+	font-family: 宋体; border: 0px solid;"></span>
+	
+</div>
+<!--endprint-->
+
+<script type="text/javascript" src="../../../layuiadmin/qrcode/jquery-2.1.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<!-- <script type="text/javascript" src="../../../layuiadmin/qrcode/jquery.jqprint-0.3.js"></script> -->
+<script type="text/javascript" src="../../../layuiadmin/qrcode/jquery.qrcode.min.js"></script>
+
+<script>
+        layui.config({
+            base : '../../../layuiadmin/' //静态资源所在路径
+        }).extend({
+            index : 'lib/index' //主入口模块
+        }).use([ 'index','operate/printShouju','laydate'], function() {
+            
+        	 var laydate = layui.laydate;
+        	 laydate.render({
+        	     elem: '#test13'
+        	     ,format: 'yyyyMMdd'
+        	   });
+        });
+</script>
+ 
+</body>
+</html>

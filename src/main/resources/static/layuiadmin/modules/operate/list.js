@@ -71,8 +71,13 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 //          {title: '操作', width:125, templet:'#roleListBar',fixed:"right",align:"center"}
           {title: '打印', minWidth:170,fixed:"right",align:"center",templet:function(d){
 //        	  return '<a class="layui-btn layui-btn-xs" href="printData.html?'+d.applyNo+'">打印回执</a>';
-        	  return '<button class="layui-btn layui-btn-md"   lay-event="print">回执</button>'+
-        	  		 '<button class="layui-btn layui-btn-md"   lay-event="print">收据</button>';
+        	  if(d.status=="00"){
+        		  return '<button class="layui-btn layui-btn-md"   lay-event="print">回执</button>'+
+     	  		 '<button class="layui-btn layui-btn-md"   lay-event="printShouju">收据</button>';
+        	  }else{
+        		  return '<button class="layui-btn layui-btn-md"   lay-event="print">回执</button>'+
+     	  		 '<button class="layui-btn layui-btn-md layui-btn-disabled">收据</button>';
+        	  }
           }}
         ]]
     });
@@ -258,6 +263,41 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 	}
 
     
+    //打印收据
+    function printShouju(data){
+    	if(!data){
+    		var checkStatus = table.checkStatus('operateList');
+    		console.log(checkStatus.data);
+    		if(checkStatus.data.length >1) {
+    			layer.msg("只能打印一条收据数据");
+    			return;
+    		}
+    		data = checkStatus.data[0];
+    	}
+    	if(data == null ){
+    		layer.msg("请选择需要打印的数据");
+    		return false;
+    	}
+    	var index = layui.layer.open({
+    		title : "打印收据",
+    		type : 2,
+    		anim: 3,
+    		content : "/views/system/operate/printShouju.html?"+data.applyNo,
+    		success : function(layero, index){
+    			var body = layer.getChildFrame('body', index);
+    			comExt.fillInput(body,data,form);
+    			setTimeout(function(){
+    				layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+    					tips: 3
+    				});
+    			},500)
+    		}
+    	})
+    	comExt.full(index);
+    	layui.sessionData("index",index);
+    }
+    
+    
     
     //批量删除
     $(".delAll_btn").click(function(){
@@ -306,6 +346,9 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 
         if(layEvent === 'print'){ //打印回执
         	printData(data);
+        }
+        if(layEvent === 'printShouju'){ //打印回执
+        	printShouju(data);
         }
         
     });
