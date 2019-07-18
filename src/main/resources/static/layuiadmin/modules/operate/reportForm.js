@@ -46,12 +46,14 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         	  ,dataName: 'obj/rows' //数据列表的字段名称，默认：data
         	} ,
         cols : [[
-          {field: 'num', title: '序号', width:80, align:"center",templet:'#num'},
-          {field: 'humanName', title: '申请人名称', width:150, align:'center'},
-          {field: 'acceptDate', title: '申请日期', width:150, align:"center"},
+          {field: 'num', title: '序号', width:60, align:"center",templet:'#num'},
+          {field: 'applyNo', title: '申请序号', width:121, align:"center"},
+          {field: 'acceptDate', title: '受理日期', width:102, align:'center'},
+          {field: 'companyName', title: '公司名称', width:150, align:"center"},
+          {field: 'trademarkName', title: '商标名称', width:150, align:"center"},
           {field: 'acceptTypeName', title: '业务类型', width:200, align:"center"},
-          {field: 'addType', title: '类别', width:485, align:"center"},
-          {field: 'amt', title: '金额', width:150, align:"center"},
+          {field: 'addType', title: '类别', width:330, align:"center"},
+          {field: 'amt', title: '金额', width:100, align:"center"},
           
         ]],
 //        done: function (res, curr, count) {
@@ -105,18 +107,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     		endTime = endTime+" 23:59:59";
     	}
     	window.location.href="/operate/download?beginTime="+beginTime+"&endTime="+endTime;
-	   /* $.ajax({
-            type: "post",
-            url: "/operate/download",
-            data: {beginTime,endTime},
-            dataType: "json",
-            headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-            },
-            success: function(msg){
-            	
-             },   
-        });*/
 
     })
     

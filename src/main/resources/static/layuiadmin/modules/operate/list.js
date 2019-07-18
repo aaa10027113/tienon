@@ -308,12 +308,12 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         if(data.length > 0) {
             for (var i in data) {
             	if(data[i].status=="00"){
-            		alert("选中的订单含有支付成功的订单，支付成功的订单不允许删除！！！")
+            		layer.confirm('选中的订单含有支付成功的订单，支付成功的订单不允许删除！！！', {icon: 3, title: '提示信息'});
             		return;
             	}
                 newsId.push(data[i].applyNo);
             }
-            layer.confirm('确定删除选中的商标？', {icon: 3, title: '提示信息'}, function (index) {
+            layer.confirm('确定要删除选中的商标受理信息吗？', {icon: 3, title: '提示信息'}, function (index) {
             	$.ajax({
                     type: "post",
                     url: "/operate/deleteByPrimaryKey",
@@ -335,7 +335,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
                 
             })
         }else{
-            layer.msg("请选择需要删除的商标",{time:5*1000});
+            layer.msg("请选择需要删除的商标受理信息",{time:5*1000});
         }
     })
 
