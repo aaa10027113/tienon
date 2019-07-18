@@ -14,7 +14,7 @@
 		}
 
 		body {
-			background: linear-gradient(97deg, rgba(135, 224, 253, 1) 0%, rgba(83, 203, 241, 1) 25%, rgba(7, 255, 197, 1) 100%)
+			background: #dddddd;
 		}
 
 		* {
@@ -23,7 +23,7 @@
 		}
 
 		.head {
-			height: 20%;
+			height: 10%;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -31,14 +31,13 @@
 			perspective-origin: 50% 50%;
 			-webkit-perspective:150;
 			-webkit-perspective-origin: 50% 50%;
+			background: linear-gradient(to bottom, rgba(58,71,79,1) 0%,rgba(17,21,22,1) 100%);
+			box-shadow: inset 0px 3px 1px 0px #7a8589;
+			border-radius: 2px;
 		}
 
 		.title {
-			width: 70%;
-			height: 50%;
-			border: 2px solid white;
-			background: rgba(255, 255, 255, 0.26);
-			border-radius: 5px;
+			width: 100%;
 			font-size: 20px;
 			font-weight: bold;
 			color: white;
@@ -50,7 +49,7 @@
 		
 
 		.content {
-			height: 60%;
+			height: 40%;
 			background: #FFFFFF;
 			display: flex;
 			align-items: center;
@@ -62,7 +61,6 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: white;
 		}
 
 		.table {
@@ -96,14 +94,34 @@
 			padding: 10px 30px 10px 30px;
 			font-size: 20px;
 			color: white;
-			background: rgb(22, 198, 255);
+			background:  linear-gradient(to bottom, rgba(134,197,142,1) 0%,rgba(20,161,31,1) 16%,rgba(17,132,23,1) 48%,rgba(0,147,9,1) 81%,rgba(134,197,142,1) 100%);
 			border: none;
-			border-radius: 100px;
+			border-radius: 5px;
+			width: 80%;
 			display: block;
 		}
 		
 		.my-btn:hover{
 			background: rgb(22, 198, 255, 0.46)
+		}
+		.box1{
+			height: 25%;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.amt-title{
+			width: 100%;
+			text-align: center;
+			font-size: 20px;
+			font-weight: bold;
+		}
+		.amt{
+			width: 100%;
+			font-size: 70px;
+			font-weight: bolder;
+			text-align: center;
 		}
 	</style>
 	<script type="text/javascript">
@@ -130,7 +148,8 @@
 							alert(res.msg);
 							return false;
 						}
-						$(".title").text(res.obj.companyName);
+						$("#companyName").text(res.obj.companyName);
+						$("#orderNo").text(res.obj.orderNo);
 						$("#amt").text(res.obj.amt);
 						$("#trademarkName").text(res.obj.trademarkName);
 						$("#acceptTypeName").text(res.obj.acceptTypeName);
@@ -145,21 +164,25 @@
 	<body>
 		<div class="head">
 			<div class="title">
+				确认付款
+			</div>
+		</div>
+
+		<div class="box1">
+			<div class="box2">
+				<div class="amt-title">
+					商标受理费用
+				</div>
+				<div class="amt">
+					<span>￥</span><span id="amt"></span>
+				</div>
 			</div>
 		</div>
 		<div class="content">
 			<table class="table">
 				<tr>
-					<td class="leftTd">
-						<div class="amtTitle" style="font-size: 20px;">
-							商标注册费
-						</div>
-					</td>
-					<td class="rightTd" style="font-size: 20px;font-weight: bold;">
-						<span id="amt" style="color: red;">
-						</span>
-						<span style="color: #ff9100;font-weight: 100;font-size: 14px;">元</span>
-					</td>
+					<td class="leftTd">公司企业名称</td>
+					<td class="rightTd" id="companyName"></td>
 				</tr>
 				<tr>
 					<td class="leftTd">商标名称</td>
@@ -168,6 +191,10 @@
 				<tr>
 					<td class="leftTd">受理类型</td>
 					<td class="rightTd" id="acceptTypeName"></td>
+				</tr>
+				<tr>
+					<td class="leftTd">订单编号</td>
+					<td class="rightTd" id="orderNo"></td>
 				</tr>
 			</table>
 		</div>
