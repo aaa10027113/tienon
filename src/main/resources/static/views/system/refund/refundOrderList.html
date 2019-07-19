@@ -45,8 +45,14 @@
 						<div class="layui-col-md4">
 							<label class="layui-form-label">订单状态：</label>
 							<div class="layui-input-block">
-								<input type="text" name="refundNo" id="refundNo"
-									lay-verify="refundNo" autocomplete="off" class="layui-input">
+								<select name="status" id="status">
+									<option value="">请选择</option>
+									<option value="00">退款成功</option>
+									<option value="01">受理中</option>
+									<option value="02">退款失败</option>
+									<option value="03">订单超时</option>
+									<option value="99">未知状态</option>
+								</select>
 							</div>
 						</div>
 					</div>
