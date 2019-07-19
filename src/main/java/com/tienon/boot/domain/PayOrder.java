@@ -3,54 +3,82 @@ package com.tienon.boot.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 
+ * @Description TODO(支付订单实体类)
+ * @author WangQingquan
+ * @date 2019年7月19日
+ */
 public class PayOrder {
-    private String applyno;
+	/**
+	 * 申请序号
+	 */
+	private String applyNo;
 
-    private String orderno;
+	/**
+	 * 订单编号
+	 */
+	private String orderNo;
 
-    private Date paytime;
+	/**
+	 * 支付时间
+	 */
+	private Date payTime;
 
-    private BigDecimal amt;
+	/**
+	 * 支付金额
+	 */
+	private BigDecimal amt;
 
-    private String status;
+	/**
+	 * 支付状态
+	 */
+	private String status;
 
-    public String getApplyno() {
-        return applyno;
-    }
+	public String getApplyNo() {
+		return applyNo;
+	}
 
-    public void setApplyno(String applyno) {
-        this.applyno = applyno;
-    }
+	public void setApplyNo(String applyNo) {
+		this.applyNo = applyNo;
+	}
 
-    public String getOrderno() {
-        return orderno;
-    }
+	public String getOrderNo() {
+		return orderNo;
+	}
 
-    public void setOrderno(String orderno) {
-        this.orderno = orderno;
-    }
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
 
-    public Date getPaytime() {
-        return paytime;
-    }
+	public Date getPayTime() {
+		return payTime;
+	}
 
-    public void setPaytime(Date paytime) {
-        this.paytime = paytime;
-    }
+	public void setPayTime(Date payTime) {
+		this.payTime = payTime;
+	}
 
-    public BigDecimal getAmt() {
-        return amt;
-    }
+	public BigDecimal getAmt() {
+		return amt;
+	}
 
-    public void setAmt(BigDecimal amt) {
-        this.amt = amt;
-    }
+	public void setAmt(BigDecimal amt) {
+		this.amt = amt;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "PayOrder [applyNo=" + applyNo + ", orderNo=" + orderNo + ", payTime=" + payTime + ", amt=" + amt
+				+ ", status=" + status + "]";
+	}
+
 }

@@ -9,31 +9,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alibaba.fastjson.JSON;
+import com.tienon.EjxError;
 import com.tienon.boot.constant.CommonStatic;
 import com.tienon.boot.domain.ApplyInfo;
+import com.tienon.boot.domain.PayOrder;
 import com.tienon.boot.domain.pay.ReceiveOutBo;
 import com.tienon.boot.domain.pay.SendInBo;
 import com.tienon.boot.domain.pay.SendSubInBo1;
 import com.tienon.boot.domain.pay.SendSubInBo2;
 import com.tienon.boot.mapper.OperateMapper;
+import com.tienon.boot.mapper.PayOrderMapper;
 import com.tienon.boot.mapper.pay.PaymentOnlineMapper;
 import com.tienon.boot.util.PayUtil;
+import com.tienon.boot.util.support.PageGrid;
+import com.tienon.boot.util.support.PageResult;
+import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
+import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 import com.tienon.framework.supports.ActionResult;
 
 /**
- * 在线支付
  * 
- * @author 65128
- *
+ * @Description (在线支付)
+ * @author WangQingquan
+ * @date 2019年7月19日
  */
 @Service
 @Transactional
 public class PaymentOnlieService {
+
 	private static Logger logger = Logger.getLogger(PaymentOnlieService.class);
+
 	@Autowired
 	PaymentOnlineMapper paymentOnlineMapper;
+
 	@Autowired
 	OperateMapper operateMapper;
+
+	@Autowired
+	PayOrderMapper payOrderMapper;
 
 	/**
 	 * 发送在线支付信息
@@ -96,6 +110,36 @@ public class PaymentOnlieService {
 			logger.error("PaymentOnlieService Error, method: sendPaymessage" + e.getMessage());
 		}
 		return actionResult;
+
+	}
+
+	/**
+	 * 
+	 * TODO(根据查询条件查询支付状态列表)
+	 * 
+	 * @param payOrder
+	 * @return
+	 * @return ActionResult 返回类型
+	 */
+	public Object queryPayOrderList(PageGrid pg) {
+		int page = pg.getPage();
+		int pageSize = pg.getRows();
+		PageBounds pageBounds = new PageBounds(page, pageSize, true);
+
+		try {
+			logger.info("获取订单支付状态列表入参：searchCondition=" + JSON.toJSONString(pg.getSearchCondition())
+					+ "********pageBounds=" + JSON.toJSONString(pageBounds));
+			// 查询
+			PageList<PayOrder> pageList = payOrderMapper.queryPayOrderList(pg.getSearchCondition(), pageBounds);
+			logger.info("获订单支付状态列列表出参：" + JSON.toJSONString(pageList));
+			// 获取查询结果总条数
+			int total = pageList.getPaginator().getTotalCount();
+			return new ActionResult(new PageResult(total, pageList));
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("查询批量装载表出现异常：[" + e.getMessage() + "]");
+			throw new EjxError(CommonStatic.R_029, "查询批量装载表出现异常：[" + e.getMessage() + "]");
+		}
 
 	}
 }

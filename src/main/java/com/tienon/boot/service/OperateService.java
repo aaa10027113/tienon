@@ -7,6 +7,7 @@ package com.tienon.boot.service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ import com.tienon.boot.domain.ApplyInfo;
 import com.tienon.boot.domain.DownloadInfo;
 import com.tienon.boot.domain.PayOrder;
 import com.tienon.boot.mapper.OperateMapper;
+import com.tienon.boot.mapper.PayOrderMapper;
 import com.tienon.boot.util.PayUtil;
 import com.tienon.boot.util.support.PageGrid;
 import com.tienon.boot.util.support.PageResult;
@@ -49,8 +51,13 @@ import net.sf.jxls.transformer.XLSTransformer;
 @Service
 @Transactional
 public class OperateService {
+
 	@Autowired
 	OperateMapper operateMapper;
+
+	@Autowired
+	PayOrderMapper payOrderMapper;
+
 	private static Logger log = Logger.getLogger(OperateService.class);
 
 	/**
@@ -96,6 +103,8 @@ public class OperateService {
 	 */
 	public Object addNewInfo(ApplyInfo info) {
 		PayOrder payOrder = new PayOrder();
+		int i = 0;
+		int j = 0;
 		try {
 			log.info("添加新商标入参：" + JSON.toJSONString(info));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -108,21 +117,25 @@ public class OperateService {
 			info.setOperationDate(sdf1.format(date));
 			info.setAcceptType(info.getAcceptType().split(";")[0]);
 			// 将处理好后的数据添加到数据库中
-			int i = operateMapper.addNewInfo(info);
+			i = operateMapper.addNewInfo(info);
 			log.info("添加新商标出参：" + JSON.toJSONString(i));
-			if (i == 0) {
-				return new ActionResult(false, "添加商标错误");
-			}
 			// 添加商品后需要插入往支付订单表插入一条数据
-			payOrder.setApplyno(info.getApplyNo());
-			payOrder.setOrderno(PayUtil.getPaymentOrderNo());
-			// payOrder.setAmt(new BigDecimal(info.getAmt()));
-			return new ActionResult(true);
+			payOrder.setApplyNo(info.getApplyNo());
+			payOrder.setOrderNo(PayUtil.getPaymentOrderNo());
+			payOrder.setAmt(new BigDecimal(info.getAmt()));
+			// 支付状态：待支付
+			payOrder.setStatus("01");
+			j = payOrderMapper.insert(payOrder);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("添加新商标出现异常：[" + e.getMessage() + "]");
 			throw new EjxError(CommonStatic.R_029, "添加新商标出现异常：[" + e.getMessage() + "]");
 		}
+		if (j == 0 || i == 0) {
+			return new ActionResult(false, "添加商标错误");
+		}
+		return new ActionResult(true);
 	}
 
 	/**

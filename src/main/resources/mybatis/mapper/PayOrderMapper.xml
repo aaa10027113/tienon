@@ -15,7 +15,7 @@
     select 
     <include refid="Base_Column_List" />
     from tb_pay_order
-    where applyNo = #{applyno,jdbcType=VARCHAR}
+    where applyNo = #{applyNo,jdbcType=VARCHAR}
   </select>
 
   <select id="selectByPaytimeAndStatus" parameterType="com.tienon.boot.domain.PayOrder" resultMap="BaseResultMap">
@@ -27,24 +27,24 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_pay_order
-    where applyNo = #{applyno,jdbcType=VARCHAR}
+    where applyNo = #{applyNo,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.tienon.boot.domain.PayOrder">
     insert into tb_pay_order (applyNo, orderNo, payTime, 
       amt, status)
-    values (#{applyno,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{paytime,jdbcType=DATE}, 
+    values (#{applyNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{payTime,jdbcType=DATE}, 
       #{amt,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tienon.boot.domain.PayOrder">
     insert into tb_pay_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="applyno != null">
+      <if test="applyNo != null">
         applyNo,
       </if>
-      <if test="orderno != null">
+      <if test="orderNo != null">
         orderNo,
       </if>
-      <if test="paytime != null">
+      <if test="payTime != null">
         payTime,
       </if>
       <if test="amt != null">
@@ -55,14 +55,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="applyno != null">
-        #{applyno,jdbcType=VARCHAR},
+      <if test="applyNo != null">
+        #{applyNo,jdbcType=VARCHAR},
       </if>
-      <if test="orderno != null">
-        #{orderno,jdbcType=VARCHAR},
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="paytime != null">
-        #{paytime,jdbcType=DATE},
+      <if test="payTime != null">
+        #{payTime,jdbcType=DATE},
       </if>
       <if test="amt != null">
         #{amt,jdbcType=DECIMAL},
@@ -75,11 +75,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.tienon.boot.domain.PayOrder">
     update tb_pay_order
     <set>
-      <if test="orderno != null">
-        orderNo = #{orderno,jdbcType=VARCHAR},
+      <if test="orderNo != null">
+        orderNo = #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="paytime != null">
-        payTime = #{paytime,jdbcType=DATE},
+      <if test="payTime != null">
+        payTime = #{payTime,jdbcType=DATE},
       </if>
       <if test="amt != null">
         amt = #{amt,jdbcType=DECIMAL},
@@ -88,14 +88,28 @@
         status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
-    where applyNo = #{applyno,jdbcType=VARCHAR}
+    where applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tienon.boot.domain.PayOrder">
     update tb_pay_order
-    set orderNo = #{orderno,jdbcType=VARCHAR},
-      payTime = #{paytime,jdbcType=DATE},
+    set orderNo = #{orderNo,jdbcType=VARCHAR},
+      payTime = #{payTime,jdbcType=DATE},
       amt = #{amt,jdbcType=DECIMAL},
       status = #{status,jdbcType=VARCHAR}
-    where applyNo = #{applyno,jdbcType=VARCHAR}
+    where applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>
+  
+  <!-- 根据查询条件查询订单支付状态列表 -->
+  <select id="queryPayOrderList" parameterType="com.tienon.boot.domain.PayOrder" resultMap="BaseResultMap">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM TB_APPLY
+    	<where>
+    		1=1
+    		<if test="applyNo != null and applyNo != ''">AND applyNo = #{applyNo,jdbcType=VARCHAR}</if>
+      		<if test="orderNo != null and orderNo != ''">AND orderNo = #{orderNo,jdbcType=VARCHAR}</if>
+     		<if test="status != null and status != '' and status != '请选择'">AND STATUS =  #{status,jdbcType=VARCHAR}</if>
+		</where>
+		ORDER BY if(ISNULL(PAYTIME),0,1),PAYTIME,APPLYNO  DESC
+	</select>
 </mapper>
