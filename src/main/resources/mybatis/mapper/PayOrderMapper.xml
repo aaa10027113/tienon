@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tienon.boot.mapper.PayOrderMapper">
+  <resultMap id="BaseResultMap" type="com.tienon.boot.domain.PayOrder">
+    <id column="applyNo" jdbcType="VARCHAR" property="applyno" />
+    <result column="orderNo" jdbcType="VARCHAR" property="orderno" />
+    <result column="payTime" jdbcType="DATE" property="paytime" />
+    <result column="amt" jdbcType="DECIMAL" property="amt" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    applyNo, orderNo, payTime, amt, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_pay_order
+    where applyNo = #{applyno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_pay_order
+    where applyNo = #{applyno,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tienon.boot.domain.PayOrder">
+    insert into tb_pay_order (applyNo, orderNo, payTime, 
+      amt, status)
+    values (#{applyno,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{paytime,jdbcType=DATE}, 
+      #{amt,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tienon.boot.domain.PayOrder">
+    insert into tb_pay_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyno != null">
+        applyNo,
+      </if>
+      <if test="orderno != null">
+        orderNo,
+      </if>
+      <if test="paytime != null">
+        payTime,
+      </if>
+      <if test="amt != null">
+        amt,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyno != null">
+        #{applyno,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null">
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null">
+        #{paytime,jdbcType=DATE},
+      </if>
+      <if test="amt != null">
+        #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tienon.boot.domain.PayOrder">
+    update tb_pay_order
+    <set>
+      <if test="orderno != null">
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null">
+        payTime = #{paytime,jdbcType=DATE},
+      </if>
+      <if test="amt != null">
+        amt = #{amt,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where applyNo = #{applyno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tienon.boot.domain.PayOrder">
+    update tb_pay_order
+    set orderNo = #{orderno,jdbcType=VARCHAR},
+      payTime = #{paytime,jdbcType=DATE},
+      amt = #{amt,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR}
+    where applyNo = #{applyno,jdbcType=VARCHAR}
+  </update>
+</mapper>
