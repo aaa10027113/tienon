@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tienon.boot.mapper.RefundOrderMapper">
   <resultMap id="BaseResultMap" type="com.tienon.boot.domain.RefundOrder">
-    <id column="applyNo" jdbcType="VARCHAR" property="applyno" />
-    <result column="orderNo" jdbcType="VARCHAR" property="orderno" />
-    <result column="refundNo" jdbcType="VARCHAR" property="refundno" />
-    <result column="refundTime" jdbcType="DATE" property="refundtime" />
+    <id column="applyNo" jdbcType="VARCHAR" property="applyNo" />
+    <result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
+    <result column="refundNo" jdbcType="VARCHAR" property="refundNo" />
+    <result column="refundTime" jdbcType="DATE" property="refundTime" />
     <result column="amt" jdbcType="DECIMAL" property="amt" />
-    <result column="refundReasons" jdbcType="VARCHAR" property="refundreasons" />
+    <result column="refundReasons" jdbcType="VARCHAR" property="refundReasons" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -17,7 +17,24 @@
     select 
     <include refid="Base_Column_List" />
     from tb_refund_order
-    where applyNo = #{applyno,jdbcType=VARCHAR}
+    where applyNo = #{applyNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectBySelective" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_refund_order
+    <where>
+      <if test="applyNo != null and applyNo != ''">
+        and applyNo = #{applyNo,jdbcType=VARCHAR}
+      </if>
+      <if test="orderNo != null and orderNo != ''">
+        and orderNo = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null and status != ''">
+        and status = #{status,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by refundTime desc
   </select>
   <select id="selectByrefundtimeAndStatus" parameterType="com.tienon.boot.domain.RefundOrder" resultMap="BaseResultMap">
     select
@@ -28,35 +45,35 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_refund_order
-    where applyNo = #{applyno,jdbcType=VARCHAR}
+    where applyNo = #{applyNo,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.tienon.boot.domain.RefundOrder">
     insert into tb_refund_order (applyNo, orderNo, refundNo, 
       refundTime, amt, refundReasons, 
       status)
-    values (#{applyno,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{refundno,jdbcType=VARCHAR}, 
-      #{refundtime,jdbcType=DATE}, #{amt,jdbcType=DECIMAL}, #{refundreasons,jdbcType=VARCHAR}, 
+    values (#{applyNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{refundNo,jdbcType=VARCHAR},
+      #{refundTime,jdbcType=DATE}, #{amt,jdbcType=DECIMAL}, #{refundReasons,jdbcType=VARCHAR},
       #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tienon.boot.domain.RefundOrder">
     insert into tb_refund_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="applyno != null">
+      <if test="applyNo != null">
         applyNo,
       </if>
-      <if test="orderno != null">
+      <if test="orderNo != null">
         orderNo,
       </if>
-      <if test="refundno != null">
+      <if test="refundNo != null">
         refundNo,
       </if>
-      <if test="refundtime != null">
+      <if test="refundTime != null">
         refundTime,
       </if>
       <if test="amt != null">
         amt,
       </if>
-      <if test="refundreasons != null">
+      <if test="refundReasons != null">
         refundReasons,
       </if>
       <if test="status != null">
@@ -64,23 +81,23 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="applyno != null">
-        #{applyno,jdbcType=VARCHAR},
+      <if test="applyNo != null">
+        #{applyNo,jdbcType=VARCHAR},
       </if>
-      <if test="orderno != null">
-        #{orderno,jdbcType=VARCHAR},
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="refundno != null">
-        #{refundno,jdbcType=VARCHAR},
+      <if test="refundNo != null">
+        #{refundNo,jdbcType=VARCHAR},
       </if>
-      <if test="refundtime != null">
-        #{refundtime,jdbcType=DATE},
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=DATE},
       </if>
       <if test="amt != null">
         #{amt,jdbcType=DECIMAL},
       </if>
-      <if test="refundreasons != null">
-        #{refundreasons,jdbcType=VARCHAR},
+      <if test="refundReasons != null">
+        #{refundReasons,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=VARCHAR},
@@ -91,34 +108,34 @@
     update tb_refund_order
     <set>
       <if test="orderno != null">
-        orderNo = #{orderno,jdbcType=VARCHAR},
+        orderNo = #{orderNo,jdbcType=VARCHAR},
       </if>
       <if test="refundno != null">
-        refundNo = #{refundno,jdbcType=VARCHAR},
+        refundNo = #{refundNo,jdbcType=VARCHAR},
       </if>
       <if test="refundtime != null">
-        refundTime = #{refundtime,jdbcType=DATE},
+        refundTime = #{refundTime,jdbcType=DATE},
       </if>
       <if test="amt != null">
         amt = #{amt,jdbcType=DECIMAL},
       </if>
       <if test="refundreasons != null">
-        refundReasons = #{refundreasons,jdbcType=VARCHAR},
+        refundReasons = #{refundReasons,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
-    where applyNo = #{applyno,jdbcType=VARCHAR}
+    where applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tienon.boot.domain.RefundOrder">
     update tb_refund_order
-    set orderNo = #{orderno,jdbcType=VARCHAR},
-      refundNo = #{refundno,jdbcType=VARCHAR},
-      refundTime = #{refundtime,jdbcType=DATE},
+    set orderNo = #{orderNo,jdbcType=VARCHAR},
+      refundNo = #{refundNo,jdbcType=VARCHAR},
+      refundTime = #{refundTime,jdbcType=DATE},
       amt = #{amt,jdbcType=DECIMAL},
-      refundReasons = #{refundreasons,jdbcType=VARCHAR},
+      refundReasons = #{refundReasons,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR}
-    where applyNo = #{applyno,jdbcType=VARCHAR}
+    where applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>
 </mapper>

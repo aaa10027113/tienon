@@ -4,50 +4,50 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class RefundOrder {
-    private String applyno;
+    private String applyNo;
 
-    private String orderno;
+    private String orderNo;
 
-    private String refundno;
+    private String refundNo;
 
-    private Date refundtime;
+    private Date refundTime;
 
     private BigDecimal amt;
 
-    private String refundreasons;
+    private String refundReasons;
 
     private String status;
 
-    public String getApplyno() {
-        return applyno;
+    public String getApplyNo() {
+        return applyNo;
     }
 
-    public void setApplyno(String applyno) {
-        this.applyno = applyno;
+    public void setApplyNo(String applyNo) {
+        this.applyNo = applyNo;
     }
 
-    public String getOrderno() {
-        return orderno;
+    public String getOrderNo() {
+        return orderNo;
     }
 
-    public void setOrderno(String orderno) {
-        this.orderno = orderno;
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
-    public String getRefundno() {
-        return refundno;
+    public String getRefundNo() {
+        return refundNo;
     }
 
-    public void setRefundno(String refundno) {
-        this.refundno = refundno;
+    public void setRefundNo(String refundNo) {
+        this.refundNo = refundNo;
     }
 
-    public Date getRefundtime() {
-        return refundtime;
+    public Date getRefundTime() {
+        return refundTime;
     }
 
-    public void setRefundtime(Date paytime) {
-        this.refundtime = paytime;
+    public void setRefundTime(Date refundTime) {
+        this.refundTime = refundTime;
     }
 
     public BigDecimal getAmt() {
@@ -58,12 +58,12 @@ public class RefundOrder {
         this.amt = amt;
     }
 
-    public String getRefundreasons() {
-        return refundreasons;
+    public String getRefundReasons() {
+        return refundReasons;
     }
 
-    public void setRefundreasons(String refundreasons) {
-        this.refundreasons = refundreasons;
+    public void setRefundReasons(String refundReasons) {
+        this.refundReasons = refundReasons;
     }
 
     public String getStatus() {

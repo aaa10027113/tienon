@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户管理</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+<style type="text/css">
+	.layui-table-fixed-r {
+		left: auto;
+		right: -1px;
+		border-width: 0 0 0 1px;
+		display: inline !important;
+		box-shadow: -1px 0 8px rgba(0, 0, 0, .08);
+    }
+</style>
+</head>
+<body>
+	<div class="layui-fluid form-container">
+		<div class="layui-card">
+			<div class="layui-card-body">
+				<form class="layui-form">
+					<div class="layui-form-item layui-row">
+						<div class="layui-col-md4">
+							<label class="layui-form-label">申请序号：</label>
+							<div class="layui-input-block">
+								<input  name="applyNo" id="applyNo"
+									lay-verify="applyNo" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-col-md4">
+							<label class="layui-form-label">订单编号：</label>
+							<div class="layui-input-block">
+								<input type="text" name="orderNo" id="orderNo"
+									lay-verify="orderNo" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-col-md4">
+							<label class="layui-form-label">订单状态：</label>
+							<div class="layui-input-block">
+								<input type="text" name="refundNo" id="refundNo"
+									lay-verify="refundNo" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item layui-row">
+						<div class="layui-col-md4">
+							<div class="search" style="text-align: right;">
+								<div class="layui-inline layui-bottom-space">
+									<button type="button" class="layui-btn  refundOrderSearch">查询</button>
+									<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<!-- 表格 -->
+				<table id="refundOrderList" lay-filter="refundOrderList"></table>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
+<script>
+  layui.config({
+	  base : '../../../layuiadmin/' //静态资源所在路径
+  }).extend({
+      index : 'lib/index' //主入口模块
+  }).use([ 'index','refund/refundOrderList'], function() {
+  
+  });
+</script>
+	
+</body>
+</html>

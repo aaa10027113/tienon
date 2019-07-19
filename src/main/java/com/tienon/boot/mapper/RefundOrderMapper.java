@@ -1,6 +1,8 @@
 package com.tienon.boot.mapper;
 
 import com.tienon.boot.domain.RefundOrder;
+import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
+import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 
 import java.util.List;
 
@@ -18,4 +20,6 @@ public interface RefundOrderMapper {
     int updateByPrimaryKey(RefundOrder record);
 
     List<RefundOrder> selectByrefundtimeAndStatus(RefundOrder record);
+
+    PageList<RefundOrder> selectBySelective(Object searchCondition, PageBounds pageBounds);
 }

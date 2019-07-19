@@ -51,7 +51,7 @@ public class OrderQuery {
      * @return
      * @return void 返回类型
      */
-    @Scheduled(cron = "0 0/1 * * * ? ")
+//    @Scheduled(cron = "0 0/1 * * * ? ")
     @Transactional
     public void queryPayOrder() {
         PayOrder queryPayOrder = new PayOrder();
