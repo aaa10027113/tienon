@@ -153,10 +153,20 @@
 						$("#amt").text(res.obj.amt);
 						$("#trademarkName").text(res.obj.trademarkName);
 						$("#acceptTypeName").text(res.obj.acceptTypeName);
-						$(".my-btn").click(function(){
-							window.location.href="https://www.baidu.com"
-						})
+						
 					},"json")
+					
+					$(".my-btn").click(function(){
+						$.post("/paymentOnline/sendPayMessage",{applyNo},function(res){
+							if(!res.success){
+								alert(res.msg);
+								return false;
+							}
+							var payUrl = res.obj.py_URL;
+							console.log(payUrl);
+							window.location.href=payUrl;
+						},"json")
+					})
 				})
 			}
 		)
