@@ -208,8 +208,8 @@ public class PayUtil {
 	/**
 	 * post请求（用于请求json格式的参数）
 	 * 
-	 * @param url
-	 * @param params
+	 * @param urlPath
+	 * @param Json
 	 * @return
 	 */
 	public static String doJsonPost(String urlPath, String Json) {

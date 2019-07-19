@@ -5,13 +5,13 @@
     <id column="applyNo" jdbcType="VARCHAR" property="applyno" />
     <result column="orderNo" jdbcType="VARCHAR" property="orderno" />
     <result column="refundNo" jdbcType="VARCHAR" property="refundno" />
-    <result column="payTime" jdbcType="DATE" property="paytime" />
+    <result column="refundTime" jdbcType="DATE" property="refundtime" />
     <result column="amt" jdbcType="DECIMAL" property="amt" />
     <result column="refundReasons" jdbcType="VARCHAR" property="refundreasons" />
     <result column="status" jdbcType="VARCHAR" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    applyNo, orderNo, refundNo, payTime, amt, refundReasons, status
+    applyNo, orderNo, refundNo, refundTime, amt, refundReasons, status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -19,16 +19,23 @@
     from tb_refund_order
     where applyNo = #{applyno,jdbcType=VARCHAR}
   </select>
+  <select id="selectByrefundtimeAndStatus" parameterType="com.tienon.boot.domain.RefundOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_refund_order
+    where status = #{status,jdbcType=VARCHAR}
+    and refundTime >= #{refundTime,jdbcType=DATE}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_refund_order
     where applyNo = #{applyno,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.tienon.boot.domain.RefundOrder">
     insert into tb_refund_order (applyNo, orderNo, refundNo, 
-      payTime, amt, refundReasons, 
+      refundTime, amt, refundReasons, 
       status)
     values (#{applyno,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{refundno,jdbcType=VARCHAR}, 
-      #{paytime,jdbcType=DATE}, #{amt,jdbcType=DECIMAL}, #{refundreasons,jdbcType=VARCHAR}, 
+      #{refundtime,jdbcType=DATE}, #{amt,jdbcType=DECIMAL}, #{refundreasons,jdbcType=VARCHAR}, 
       #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tienon.boot.domain.RefundOrder">
@@ -43,8 +50,8 @@
       <if test="refundno != null">
         refundNo,
       </if>
-      <if test="paytime != null">
-        payTime,
+      <if test="refundtime != null">
+        refundTime,
       </if>
       <if test="amt != null">
         amt,
@@ -66,8 +73,8 @@
       <if test="refundno != null">
         #{refundno,jdbcType=VARCHAR},
       </if>
-      <if test="paytime != null">
-        #{paytime,jdbcType=DATE},
+      <if test="refundtime != null">
+        #{refundtime,jdbcType=DATE},
       </if>
       <if test="amt != null">
         #{amt,jdbcType=DECIMAL},
@@ -89,8 +96,8 @@
       <if test="refundno != null">
         refundNo = #{refundno,jdbcType=VARCHAR},
       </if>
-      <if test="paytime != null">
-        payTime = #{paytime,jdbcType=DATE},
+      <if test="refundtime != null">
+        refundTime = #{refundtime,jdbcType=DATE},
       </if>
       <if test="amt != null">
         amt = #{amt,jdbcType=DECIMAL},
@@ -108,7 +115,7 @@
     update tb_refund_order
     set orderNo = #{orderno,jdbcType=VARCHAR},
       refundNo = #{refundno,jdbcType=VARCHAR},
-      payTime = #{paytime,jdbcType=DATE},
+      refundTime = #{refundtime,jdbcType=DATE},
       amt = #{amt,jdbcType=DECIMAL},
       refundReasons = #{refundreasons,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR}

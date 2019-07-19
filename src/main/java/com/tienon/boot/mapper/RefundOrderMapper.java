@@ -2,6 +2,8 @@ package com.tienon.boot.mapper;
 
 import com.tienon.boot.domain.RefundOrder;
 
+import java.util.List;
+
 public interface RefundOrderMapper {
     int deleteByPrimaryKey(String applyno);
 
@@ -14,4 +16,6 @@ public interface RefundOrderMapper {
     int updateByPrimaryKeySelective(RefundOrder record);
 
     int updateByPrimaryKey(RefundOrder record);
+
+    List<RefundOrder> selectByrefundtimeAndStatus(RefundOrder record);
 }

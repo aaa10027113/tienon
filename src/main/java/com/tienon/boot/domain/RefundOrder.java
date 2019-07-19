@@ -1,5 +1,6 @@
 package com.tienon.boot.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class RefundOrder {
@@ -9,9 +10,9 @@ public class RefundOrder {
 
     private String refundno;
 
-    private Date paytime;
+    private Date refundtime;
 
-    private Double amt;
+    private BigDecimal amt;
 
     private String refundreasons;
 
@@ -41,19 +42,19 @@ public class RefundOrder {
         this.refundno = refundno;
     }
 
-    public Date getPaytime() {
-        return paytime;
+    public Date getRefundtime() {
+        return refundtime;
     }
 
-    public void setPaytime(Date paytime) {
-        this.paytime = paytime;
+    public void setRefundtime(Date paytime) {
+        this.refundtime = paytime;
     }
 
-    public Double getAmt() {
+    public BigDecimal getAmt() {
         return amt;
     }
 
-    public void setAmt(Double amt) {
+    public void setAmt(BigDecimal amt) {
         this.amt = amt;
     }
 

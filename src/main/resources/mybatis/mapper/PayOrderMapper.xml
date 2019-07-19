@@ -17,6 +17,14 @@
     from tb_pay_order
     where applyNo = #{applyno,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectByPaytimeAndStatus" parameterType="com.tienon.boot.domain.PayOrder" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_pay_order
+    where status = #{status,jdbcType=VARCHAR}
+    and payTime >= #{payTime,jdbcType=DATE}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_pay_order
     where applyNo = #{applyno,jdbcType=VARCHAR}
