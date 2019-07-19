@@ -22,13 +22,18 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ccb.govpay.sign.SHA256withRSA;
 import com.tienon.boot.domain.pay.ReceiveOutBo;
 import com.tienon.boot.domain.pay.SendInBo;
+import com.tienon.boot.service.pay.PaymentOnlieService;
 
 public class PayUtil {
+
+	private static Logger logger = Logger.getLogger(PaymentOnlieService.class);
 
 	/**
 	 * 生成支付订单
@@ -80,9 +85,9 @@ public class PayUtil {
 		String signInf = SHA256withRSA.sign(privateKey, signStr);
 		json.put("SIGN_INF", signInf);
 
-		System.out.println("请求报文" + json.toString());
+		logger.info("生成支付订单时请求报文" + json.toString());
 		String result = doJsonPost(url, json.toString());
-		System.out.println("返回报文" + result.toString());
+		logger.info("生成支付订单时返回报文" + json.toString());
 		// 收到结果转化成实体
 		ReceiveOutBo outBo = JSONObject.parseObject(result, ReceiveOutBo.class);
 		return outBo;
@@ -111,7 +116,6 @@ public class PayUtil {
 			Iterator<String> it = set.iterator();
 			while (it.hasNext()) {
 				String listKey = it.next();
-				// System.out.println("List Key---------" + listKey);
 
 				String listValue = processingSet(jsonObject, listKey);
 				sortedMap.put(listKey, listValue);
@@ -121,7 +125,6 @@ public class PayUtil {
 		// 字段拼接
 		String sign = splicingSign("UTF-8", sortedMap, set);
 		sign = sign.substring(0, sign.length() - 1);
-		System.out.println("生成原串:" + sign);
 		return sign;
 	}
 
@@ -163,9 +166,6 @@ public class PayUtil {
 				sortedMap = new TreeMap<String, Object>();
 				for (Entry<String, Object> entry : j.entrySet()) {
 
-					// System.out.println("排序后的集合:" + entry.getKey() + ":" +
-					// entry.getValue());
-
 					if (null != entry.getValue() && !"".equals(entry.getValue())) {
 
 						sortedMap.put(entry.getKey(), entry.getValue());
@@ -174,7 +174,7 @@ public class PayUtil {
 				s = splicingSign("UTF-8", sortedMap, set);
 				sbuffer.append(s);
 			}
-			// System.out.println("List拼接的原串:" + sbuffer.toString());
+
 			return sbuffer.toString();
 		}
 
@@ -240,12 +240,15 @@ public class PayUtil {
 				outwritestream.flush();
 				outwritestream.close();
 			}
-			System.out.println("http返回码[" + conn.getResponseCode() + "]");
+
+			logger.info("http返回码[" + conn.getResponseCode() + "]");
 
 			if (conn.getResponseCode() == 200) {
+
 				reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 				result = reader.readLine();
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -259,4 +262,18 @@ public class PayUtil {
 		}
 		return result;
 	}
+
+	/**
+	 * 获取支付订单号
+	 *
+	 * @return
+	 */
+	public static String getPaymentOrderNo() {
+		Random r = new Random();
+		LocalDateTime dateTime = LocalDateTime.now();
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+		String orderNo = dateTimeFormatter.format(dateTime) + String.valueOf(r.nextInt(9999));
+		return orderNo;
+	}
+
 }

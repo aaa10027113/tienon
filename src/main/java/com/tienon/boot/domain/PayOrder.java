@@ -1,55 +1,56 @@
 package com.tienon.boot.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class PayOrder {
-    private String applyno;
+	private String applyno;
 
-    private String orderno;
+	private String orderno;
 
-    private Date paytime;
+	private Date paytime;
 
-    private Double amt;
+	private BigDecimal amt;
 
-    private String status;
+	private String status;
 
-    public String getApplyno() {
-        return applyno;
-    }
+	public String getApplyno() {
+		return applyno;
+	}
 
-    public void setApplyno(String applyno) {
-        this.applyno = applyno;
-    }
+	public void setApplyno(String applyno) {
+		this.applyno = applyno;
+	}
 
-    public String getOrderno() {
-        return orderno;
-    }
+	public String getOrderno() {
+		return orderno;
+	}
 
-    public void setOrderno(String orderno) {
-        this.orderno = orderno;
-    }
+	public void setOrderno(String orderno) {
+		this.orderno = orderno;
+	}
 
-    public Date getPaytime() {
-        return paytime;
-    }
+	public Date getPaytime() {
+		return paytime;
+	}
 
-    public void setPaytime(Date paytime) {
-        this.paytime = paytime;
-    }
+	public void setPaytime(Date paytime) {
+		this.paytime = paytime;
+	}
 
-    public Double getAmt() {
-        return amt;
-    }
+	public BigDecimal getAmt() {
+		return amt;
+	}
 
-    public void setAmt(Double amt) {
-        this.amt = amt;
-    }
+	public void setAmt(BigDecimal amt) {
+		this.amt = amt;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }
