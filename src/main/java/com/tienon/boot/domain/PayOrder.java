@@ -2,18 +2,14 @@ package com.tienon.boot.domain;
 
 import java.util.Date;
 
-public class RefundOrder {
+public class PayOrder {
     private String applyno;
 
     private String orderno;
 
-    private String refundno;
-
     private Date paytime;
 
     private Double amt;
-
-    private String refundreasons;
 
     private String status;
 
@@ -33,14 +29,6 @@ public class RefundOrder {
         this.orderno = orderno;
     }
 
-    public String getRefundno() {
-        return refundno;
-    }
-
-    public void setRefundno(String refundno) {
-        this.refundno = refundno;
-    }
-
     public Date getPaytime() {
         return paytime;
     }
@@ -55,14 +43,6 @@ public class RefundOrder {
 
     public void setAmt(Double amt) {
         this.amt = amt;
-    }
-
-    public String getRefundreasons() {
-        return refundreasons;
-    }
-
-    public void setRefundreasons(String refundreasons) {
-        this.refundreasons = refundreasons;
     }
 
     public String getStatus() {
