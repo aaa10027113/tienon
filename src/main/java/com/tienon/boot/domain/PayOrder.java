@@ -1,5 +1,6 @@
 package com.tienon.boot.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class PayOrder {
@@ -9,7 +10,7 @@ public class PayOrder {
 
     private Date paytime;
 
-    private Double amt;
+    private BigDecimal amt;
 
     private String status;
 
@@ -37,11 +38,11 @@ public class PayOrder {
         this.paytime = paytime;
     }
 
-    public Double getAmt() {
+    public BigDecimal getAmt() {
         return amt;
     }
 
-    public void setAmt(Double amt) {
+    public void setAmt(BigDecimal amt) {
         this.amt = amt;
     }
 
