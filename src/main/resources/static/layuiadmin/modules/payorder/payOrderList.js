@@ -57,9 +57,11 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
           },
           {title: '操作', minWidth:125,fixed:"right",align:"center",templet:function(d){
         	  if(d.status=="00"){
-        		  return '<button class="layui-btn layui-btn-md"   lay-event="refund">退款</button>';
+        		  return '<button class="layui-btn layui-btn-xs"   lay-event="refund">退款</button>'+
+        		  '<button class="layui-btn layui-btn-xs layui-btn-normal"   lay-event="printShouju">收据打印</button>';
         	  }else{
-        		  return '<button class="layui-btn layui-btn-md layui-btn-disabled" lay-event="refund">退款</button>';
+        		  return '<button class="layui-btn layui-btn-xs layui-btn-disabled" >退款</button>'+
+        		  '<button class="layui-btn layui-btn-xs layui-btn-disabled">收据打印</button>';
         	  }
           }}
         ]]
@@ -91,9 +93,47 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         if(layEvent === 'refund'){ //退款
         	refund(data);
         }
+        if(layEvent === 'printShouju'){ //打印回执
+        	printShouju(data);
+        }
         
     });
     
+    
+    
+  //打印收据
+    function printShouju(data){
+    	if(!data){
+    		var checkStatus = table.checkStatus('payOrderList');
+    		console.log(checkStatus.data);
+    		if(checkStatus.data.length >1) {
+    			layer.msg("只能打印一条收据数据");
+    			return;
+    		}
+    		data = checkStatus.data[0];
+    	}
+    	if(data == null ){
+    		layer.msg("请选择需要打印的数据");
+    		return false;
+    	}
+    	var index = layui.layer.open({
+    		title : "打印收据",
+    		type : 2,
+    		anim: 3,
+    		content : "/views/system/operate/printShouju.html?"+data.applyNo,
+    		success : function(layero, index){
+    			var body = layer.getChildFrame('body', index);
+    			comExt.fillInput(body,data,form);
+    			setTimeout(function(){
+    				layer.tips('点击此处返回列表', '.layui-layer-setwin .layui-layer-close', {
+    					tips: 3
+    				});
+    			},500)
+    		}
+    	})
+    	comExt.full(index);
+    	layui.sessionData("index",index);
+    }
     //退款
     function refund(data){
     	debugger
