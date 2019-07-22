@@ -92,7 +92,6 @@
     		ACCEPTTYPE =APPLYTYPENO
      		<if test="beginTime != null and beginTime != ''">AND ACCEPTDATE &gt;= #{beginTime}</if>
      		<if test="endTime != null and endTime != ''">AND ACCEPTDATE &lt;= #{endTime}</if>
-     		AND STATUS='00'
 		</where>
 		ORDER BY ACCEPTDATE ASC
 	</select>
@@ -105,7 +104,6 @@
     		ACCEPTTYPE =APPLYTYPENO
      		<if test="beginTime != null and beginTime != ''">AND ACCEPTDATE &gt;= #{beginTime}</if>
      		<if test="endTime != null and endTime != ''">AND ACCEPTDATE &lt;= #{endTime}</if>
-     		AND STATUS='00'
 		</where>
 		ORDER BY ACCEPTDATE ASC
 	</select>
