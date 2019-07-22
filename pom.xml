@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>sbzcManager</name>
     <description>spring boot for layui常规版</description>
+
     <parent>
         <groupId>com.tienon.boot</groupId>
         <artifactId>ejx4boot-pom</artifactId>
