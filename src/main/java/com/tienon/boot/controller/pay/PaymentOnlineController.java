@@ -11,9 +11,6 @@ import com.tienon.boot.util.support.PageGrid;
 
 /**
  * 
- * @Description 在线支付功能
- * @author WangQingquan
- * @date 2019年7月19日
  * @Description TODO(在线支付功能)
  * @author WangQingquan
  * @date 2019年7月19日
