@@ -155,6 +155,14 @@
 						$("#acceptTypeName").text(res.obj.acceptTypeName);
 						
 					},"json")
+
+					$.post("/paymentOnline/queryByApplyNo",{applyNo},function(res){
+						if(!res.success){
+							alert(res.msg);
+							return false;
+						}
+						$("#orderNo").text(res.obj.orderNo)
+					},"json")
 					
 					$(".my-btn").click(function(){
 						$.post("/paymentOnline/sendPayMessage",{applyNo},function(res){

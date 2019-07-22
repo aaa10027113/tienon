@@ -58,38 +58,40 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
                 if(d.status != "01"){
                     disabledClass = "layui-btn-disabled";
                 }
-                    return `<a class="layui-btn layui-btn-xs `+disabledClass+`" lay-event="refush">刷新</a>`;
+                    return `<a class="layui-btn layui-btn-xs ${disabledClass}" lay-event="refush">刷新</a>`;
                 }}
         ]]
     });
-    
 
-    
+    function searchData(){
+        var applyNo=$("#applyNo").val();
+        var orderNo=$("#orderNo").val();
+        var status=$("#status").val();
+        search ={applyNo:applyNo,orderNo:orderNo,status:status};
+        var searchCondition={searchCondition:search};
+        tableIns.reload({
+            where:
+            searchCondition
+            ,page: {
+                curr: 1 //重新从第 1 页开始
+            }
+        });
+    }
 
-    
     $(".refundOrderSearch").click(function(){
-    	 var applyNo=$("#applyNo").val();
-    	 var orderNo=$("#orderNo").val();
-    	 var status=$("#status").val();
-    	 search ={applyNo:applyNo,orderNo:orderNo,status:status};
-    	 var searchCondition={searchCondition:search};
-    	 tableIns.reload({
-    		  where: 
-    			  searchCondition		  
-    		  ,page: {
-    		    curr: 1 //重新从第 1 页开始
-    		  }
-    		});
-    })
+        searchData()
+    });
     
-
+    function refushRefundOrder(data){
+        console.log(data)
+        searchData();
+    }
     //列表操作
     table.on('tool(refundOrderList)', function(obj){
         var layEvent = obj.event,
             data = obj.data;
-
-        if(layEvent === 'edit'){ //编辑
-        	updaterefundOrder(data);
+        if(layEvent === 'refush'){ //刷新
+        	refushRefundOrder(data);
         }
     });
     

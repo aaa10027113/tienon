@@ -41,4 +41,17 @@ public class PaymentOnlineController {
 	public Object queryPayOrderList(@RequestBody PageGrid pageGrid) {
 		return paymentOnlieService.queryPayOrderList(pageGrid);
 	}
+
+	/**
+	 *
+	 * 查询订单支付
+	 *
+	 * @param applyNo
+	 * @return
+	 * @return Object 返回类型
+	 */
+	@RequestMapping("/queryByApplyNo")
+	public Object queryPayOrderList(@RequestParam("applyNo") String applyNo) {
+		return paymentOnlieService.queryByApplyNo(applyNo);
+	}
 }
