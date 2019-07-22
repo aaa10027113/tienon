@@ -54,7 +54,6 @@ public class OperateController {
 	 */
 	@RequestMapping("/addNewInfo")
 	public Object addNewInfo(@RequestBody ApplyInfo info) {
-//		System.out.println(JSON.toJSONString(info));
 		return operateService.addNewInfo(info);
 	}
 	

@@ -68,6 +68,7 @@ public class OperateService {
 	 * @return
 	 * @return List<ApplyInfo> 返回类型
 	 */
+	@Transactional
 	public Object queryList(PageGrid pg) {
 		int page = pg.getPage();
 		int pageSize = pg.getRows();
@@ -113,7 +114,7 @@ public class OperateService {
 			String nowDate = sdf.format(date);
 			info.setApplyNo(getApplyNo(nowDate, sdf));
 			info.setAcceptDate(sdf1.format(date));
-			info.setStatus("01");// 未支付
+//			info.setStatus("01");// 未支付
 			info.setOperationDate(sdf1.format(date));
 			info.setAcceptType(info.getAcceptType().split(";")[0]);
 			// 将处理好后的数据添加到数据库中
