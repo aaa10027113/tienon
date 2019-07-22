@@ -41,22 +41,25 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
             {field: 'refundReasons', title: '退款原因', minWidth: 300, align: 'center'},
             {
                 field: 'refundTime', title: '退款状态',  minWidth:150, align:'center',templet:function(d){
+                    function buttonColor(color,status) {
+                        return `<button class="layui-btn layui-btn-xs layui-btn-radius ${color}">${status}</button>`
+                    }
                     switch (d.status) {
-                        case "00": return "退款成功";
-                        case "01": return "受理中";
-                        case "02": return "退款失败";
-                        case "03": return "订单超时";
-                        default:return "未知状态";
+                        case "00": return buttonColor("","退款成功");
+                        case "01": return buttonColor("layui-btn-normal","受理中");
+                        case "02": return buttonColor("layui-btn-danger","退款失败");
+                        case "03": return buttonColor("layui-btn-warm","订单超时");
+                        default:return buttonColor(" layui-btn-primary","未知状态");
                     }
                 }
             },
             {title: '操作', width:125,fixed:"right",align:"center" ,templet:function(d){
-                if(d.status == "01"){
-                    return `<a class="layui-btn layui-btn-xs" lay-event="refush">刷新</a>`;
-                }else {
-                    return `<a class="layui-btn layui-btn-xs layui-btn-disabled" lay-event="refush">刷新</a>`;
+                var disabledClass = "";
+                if(d.status != "01"){
+                    disabledClass = "layui-btn-disabled";
                 }
-            }}
+                    return `<a class="layui-btn layui-btn-xs `+disabledClass+`" lay-event="refush">刷新</a>`;
+                }}
         ]]
     });
     
@@ -87,32 +90,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 
         if(layEvent === 'edit'){ //编辑
         	updaterefundOrder(data);
-        }else if(layEvent === 'usable'){ //启用禁用
-            var _this = $(this),
-                usableText = "是否确定禁用此用户？",
-                btnText = "已禁用";
-            if(_this.text()=="已禁用"){
-                usableText = "是否确定启用此用户？",
-                btnText = "已启用";
-            }
-            layer.confirm(usableText,{
-                icon: 3,
-                title:'系统提示',
-                cancel : function(index){
-                    layer.close(index);
-                }
-            },function(index){
-                _this.text(btnText);
-                layer.close(index);
-            },function(index){
-                layer.close(index);
-            });
-        }else if(layEvent === 'del'){ //删除
-        	
-        	layer.confirm('确定删除此角色？', {icon: 3, title:'提示'}, function(index){
-      		  //do something
-        		deleterefundOrder(data);
-      		});
         }
     });
     
