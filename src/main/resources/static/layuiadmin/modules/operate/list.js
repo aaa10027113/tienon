@@ -53,29 +53,15 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 //          {field: 'humanName', title: '自然人名称', minWidth:150, align:"center"},
           {field: 'trademarkName', title: '商标名称', minWidth:150, align:"center"},
           {field: 'amt', title: '总金额', minWidth:125, align:"center"},
-          /*{field: 'status', title: '支付状态',  minWidth:125, align:'center',templet:function(d){
-          	if(d.status=="00"){
-          		return d.status="支付成功";
-          	}else if(d.status=="01"){
-          		return d.status="待支付";
-          	}else if(d.status=="02"){
-          		return d.status="支付失败";
-          	}else if(d.status=="03"){
-          		return d.status="订单超时";
-          	}else if(d.status=="99"){
-          		return d.status="未知状态";
-          	}
-          }
-          },*/
           {title: '打印', minWidth:170,fixed:"right",align:"center",templet:function(d){
 //        	  return '<a class="layui-btn layui-btn-xs" href="printData.html?'+d.applyNo+'">打印回执</a>';
-        	  if(d.status=="00"){
-        		  return '<button class="layui-btn layui-btn-md"   lay-event="print">回执</button>'+
-     	  		 '<button class="layui-btn layui-btn-md"   lay-event="printShouju">收据</button>';
-        	  }else{
-        		  return '<button class="layui-btn layui-btn-md"   lay-event="print">回执</button>'+
-     	  		 '<button class="layui-btn layui-btn-md layui-btn-disabled">收据</button>';
-        	  }
+//        	  if(d.status=="00"){
+        	   return '<button class="layui-btn layui-btn-xs"  lay-event="print">回执打印</button>';
+//     	  		 '<button class="layui-btn layui-btn-xs layui-btn-normal"   lay-event="printShouju">收据</button>';
+//        	  }else{
+//        		  return '<button class="layui-btn layui-btn-xs"   lay-event="print">回执</button>'+
+//     	  		 '<button class="layui-btn layui-btn-xs layui-btn-disabled">收据</button>';
+//        	  }
           }}
         ]]
     });
@@ -320,11 +306,12 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
                     headers: {
                     	'Content-Type': 'application/json;charset=utf-8'
                     },
-                    success: function(msg){
-                    	if(msg!=0){
+                    success: function(o){
+                    	if(o.success==true){
+                    		layer.msg("操作成功");
                     		location.reload();
-             	            layer.msg("操作成功");
                     	}else{
+                    		layer.msg(o.msg,{time:5*1000});
                     		tableIns.reload();
                             layer.close(index);
                     	}

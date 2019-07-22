@@ -183,8 +183,13 @@ public class OperateService {
 			log.info("批量删除入参：" + JSON.toJSONString(list));
 			// 根据申请序号批量删除
 			int i = operateMapper.deleteByPrimaryKey(list);
-			log.info("批量删除出参：" + i);
-			return i;
+			log.info("批量删除信息表出参：" + i);
+			int j = operateMapper.deleteByPrimaryKeyOnPay(list);
+			log.info("批量删支付表出参：" + j);
+			if(i==0) {
+				return  new ActionResult(false,"删除失败，未查询到需要删除的商标");
+			}
+			return new ActionResult(true,"删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]");

@@ -11,7 +11,6 @@
 		<result column="TRADEMARKNAME" 	jdbcType="VARCHAR"	 property="trademarkName" />
 		<result column="ACCEPTTYPE" 	jdbcType="VARCHAR"	 property="acceptType" />
 		<result column="ADDTYPE" 		jdbcType="VARCHAR"	 property="addType" />
-		<result column="STATUS" 		jdbcType="VARCHAR"	 property="status" />
 		<result column="OPERATIONDATE" 	jdbcType="DATE"	 property="operationDate" />
 		<result column="OPERATOR" 		jdbcType="VARCHAR"	 property="operator" />
 		<result column="AMT" 			jdbcType="NUMERIC"	 property="amt" />
@@ -23,28 +22,27 @@
 		ACCEPTTYPE,ADDTYPE,OPERATIONDATE,OPERATOR,AMT
 	</sql>
 	
-	<sql id="Query_Column_List">
+	<!-- <sql id="Query_Column_List">
 		APPLY.APPLYNO APPLYNO, APPLY.ACCEPTDATE ACCEPTDATE, APPLY.COMPANYNAME COMPANYNAME,
 		APPLY.HUMANNAME HUMANNAME,APPLY.IDCARDNO IDCARDNO,APPLY.TRADEMARKNAME TRADEMARKNAME,
 		APPLY.ACCEPTTYPE ACCEPTTYPE,APPLY.ADDTYPE ADDTYPE,APPLY.OPERATIONDATE OPERATIONDATE,
 		APPLY.OPERATOR OPERATOR,APPLY.AMT AMT,PAY.STATUS STATUS
-	</sql>
+	</sql> -->
 	
 	<select id="queryList" parameterType="com.tienon.boot.domain.ApplyInfo" resultMap="BaseResultMap">
 		SELECT 
-			<include refid="Query_Column_List" />
-		FROM TB_APPLY APPLY,TB_PAY_ORDER PAY
+			<include refid="Base_Column_List" />
+		FROM TB_APPLY
     	<where>
     		1=1
-    		<if test="companyName != null and companyName != ''">AND APPLY.COMPANYNAME like concat(concat('%',#{companyName,jdbcType=VARCHAR}),'%')</if>
-      		<if test="humanName != null and humanName != ''">AND APPLY.HUMANNAME like concat(concat('%',#{humanName,jdbcType=VARCHAR}),'%')</if>
-      		<if test="trademarkName != null and trademarkName != ''">AND APPLY.TRADEMARKNAME like concat(concat('%',#{trademarkName,jdbcType=VARCHAR}),'%')</if>
-     		<if test="acceptType != null and acceptType != '' and acceptType != '请选择'">AND APPLY.ACCEPTTYPE =  #{acceptType,jdbcType=VARCHAR}</if>
-     		<if test="beginTime != null and beginTime != ''">AND APPLY.ACCEPTDATE &gt;= #{beginTime}</if>
-     		<if test="endTime != null and endTime != ''">AND APPLY.ACCEPTDATE &lt;= #{endTime}</if>
-     		AND APPLY.APPLYNO = PAY.APPLYNO
+    		<if test="companyName != null and companyName != ''">AND COMPANYNAME like concat(concat('%',#{companyName,jdbcType=VARCHAR}),'%')</if>
+      		<if test="humanName != null and humanName != ''">AND HUMANNAME like concat(concat('%',#{humanName,jdbcType=VARCHAR}),'%')</if>
+      		<if test="trademarkName != null and trademarkName != ''">AND TRADEMARKNAME like concat(concat('%',#{trademarkName,jdbcType=VARCHAR}),'%')</if>
+     		<if test="acceptType != null and acceptType != '' and acceptType != '请选择'">AND ACCEPTTYPE =  #{acceptType,jdbcType=VARCHAR}</if>
+     		<if test="beginTime != null and beginTime != ''">AND ACCEPTDATE &gt;= #{beginTime}</if>
+     		<if test="endTime != null and endTime != ''">AND ACCEPTDATE &lt;= #{endTime}</if>
 		</where>
-		ORDER BY APPLY.ACCEPTDATE DESC
+		ORDER BY ACCEPTDATE DESC
 	</select>
 	
 	<select id="getLastApplyNo" resultMap="BaseResultMap">
@@ -66,11 +64,19 @@
 	</insert>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.util.List">
-		DELETE FROM TB_APPLY WHERE APPLYNO IN (
+		DELETE APPLY FROM TB_APPLY APPLY,TB_PAY_ORDER PAY WHERE APPLY.APPLYNO IN (
         <foreach collection="list" item="applyNo" separator=",">
             #{applyNo}
         </foreach>
-        )   AND STATUS !='00'
+        )   AND APPLY.APPLYNO=PAY.APPLYNO AND PAY.STATUS != '00';
+	</delete>
+	
+	<delete id="deleteByPrimaryKeyOnPay" parameterType="java.util.List">
+		DELETE  FROM TB_PAY_ORDER  WHERE APPLYNO IN (
+        <foreach collection="list" item="applyNo" separator=",">
+            #{applyNo}
+        </foreach>
+        )   AND STATUS != '00';
 	</delete>
 
 	<sql id="Print_List">
