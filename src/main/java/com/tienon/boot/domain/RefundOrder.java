@@ -1,5 +1,7 @@
 package com.tienon.boot.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ public class RefundOrder {
     private String orderNo;
 
     private String refundNo;
-
+    @JsonFormat(pattern = "yyyy/MM/dd hh:mm:ss")
     private Date refundTime;
 
     private BigDecimal amt;

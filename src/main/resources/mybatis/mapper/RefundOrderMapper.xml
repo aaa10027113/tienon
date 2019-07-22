@@ -5,7 +5,7 @@
     <id column="applyNo" jdbcType="VARCHAR" property="applyNo" />
     <result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
     <result column="refundNo" jdbcType="VARCHAR" property="refundNo" />
-    <result column="refundTime" jdbcType="DATE" property="refundTime" />
+    <result column="refundTime" jdbcType="TIMESTAMP" property="refundTime" />
     <result column="amt" jdbcType="DECIMAL" property="amt" />
     <result column="refundReasons" jdbcType="VARCHAR" property="refundReasons" />
     <result column="status" jdbcType="VARCHAR" property="status" />
