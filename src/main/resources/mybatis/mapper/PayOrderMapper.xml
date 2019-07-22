@@ -23,16 +23,16 @@
     <include refid="Base_Column_List" />
     from tb_pay_order
     where status = #{status,jdbcType=VARCHAR}
-    and payTime >= #{payTime,jdbcType=DATE}
+    and payTime >= #{payTime,jdbcType=TIMESTAMP}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_pay_order
     where applyNo = #{applyNo,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.tienon.boot.domain.PayOrder">
-    insert into tb_pay_order (applyNo, orderNo, payTime, 
+    insert into tb_pay_order (applyNo, orderNo, payTime,
       amt, status)
-    values (#{applyNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{payTime,jdbcType=DATE}, 
+    values (#{applyNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP},
       #{amt,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tienon.boot.domain.PayOrder">
@@ -62,7 +62,7 @@
         #{orderNo,jdbcType=VARCHAR},
       </if>
       <if test="payTime != null">
-        #{payTime,jdbcType=DATE},
+        #{payTime,jdbcType=TIMESTAMP},
       </if>
       <if test="amt != null">
         #{amt,jdbcType=DECIMAL},
@@ -79,7 +79,7 @@
         orderNo = #{orderNo,jdbcType=VARCHAR},
       </if>
       <if test="payTime != null">
-        payTime = #{payTime,jdbcType=DATE},
+        payTime = #{payTime,jdbcType=TIMESTAMP},
       </if>
       <if test="amt != null">
         amt = #{amt,jdbcType=DECIMAL},
@@ -93,7 +93,7 @@
   <update id="updateByPrimaryKey" parameterType="com.tienon.boot.domain.PayOrder">
     update tb_pay_order
     set orderNo = #{orderNo,jdbcType=VARCHAR},
-      payTime = #{payTime,jdbcType=DATE},
+      payTime = #{payTime,jdbcType=TIMESTAMP},
       amt = #{amt,jdbcType=DECIMAL},
       status = #{status,jdbcType=VARCHAR}
     where applyNo = #{applyNo,jdbcType=VARCHAR}
