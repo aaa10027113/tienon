@@ -55,16 +55,13 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.netease.npl</groupId>
-            <artifactId>npl</artifactId>
-            <version>0.0.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/lib/GovPaySignSHA-jdk18.jar</systemPath>
+            <groupId>com.tienon.boot</groupId>
+            <artifactId>pay</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
