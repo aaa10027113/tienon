@@ -58,7 +58,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
                 if(d.status != "01"){
                     disabledClass = "layui-btn-disabled";
                 }
-                    return `<a class="layui-btn layui-btn-xs ${disabledClass}" lay-event="refush">刷新</a>`;
+                    return `<a class="layui-btn layui-btn-xs ${disabledClass}" lay-event="refush">退款查询</a>`;
                 }}
         ]]
     });

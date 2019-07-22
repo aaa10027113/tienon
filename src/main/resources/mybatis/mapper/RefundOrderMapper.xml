@@ -34,7 +34,7 @@
         and status = #{status,jdbcType=VARCHAR}
       </if>
     </where>
-    order by refundTime desc
+    order by applyNo desc
   </select>
   <select id="selectByrefundtimeAndStatus" parameterType="com.tienon.boot.domain.RefundOrder" resultMap="BaseResultMap">
     select

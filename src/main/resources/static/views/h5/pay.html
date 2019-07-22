@@ -13,6 +13,55 @@
 			height: 100%;
 		}
 
+		#rond {
+			height  : 100px;
+			width : 100px;
+			border : 1px solid #fff;
+			border-radius : 50%;
+			animation : rond 2s infinite;
+			-webkit-animation : rond 2s infinite;
+			position: absolute;
+		}
+
+		#test {
+			height : 10px;
+			width : 10px;
+			background-color : #fff;
+			border-radius : 50%;
+			position: absolute;
+			left: 23px;
+		}
+
+		.loading {
+			background-color : rgba(82, 82, 82, 0.6392156862745098);
+			height : 100%;
+			width : 100%;
+			position : fixed;
+			top: 0px;
+			left: 0px;
+			z-index: 999;
+			display: none;
+			align-items: center;
+			justify-content: center;
+		}
+
+
+		.loading #load {
+			color : #fff;
+			font-family : calibri;
+			text-align : center;
+		}
+
+		@keyframes rond {
+			0% {transform : rotate(0deg);}
+			100% {transform : rotate(360deg);}
+		}
+
+		@-webkit-keyframes rond {
+			0% {-webkit-transform : rotate(0deg);}
+			100% {-webkit-transform : rotate(360deg);}
+		}
+
 		body {
 			background: #dddddd;
 		}
@@ -165,7 +214,9 @@
 					},"json")
 					
 					$(".my-btn").click(function(){
+						$(".loading").css("display","flex");
 						$.post("/paymentOnline/sendPayMessage",{applyNo},function(res){
+							$(".loading").css("display","none");
 							if(!res.success){
 								alert(res.msg);
 								return false;
@@ -218,6 +269,14 @@
 		</div>
 		<div class="foot">
 			<button type="button" class="my-btn">确认付款</button>
+		</div>
+		<div class="loading">
+			<div id="rond">
+				<div id="test"></div>
+			</div>
+			<div id="load">
+				<p>loading</p>
+			</div>
 		</div>
 	</body>
 </html>
