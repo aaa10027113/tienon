@@ -46,7 +46,7 @@ public class CommonStatic {
 	/**
 	 * 支付发送的Url
 	 */
-	public final static String PAY_SEND_URL = "http://govpaytestqqhebdc.mytunnel.site/online/multipenpayment";
+	public final static String PAY_SEND_URL = "http://govpaytestjsnjjbspj.mytunnel.site/online/multipenpayment";
 
 	/**
 	 * 支付秘钥
@@ -66,12 +66,12 @@ public class CommonStatic {
 	/**
 	 * 发起渠道编号
 	 */
-	public final static String ITTPARTY_STM_ID = "GP072";
+	public final static String ITTPARTY_STM_ID = "GP105";
 
 	/**
 	 * 支付渠道代码
 	 */
-	public final static String PAY_CHANNEL_CODE = "4";
+	public final static String PAY_CHANNEL_CODE = "1";
 
 	/**
 	 * 请求支付类型
@@ -81,7 +81,7 @@ public class CommonStatic {
 	/**
 	 * 线上线下标志代码
 	 */
-	public final static String ONLINE_OFFLINE_CODE = "2";
+	public final static String ONLINE_OFFLINE_CODE = "1";
 
 	/**
 	 * 证件类型

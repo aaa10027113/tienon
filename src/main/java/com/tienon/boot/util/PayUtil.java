@@ -87,7 +87,7 @@ public class PayUtil {
 
 		logger.info("生成支付订单时请求报文" + json.toString());
 		String result = doJsonPost(url, json.toString());
-		logger.info("生成支付订单时返回报文" + json.toString());
+		logger.info("生成支付订单时返回报文" + result.toString());
 		// 收到结果转化成实体
 		ReceiveOutBo outBo = JSONObject.parseObject(result, ReceiveOutBo.class);
 		return outBo;

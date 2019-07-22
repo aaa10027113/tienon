@@ -8,7 +8,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         table = layui.table;
 
     var searchCondition="";
-     function aad() {
+    function aad() {
+    	 
     	return searchCondition;
 	};
      
@@ -23,16 +24,16 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         method : 'post',
         where: aad(),
         request: {
-        	  pageName: 'page' //页码的参数名称，默认：page
-        	  ,limitName: 'rows' //每页数据量的参数名，默认：limit
-        	},
+        	  pageName: 'page', //页码的参数名称，默认：page
+        	  limitName: 'rows' //每页数据量的参数名，默认：limit
+        },
         response: {
-        	   statusName: 'success' //数据状态的字段名称，默认：code
-        	  ,statusCode: true //成功的状态码，默认：0
-        	  ,msgName: 'msg' //状态信息的字段名称，默认：msg
-        	  ,countName: 'obj/total' //数据总数的字段名称，默认：count
-        	  ,dataName: 'obj/rows' //数据列表的字段名称，默认：data
-        	} ,
+        	  statusName: 'success', //数据状态的字段名称，默认：code
+        	  statusCode: true, //成功的状态码，默认：0
+        	  msgName: 'msg',//状态信息的字段名称，默认：msg
+        	  countName: 'obj/total', //数据总数的字段名称，默认：count
+        	  dataName: 'obj/rows'//数据列表的字段名称，默认：data
+        } ,
         cols : [[
            {type: "checkbox", fixed:"left", width:50},
            {field: 'applyNo', title: '申请序号', minWidth:150, align:"center"},
@@ -54,13 +55,11 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 		          	}
         	   }
           },
-          {title: '打印', minWidth:170,fixed:"right",align:"center",templet:function(d){
+          {title: '操作', minWidth:125,fixed:"right",align:"center",templet:function(d){
         	  if(d.status=="00"){
-        		  return '<button class="layui-btn layui-btn-md"   lay-event="print">回执</button>'+
-     	  		 '<button class="layui-btn layui-btn-md"   lay-event="printShouju">收据</button>';
+        		  return '<button class="layui-btn layui-btn-md"   lay-event="refund">退款</button>';
         	  }else{
-        		  return '<button class="layui-btn layui-btn-md"   lay-event="print">回执</button>'+
-     	  		 '<button class="layui-btn layui-btn-md layui-btn-disabled">收据</button>';
+        		  return '<button class="layui-btn layui-btn-md layui-btn-disabled" lay-event="refund">退款</button>';
         	  }
           }}
         ]]
@@ -76,51 +75,55 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
    	 var searchCondition={searchCondition:search};
    	 tableIns.reload({
    		  where: 
-   			  searchCondition		  
-   		  ,page: {
+   			  searchCondition,		  
+   		  page: {
+   			  
    		    curr: 1 //重新从第 1 页开始
    		  }
    		});
    })
-
-    
-    $(".servet_btn").click(function(){
-    	 var checkStatus = table.checkStatus('orderListTable'),
-      data = checkStatus.data,
-      newsId = [];
-     if(data.length ==1) {
-    	 addServer(data[0]);
-     }else{
-         layer.msg("请选择一个需要操作的商标",{time:5*1000});
-     }     
-    })
-    
-    
-    $(".page_btn").click(function(){
-   	 var checkStatus = table.checkStatus('orderListTable'),
-      data = checkStatus.data,
-      newsId = [];
-      if(data.length ==1) {
-    	addPage(data[0]);
-      }else{
-        layer.msg("请选择一个需要操作的订单",{time:5*1000});
-     }     
-    	
-    })
     
     //列表操作
     table.on('tool(payOrderList)', function(obj){
         var layEvent = obj.event,
             data = obj.data;
 
-        if(layEvent === 'print'){ //打印回执
-        	printData(data);
-        }
-        if(layEvent === 'printShouju'){ //打印回执
-        	printShouju(data);
+        if(layEvent === 'refund'){ //退款
+        	refund(data);
         }
         
     });
+    
+    //退款
+    function refund(data){
+    	debugger
+		if(data){
+			console.log(data);
+			
+			var applyNo = data.applyNo;
+			layer.confirm('确定要对此订单进行退款吗？', {icon: 3, title: '提示信息'}, function (index) {
+            	$.ajax({
+                    type: "post",
+                    url: "/refundOrder/refundPayOrderByApplyNo",
+                    data: applyNo,
+                    dataType: "json",
+                    headers: {
+                    	'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    success: function(msg){
+                    	if(msg!=0){
+                    		location.reload();
+             	            layer.msg("操作成功");
+                    	}else{
+                    		tableIns.reload();
+                            layer.close(index);
+                    	}
+                     },   
+                });
+                
+            })
+		}
+    }
     
     exports('payorder/payOrderList', {});
 });
