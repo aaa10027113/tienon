@@ -3,74 +3,84 @@ package com.tienon.boot.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+/**
+ * 
+ * @Description TODO(这里用一句话描述这个类的作用)
+ * @author WangQingquan
+ * @date 2019年7月22日
+ */
 public class RefundOrder {
-    private String applyNo;
 
-    private String orderNo;
+	private String applyNo;
 
-    private String refundNo;
+	private String orderNo;
 
-    private Date refundTime;
+	private String refundNo;
 
-    private BigDecimal amt;
+	@JsonFormat(pattern = "yyyy/MM/dd hh:mm:ss")
+	private Date refundTime;
 
-    private String refundReasons;
+	private BigDecimal amt;
 
-    private String status;
+	private String refundReasons;
 
-    public String getApplyNo() {
-        return applyNo;
-    }
+	private String status;
 
-    public void setApplyNo(String applyNo) {
-        this.applyNo = applyNo;
-    }
+	public String getApplyNo() {
+		return applyNo;
+	}
 
-    public String getOrderNo() {
-        return orderNo;
-    }
+	public void setApplyNo(String applyNo) {
+		this.applyNo = applyNo;
+	}
 
-    public void setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
-    }
+	public String getOrderNo() {
+		return orderNo;
+	}
 
-    public String getRefundNo() {
-        return refundNo;
-    }
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
 
-    public void setRefundNo(String refundNo) {
-        this.refundNo = refundNo;
-    }
+	public String getRefundNo() {
+		return refundNo;
+	}
 
-    public Date getRefundTime() {
-        return refundTime;
-    }
+	public void setRefundNo(String refundNo) {
+		this.refundNo = refundNo;
+	}
 
-    public void setRefundTime(Date refundTime) {
-        this.refundTime = refundTime;
-    }
+	public Date getRefundTime() {
+		return refundTime;
+	}
 
-    public BigDecimal getAmt() {
-        return amt;
-    }
+	public void setRefundTime(Date refundTime) {
+		this.refundTime = refundTime;
+	}
 
-    public void setAmt(BigDecimal amt) {
-        this.amt = amt;
-    }
+	public BigDecimal getAmt() {
+		return amt;
+	}
 
-    public String getRefundReasons() {
-        return refundReasons;
-    }
+	public void setAmt(BigDecimal amt) {
+		this.amt = amt;
+	}
 
-    public void setRefundReasons(String refundReasons) {
-        this.refundReasons = refundReasons;
-    }
+	public String getRefundReasons() {
+		return refundReasons;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setRefundReasons(String refundReasons) {
+		this.refundReasons = refundReasons;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

@@ -74,18 +74,36 @@ public class RefundOrderService {
 		RefundOrder refundOrder = new RefundOrder();
 		int i = 0;
 		try {
+			// 查询受理订单
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			log.info("查询支付订单：" + JSON.toJSONString(payOrder));
 
-			refundOrder.setApplyNo(payOrder.getApplyNo());
-			refundOrder.setOrderNo(payOrder.getOrderNo());
-			refundOrder.setRefundNo(PayUtil.getPaymentOrderNo());
-			refundOrder.setRefundReasons(refundReasons);
-			refundOrder.setRefundTime(new Date());
-			refundOrder.setAmt(payOrder.getAmt());
-			refundOrder.setStatus("01");// 退款受理中
+			// 判断受理的订单是否存在
+			if (null == payOrder) {
 
-			i = refundOrderMapper.insert(refundOrder);
+				return new ActionResult(false, "订单已经不存在，请刷新后再进行退款操作！");
+			}
+
+			// 对支付成功的订单进行退款受理
+			if (CommonStatic.ORDER_00.equals(payOrder.getStatus())) {
+
+				refundOrder.setApplyNo(payOrder.getApplyNo());
+				refundOrder.setOrderNo(payOrder.getOrderNo());
+				refundOrder.setRefundNo(PayUtil.getPaymentOrderNo());
+				refundOrder.setRefundReasons(refundReasons);
+				refundOrder.setRefundTime(new Date());
+				refundOrder.setAmt(payOrder.getAmt());
+				refundOrder.setStatus("01");// 退款受理中
+
+				// 插入一条受理记录
+				i = refundOrderMapper.insert(refundOrder);
+
+				// 退订业务
+
+			} else {
+
+				return new ActionResult(false, "未支付成功订单不可以做退订受理");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +112,8 @@ public class RefundOrderService {
 		}
 
 		if (i == 0) {
-			return new ActionResult(false, "订单退订受理异常");
+
+			return new ActionResult(false, "该订单不可退订");
 		}
 
 		return new ActionResult(true);

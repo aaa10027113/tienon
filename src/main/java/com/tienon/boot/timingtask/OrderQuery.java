@@ -64,15 +64,21 @@ public class OrderQuery {
 		List<PayOrder> payOrders = payOrderMapper.selectByrefundtimeAndStatus(queryPayOrder);
 		for (PayOrder payOrder : payOrders) {
 			StringBuffer orgBuf = new StringBuffer();
-			orgBuf.append("VNo=2&Sgn_Algr=SHA256withRSA&Cmdty_Ordr_No=").append(payOrder.getOrderNo())
-					.append("&Py_Ordr_No=").append(payOrder.getOrderNo());
+			orgBuf.append("VNo=")
+					.append(CommonStatic.PAY_VERSION)
+					.append("&Sgn_Algr=")
+					.append(CommonStatic.SIGNATURE_ALGORITHM)
+					.append("&Cmdty_Ordr_No=")
+					.append(payOrder.getOrderNo())
+					.append("&Py_Ordr_No=")
+					.append(payOrder.getOrderNo());
 			String org = orgBuf.toString();
 			// 签名
 			String signInf = SHA256withRSA.sign(CommonStatic.PRIVATEKEY, org);
 			System.out.println("签名信息" + signInf);
 			JSONObject json = new JSONObject();
-			json.put("VNo", "2");
-			json.put("Sgn_Algr", "SHA256withRSA");
+			json.put("VNo", CommonStatic.PAY_VERSION);
+			json.put("Sgn_Algr", CommonStatic.SIGNATURE_ALGORITHM);
 			json.put("Cmdty_Ordr_No", payOrder.getOrderNo());
 			json.put("Py_Ordr_No", payOrder.getOrderNo());
 			json.put("SIGN_INF", signInf);
@@ -83,11 +89,23 @@ public class OrderQuery {
 			ResultOutBo outBo = JSON.parseObject(result, ResultOutBo.class);
 			log.info("查询交易出参：[{}]", outBo);
 			StringBuffer strBuf = new StringBuffer();
-			strBuf.append("Cmdty_Ordr_No=").append(outBo.getCmdty_Ordr_No()).append("&Py_Ordr_No=")
-					.append(outBo.getPy_Ordr_No()).append("&Ordr_Gen_Tm=").append(outBo.getOrdr_Gen_Tm())
-					.append("&Ordr_Ovtm_Tm=").append(outBo.getOrdr_Ovtm_Tm()).append("&Ordr_StCd=")
-					.append(outBo.getOrdr_StCd()).append("&TAmt=").append(outBo.getTAmt()).append("&Rmrk1=")
-					.append(outBo.getRmrk1()).append("&Rmrk2=").append(outBo.getRmrk2()).append("&SIGN_INF=")
+			strBuf.append("Cmdty_Ordr_No=")
+					.append(outBo.getCmdty_Ordr_No())
+					.append("&Py_Ordr_No=")
+					.append(outBo.getPy_Ordr_No())
+					.append("&Ordr_Gen_Tm=")
+					.append(outBo.getOrdr_Gen_Tm())
+					.append("&Ordr_Ovtm_Tm=")
+					.append(outBo.getOrdr_Ovtm_Tm())
+					.append("&Ordr_StCd=")
+					.append(outBo.getOrdr_StCd())
+					.append("&TAmt=")
+					.append(outBo.getTAmt())
+					.append("&Rmrk1=")
+					.append(outBo.getRmrk1())
+					.append("&Rmrk2=")
+					.append(outBo.getRmrk2())
+					.append("&SIGN_INF=")
 					.append(outBo.getSIGN_INF());
 			// 验签
 			boolean flag = SHA256withRSA.verifySign(CommonStatic.PUBKEY, strBuf.toString(), outBo.getSIGN_INF());

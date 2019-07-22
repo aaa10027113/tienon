@@ -5,7 +5,7 @@
     <id column="applyNo" jdbcType="VARCHAR" property="applyNo" />
     <result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
     <result column="refundNo" jdbcType="VARCHAR" property="refundNo" />
-    <result column="refundTime" jdbcType="DATE" property="refundTime" />
+    <result column="refundTime" jdbcType="TIMESTAMP" property="refundTime" />
     <result column="amt" jdbcType="DECIMAL" property="amt" />
     <result column="refundReasons" jdbcType="VARCHAR" property="refundReasons" />
     <result column="status" jdbcType="VARCHAR" property="status" />
@@ -52,7 +52,7 @@
       refundTime, amt, refundReasons, 
       status)
     values (#{applyNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{refundNo,jdbcType=VARCHAR},
-      #{refundTime,jdbcType=DATE}, #{amt,jdbcType=DECIMAL}, #{refundReasons,jdbcType=VARCHAR},
+      #{refundTime,jdbcType=TIMESTAMP}, #{amt,jdbcType=DECIMAL}, #{refundReasons,jdbcType=VARCHAR},
       #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tienon.boot.domain.RefundOrder">
@@ -91,7 +91,7 @@
         #{refundNo,jdbcType=VARCHAR},
       </if>
       <if test="refundTime != null">
-        #{refundTime,jdbcType=DATE},
+        #{refundTime,jdbcType=TIMESTAMP},
       </if>
       <if test="amt != null">
         #{amt,jdbcType=DECIMAL},
@@ -114,7 +114,7 @@
         refundNo = #{refundNo,jdbcType=VARCHAR},
       </if>
       <if test="refundtime != null">
-        refundTime = #{refundTime,jdbcType=DATE},
+        refundTime = #{refundTime,jdbcType=TIMESTAMP},
       </if>
       <if test="amt != null">
         amt = #{amt,jdbcType=DECIMAL},
@@ -132,7 +132,7 @@
     update tb_refund_order
     set orderNo = #{orderNo,jdbcType=VARCHAR},
       refundNo = #{refundNo,jdbcType=VARCHAR},
-      refundTime = #{refundTime,jdbcType=DATE},
+      refundTime = #{refundTime,jdbcType=TIMESTAMP},
       amt = #{amt,jdbcType=DECIMAL},
       refundReasons = #{refundReasons,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR}

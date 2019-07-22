@@ -31,10 +31,14 @@
     where applyNo = #{applyNo,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.tienon.boot.domain.PayOrder">
-    insert into tb_pay_order (applyNo, orderNo, payTime,
-      amt, status,payOrderNo)
-    values (#{applyNo,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{payTime,jdbcType=TIMESTAMP},
-      #{amt,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{payOrderNo,jdbcType=VARCHAR})
+    insert into tb_pay_order (applyNo, orderNo, payTime, amt, status, payOrderNo)
+    values (
+	    #{applyNo,jdbcType=VARCHAR}, 
+	    #{orderNo,jdbcType=VARCHAR},
+	    #{payTime,jdbcType=TIMESTAMP},
+	    #{amt,jdbcType=DECIMAL}, 
+	    #{status,jdbcType=VARCHAR}, 
+	    #{payOrderNo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tienon.boot.domain.PayOrder">
     insert into tb_pay_order

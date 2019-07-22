@@ -86,13 +86,13 @@
 			</providers>
 		</encoder>
 	</appender> -->
-	<logger name="com.tienon.boot.conf" level="DEBUG" />
-	<logger name="com.tienon.boot.mapper" level="DEBUG" />
-	<logger name="com.tienon.eas.mapper" level="DEBUG" />
-	<logger name="com.tienon.component.mapper" level="DEBUG" />
+	<logger name="com.tienon.boot.conf" level="INFO" />
+	<logger name="com.tienon.boot.mapper" level="INFO" />
+	<logger name="com.tienon.eas.mapper" level="INFO" />
+	<logger name="com.tienon.component.mapper" level="INFO" />
 	
 	<!-- 日志输出级别 -->
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="STDOUT" />
 		<!-- <appender-ref ref="LOGSTASH" /> -->
 		<appender-ref ref="BIZ" />

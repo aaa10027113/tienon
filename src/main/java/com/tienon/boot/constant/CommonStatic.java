@@ -14,16 +14,72 @@ package com.tienon.boot.constant;
  */
 public class CommonStatic {
 	// 返回码
-	public final static String R_022 = "022"; // 022:系统内部处理错误
-	public final static String R_029 = "029"; // 029:数据库错误
-	public final static String R_080 = "080"; // 080:交易超时
+	/**
+	 * 系统内部处理错误
+	 */
+	public final static String R_022 = "022";
+
+	/**
+	 * 数据库错误
+	 */
+	public final static String R_029 = "029";
+
+	/**
+	 * 交易超时
+	 */
+	public final static String R_080 = "080";
 
 	// 订单状态
-	public static String ORDER_00 = "00"; // 支付成功
-	public static String ORDER_01 = "01"; // 待支付
-	public static String ORDER_02 = "02"; // 支付失败
-	public static String ORDER_03 = "03"; // 订单超时
-	public static String ORDER_99 = "99"; // 未知
+	/**
+	 * 支付成功
+	 */
+	public static String ORDER_00 = "00";
+
+	/**
+	 * 待支付
+	 */
+	public static String ORDER_01 = "01";
+
+	/**
+	 * 支付失败
+	 */
+	public static String ORDER_02 = "02";
+
+	/**
+	 * 支付超时
+	 */
+	public static String ORDER_03 = "03";
+
+	/**
+	 * 未知状态
+	 */
+	public static String ORDER_99 = "99";
+
+	// 退款状态
+	/**
+	 * 退款成功
+	 */
+	public static String refund_00 = "00";
+
+	/**
+	 * 退款受理中
+	 */
+	public static String refund_01 = "01";
+
+	/**
+	 * 退款失败
+	 */
+	public static String refund_02 = "02";
+
+	/**
+	 * 退款超时
+	 */
+	public static String refund_03 = "03";
+
+	/**
+	 * 未知状态
+	 */
+	public static String refund_99 = "99";
 
 	/**
 	 * 支付结果查询url

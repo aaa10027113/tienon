@@ -37,19 +37,26 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
             {field: 'applyNo', title: '申请序号', minWidth:150, align:"center"},
             {field: 'orderNo', title: '订单编号', minWidth:150, align:'center'},
             {field: 'refundNo', title: '退款编号', minWidth:150, align:"center"},
-            {field: 'refundTime', title: '退款时间', minWidth: 150, align: 'center'},
+            {field: 'refundTime', title: '退款时间', minWidth: 180, align: 'center'},
             {field: 'refundReasons', title: '退款原因', minWidth: 300, align: 'center'},
             {
                 field: 'refundTime', title: '退款状态',  minWidth:150, align:'center',templet:function(d){
                     function buttonColor(color,status) {
                         return `<button class="layui-btn layui-btn-xs layui-btn-radius ${color}">${status}</button>`
                     }
-                    switch (d.status) {
+                    /*switch (d.status) {
                         case "00": return buttonColor("","退款成功");
                         case "01": return buttonColor("layui-btn-normal","受理中");
                         case "02": return buttonColor("layui-btn-danger","退款失败");
                         case "03": return buttonColor("layui-btn-warm","订单超时");
                         default:return buttonColor(" layui-btn-primary","未知状态");
+                    }*/
+                    switch (d.status) {
+                        case "00": return "退款成功";
+                        case "01": return "受理中"
+                        case "02": return "退款失败"
+                        case "03": return "订单超时"
+                        default:return "未知状态"
                     }
                 }
             },

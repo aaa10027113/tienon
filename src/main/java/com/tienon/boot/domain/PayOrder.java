@@ -3,6 +3,8 @@ package com.tienon.boot.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 
  * @Description TODO(支付订单实体类)
@@ -23,6 +25,7 @@ public class PayOrder {
 	/**
 	 * 支付时间
 	 */
+	@JsonFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	private Date payTime;
 
 	/**
@@ -34,6 +37,11 @@ public class PayOrder {
 	 * 支付状态
 	 */
 	private String status;
+
+	/**
+	 * 支付订单号
+	 */
+	private String payOrderNo;
 
 	public String getApplyNo() {
 		return applyNo;
@@ -75,10 +83,18 @@ public class PayOrder {
 		this.status = status;
 	}
 
+	public String getPayOrderNo() {
+		return payOrderNo;
+	}
+
+	public void setPayOrderNo(String payOrderNo) {
+		this.payOrderNo = payOrderNo;
+	}
+
 	@Override
 	public String toString() {
 		return "PayOrder [applyNo=" + applyNo + ", orderNo=" + orderNo + ", payTime=" + payTime + ", amt=" + amt
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", payOrderNo=" + payOrderNo + "]";
 	}
 
 }
