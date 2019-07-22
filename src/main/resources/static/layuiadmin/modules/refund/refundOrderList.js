@@ -67,8 +67,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     $(".refundOrderSearch").click(function(){
     	 var applyNo=$("#applyNo").val();
     	 var orderNo=$("#orderNo").val();
-    	 var refundNo=$("#refundNo").val();
-    	 search ={applyNo:applyNo,orderNo:orderNo,refundNo:refundNo};
+    	 var status=$("#status").val();
+    	 search ={applyNo:applyNo,orderNo:orderNo,status:status};
     	 var searchCondition={searchCondition:search};
     	 tableIns.reload({
     		  where: 
