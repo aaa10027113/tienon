@@ -124,8 +124,13 @@ public class OperateService {
 			payOrder.setApplyNo(info.getApplyNo());
 			payOrder.setOrderNo(PayUtil.getPaymentOrderNo());
 			payOrder.setAmt(new BigDecimal(info.getAmt()));
-			// 支付状态：待支付
-			payOrder.setStatus("01");
+			if("0".equals(info.getAmt())) {
+				// 支付状态：无需支付
+				payOrder.setStatus("05");
+			}else {
+				// 支付状态：待支付
+				payOrder.setStatus("01");
+			}
 			j = payOrderMapper.insert(payOrder);
 
 		} catch (Exception e) {
@@ -232,18 +237,18 @@ public class OperateService {
 	 */
 	public Object reportList(PageGrid pg) {
 		try {
-			if (pg.getSearchCondition().isEmpty()) {
-				Calendar calendar = Calendar.getInstance();
-				Date date = new Date();
-				calendar.setTime(date);
-				calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - 7);
-				Date today = calendar.getTime();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				String beginTime = sdf.format(today) + " 00:00:00";
-				String endTime = sdf.format(date) + " 23:59:59";
-				pg.getSearchCondition().put("beginTime", beginTime);
-				pg.getSearchCondition().put("endTime", endTime);
-			}
+//			if (pg.getSearchCondition().isEmpty()) {
+//				Calendar calendar = Calendar.getInstance();
+//				Date date = new Date();
+//				calendar.setTime(date);
+//				calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - 7);
+//				Date today = calendar.getTime();
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//				String beginTime = sdf.format(today) + " 00:00:00";
+//				String endTime = sdf.format(date) + " 23:59:59";
+//				pg.getSearchCondition().put("beginTime", beginTime);
+//				pg.getSearchCondition().put("endTime", endTime);
+//			}
 			log.info("获取导出Excel数据入参：searchCondition=" + JSON.toJSONString(pg.getSearchCondition()));
 			// 查询
 			PageList<ApplyInfo> pageList = operateMapper.reportList(pg.getSearchCondition());

@@ -9,7 +9,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
 	//初始化数据
     $(function(){
     	var applyNo = location.href.split("?")[1];
-        $.post("/operate/printInfo",{applyNo},function(res){
+        $.post("/operate/printInfo",{applyNo:applyNo},function(res){
             	console.log(res);
             	if(!res.success){
             		layer.alert(res.msg, {
@@ -63,9 +63,10 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
                 	width : 100,
                 	height : 100
                 });
-                
-            	var text= address+"h5/pay.html?applyNo="+msg.applyNo;
-            	qrcode.makeCode(text);
+                if("0.00" != msg.amt){
+                	var text= address+"h5/pay.html?applyNo="+msg.applyNo;
+                	qrcode.makeCode(text);
+                }
             	//------------------------------------
             	//表格数据反选
             	var temp="<tr><td><span>1</span></td>";

@@ -55,12 +55,12 @@
 		insert into TB_APPLY (APPLYNO, ACCEPTDATE, COMPANYNAME,
 		HUMANNAME,IDCARDNO,TRADEMARKNAME,
 		ACCEPTTYPE,ADDTYPE,
-		OPERATIONDATE,OPERATOR,AMT)
+		OPERATIONDATE,OPERATOR,AMT,DELETEFLAG)
 		values
 		(#{applyNo,jdbcType=VARCHAR}, #{acceptDate,jdbcType=DATE},#{companyName,jdbcType=VARCHAR},
 		#{humanName,jdbcType=VARCHAR},#{idCardNo,jdbcType=VARCHAR},#{trademarkName,jdbcType=VARCHAR},
 		#{acceptType,jdbcType=VARCHAR},#{addType,jdbcType=VARCHAR},
-		#{operationDate,jdbcType=DATE}, #{operator,jdbcType=VARCHAR}, #{amt,jdbcType=NUMERIC})
+		#{operationDate,jdbcType=DATE}, #{operator,jdbcType=VARCHAR}, #{amt,jdbcType=NUMERIC},'0')
 	</insert>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.util.List">

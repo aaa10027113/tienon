@@ -9,12 +9,12 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
      //开始时间
      laydate.render({
     	elem: '#beginTime',
-    	value:new Date(new Date()-7000*60*60*24)
+//    	value:new Date(new Date()-7000*60*60*24)
     });
      //结束时间
      laydate.render({
    	  elem: '#endTime',
-   	  value:new Date()
+//   	  value:new Date()
    });
    /*  laydate.render({
     	 elem: '#endTime'
