@@ -115,7 +115,6 @@ public class PaymentOnlieService {
 				actionResult.setMsg("保存支付订单号出错");
 				actionResult.setSuccess(false);
 				logger.error("保存支付订单号出现异常：[" + e.getMessage() + "]");
-				throw new EjxError(CommonStatic.R_029, "保存支付订单号出现异常：[" + e.getMessage() + "]");
 			}
 
 			actionResult.setMsg("跳转支付连接中请稍后...");
@@ -126,7 +125,6 @@ public class PaymentOnlieService {
 			actionResult.setMsg("发送支付连接出错");
 			actionResult.setSuccess(false);
 			logger.error("发送支付连接出现异常：[" + e.getMessage() + "]");
-			throw new EjxError(CommonStatic.R_029, "发送支付连接出现异常：[" + e.getMessage() + "]");
 		}
 		return actionResult;
 
