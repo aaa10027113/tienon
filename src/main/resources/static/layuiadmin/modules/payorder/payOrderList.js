@@ -50,6 +50,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 		          		return d.status="支付失败";
 		          	}else if(d.status=="03"){
 		          		return d.status="订单超时";
+		          	}else if(d.status=="04"){
+		          		return d.status="不确定";
 		          	}else if(d.status=="05"){
 		          		return d.status="无需支付";
 		          	}else if(d.status=="99"){
