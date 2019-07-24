@@ -41,6 +41,8 @@ public class ApplyInfo {
 	private String amt; //总金额 690.00
 	
 	private String deleteFlag; //是否删除标记 0未删除    1已删除
+	
+	private String applyNoEncrypt; //申请标号加密
 
 	public String getApplyNo() {
 		return applyNo;
@@ -153,6 +155,14 @@ public class ApplyInfo {
 
 	public void setDeleteFlag(String deleteFlag) {
 		this.deleteFlag = deleteFlag;
+	}
+
+	public String getApplyNoEncrypt() {
+		return applyNoEncrypt;
+	}
+
+	public void setApplyNoEncrypt(String applyNoEncrypt) {
+		this.applyNoEncrypt = applyNoEncrypt;
 	}
 	
 	

@@ -64,7 +64,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
                 	height : 100
                 });
                 if("0.00" != msg.amt){
-                	var text= address+"h5/pay.html?applyNo="+msg.applyNo;
+                	var text= address+"h5/pay.html?applyNo="+msg.applyNoEncrypt;
+                	alert(text);
                 	qrcode.makeCode(text);
                 }
             	//------------------------------------

@@ -34,6 +34,7 @@ import com.tienon.boot.domain.DownloadInfo;
 import com.tienon.boot.domain.PayOrder;
 import com.tienon.boot.mapper.OperateMapper;
 import com.tienon.boot.mapper.PayOrderMapper;
+import com.tienon.boot.util.ASCEUtils;
 import com.tienon.boot.util.PayUtil;
 import com.tienon.boot.util.support.PageGrid;
 import com.tienon.boot.util.support.PageResult;
@@ -216,6 +217,8 @@ public class OperateService {
 			if (null == info) {
 				return new ActionResult(false, "根据申请序号未获取到数据");
 			}
+			String apply = info.getApplyNo();
+			info.setApplyNoEncrypt(ASCEUtils.encrypt(apply));
 			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(info.getAcceptDate());
 			String applyDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 			info.setAcceptDate(applyDate);
@@ -228,6 +231,24 @@ public class OperateService {
 		}
 	}
 
+	public Object printInfoData(String applyNo) {
+		try {
+			log.info("获取打印数据入参applyNo=" + applyNo);
+			ApplyInfo info = operateMapper.printInfo(applyNo);
+			if (null == info) {
+				return new ActionResult(false, "根据申请序号未获取到数据");
+			}
+			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(info.getAcceptDate());
+			String applyDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+			info.setAcceptDate(applyDate);
+			log.info("获取打印数据出参:" + JSON.toJSONString(info));
+			return new ActionResult(true, "查询成功", info);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]");
+			throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]");
+		}
+	}
 	/**
 	 * TODO 导出数据Excel表格
 	 * 
