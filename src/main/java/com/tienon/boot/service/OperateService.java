@@ -234,6 +234,7 @@ public class OperateService {
 	public Object printInfoData(String applyNo) {
 		try {
 			log.info("获取打印数据入参applyNo=" + applyNo);
+			applyNo = ASCEUtils.decrypt(applyNo);
 			ApplyInfo info = operateMapper.printInfo(applyNo);
 			if (null == info) {
 				return new ActionResult(false, "根据申请序号未获取到数据");

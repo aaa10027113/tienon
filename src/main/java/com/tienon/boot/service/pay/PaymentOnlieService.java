@@ -21,6 +21,7 @@ import com.tienon.boot.domain.pay.SendSubInBo2;
 import com.tienon.boot.mapper.OperateMapper;
 import com.tienon.boot.mapper.PayOrderMapper;
 import com.tienon.boot.mapper.pay.PaymentOnlineMapper;
+import com.tienon.boot.util.ASCEUtils;
 import com.tienon.boot.util.PayUtil;
 import com.tienon.boot.util.support.PageGrid;
 import com.tienon.boot.util.support.PageResult;
@@ -168,6 +169,27 @@ public class PaymentOnlieService {
 		PayOrder payOrder = null;
 		ActionResult actionResult = null;
 		try {
+			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
+			String apply = payOrder.getApplyNo();
+			payOrder.setApplyNo(ASCEUtils.encrypt(apply));
+			actionResult = new ActionResult(true, "查询成功", payOrder);
+		} catch (Exception e) {
+			logger.error("查询支付订单出现异常：[" + e.getMessage() + "]");
+			actionResult = new ActionResult(false, "查询失败,原因：", e.getMessage());
+		}
+		return actionResult;
+	}
+	/**
+	 * TODO(根据受理序号查询)
+	 *
+	 * @param applyNo
+	 * @return ActionResult 返回类型
+	 */
+	public Object queryByApplyNoInfo(String applyNo) {
+		PayOrder payOrder = null;
+		ActionResult actionResult = null;
+		try {
+			applyNo = ASCEUtils.decrypt(applyNo);
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			actionResult = new ActionResult(true, "查询成功", payOrder);
 		} catch (Exception e) {

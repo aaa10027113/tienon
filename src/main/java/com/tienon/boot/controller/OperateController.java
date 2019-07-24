@@ -81,6 +81,17 @@ public class OperateController {
 		return operateService.printInfo(applyNo);
 		
 	}
+	/** 
+	 * TODO 获取打印基础数据
+	 * @param applyNo
+	 * @return 
+	 * @return Object 返回类型
+	 */
+	@PostMapping(value="/printInfoData")
+	public Object printInfoData(@RequestParam("applyNo") String applyNo) {
+		return operateService.printInfoData(applyNo);
+		
+	}
 	
 	/** 
 	 * TODO 查询导出数据Excel表格

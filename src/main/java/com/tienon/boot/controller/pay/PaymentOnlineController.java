@@ -54,4 +54,16 @@ public class PaymentOnlineController {
 	public Object queryPayOrderList(@RequestParam("applyNo") String applyNo) {
 		return paymentOnlieService.queryByApplyNo(applyNo);
 	}
+	/**
+	 *
+	 * 查询订单支付
+	 *
+	 * @param applyNo
+	 * @return
+	 * @return Object 返回类型
+	 */
+	@RequestMapping("/queryByApplyNoInfo")
+	public Object queryPayOrderListInfo(@RequestParam("applyNo") String applyNo) {
+		return paymentOnlieService.queryByApplyNoInfo(applyNo);
+	}
 }
