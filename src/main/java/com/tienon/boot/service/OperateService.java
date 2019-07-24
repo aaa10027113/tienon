@@ -204,7 +204,7 @@ public class OperateService {
 	}
 
 	/**
-	 * TODO 获取打印基础数据
+	 * TODO 获取打印基础加密数据
 	 * 
 	 * @param applyNo
 	 * @return
@@ -212,7 +212,7 @@ public class OperateService {
 	 */
 	public Object printInfo(String applyNo) {
 		try {
-			log.info("获取打印数据入参applyNo=" + applyNo);
+			log.info("获取打印加密数据入参applyNo=" + applyNo);
 			ApplyInfo info = operateMapper.printInfo(applyNo);
 			if (null == info) {
 				return new ActionResult(false, "根据申请序号未获取到数据");
@@ -222,7 +222,7 @@ public class OperateService {
 			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(info.getAcceptDate());
 			String applyDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 			info.setAcceptDate(applyDate);
-			log.info("获取打印数据出参:" + JSON.toJSONString(info));
+			log.info("获取打印加密数据出参:" + JSON.toJSONString(info));
 			return new ActionResult(true, "查询成功", info);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -231,10 +231,18 @@ public class OperateService {
 		}
 	}
 
+	/**
+	 * TODO 获取打印基础解密数据
+	 * 
+	 * @param applyNo
+	 * @return
+	 * @return Object 返回类型
+	 */
 	public Object printInfoData(String applyNo) {
 		try {
-			log.info("获取打印数据入参applyNo=" + applyNo);
+			log.info("获取打印解密数据入参applyNo=" + applyNo);
 			applyNo = ASCEUtils.decrypt(applyNo);
+			log.info("获取打印解密后的applyNo=" + applyNo);
 			ApplyInfo info = operateMapper.printInfo(applyNo);
 			if (null == info) {
 				return new ActionResult(false, "根据申请序号未获取到数据");
@@ -242,7 +250,7 @@ public class OperateService {
 			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(info.getAcceptDate());
 			String applyDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 			info.setAcceptDate(applyDate);
-			log.info("获取打印数据出参:" + JSON.toJSONString(info));
+			log.info("获取打印解密数据出参:" + JSON.toJSONString(info));
 			return new ActionResult(true, "查询成功", info);
 		} catch (Exception e) {
 			e.printStackTrace();
