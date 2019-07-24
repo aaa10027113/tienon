@@ -68,11 +68,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         	  }else{
         		  return '<button class="layui-btn layui-btn-xs"  lay-event="print">回执打印</button>';
         	  }
-//     	  		 '<button class="layui-btn layui-btn-xs layui-btn-normal"   lay-event="printShouju">收据</button>';
-//        	  }else{
-//        		  return '<button class="layui-btn layui-btn-xs"   lay-event="print">回执</button>'+
-//     	  		 '<button class="layui-btn layui-btn-xs layui-btn-disabled">收据</button>';
-//        	  }
           }}
         ]]
     });
