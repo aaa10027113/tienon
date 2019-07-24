@@ -131,12 +131,4 @@ public class ASCEncrypt {
 
         return cipher.doFinal(content.getBytes("utf-8"));
     }
-
-    public static void main(String[] args) {
-        String pwd = "thisispwd";
-        String ascKey = "this is ascKey";
-        String afterASCEncrypt = new ASCEncrypt(ascKey).encrypt(pwd);
-        System.out.println("asc加密后:\t" + afterASCEncrypt);
-        System.out.println("asc解密后:\t" + new ASCEncrypt(ascKey).decrypt(afterASCEncrypt));
-    }
 }
