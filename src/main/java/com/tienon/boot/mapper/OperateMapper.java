@@ -29,7 +29,7 @@ public interface OperateMapper {
 
 	int deleteByPrimaryKey(List<String> list);
 	
-	int deleteByPrimaryKeyOnPay(List<String> list);
+//	int deleteByPrimaryKeyOnPay(List<String> list);
 
 	ApplyInfo printInfo(@Param("applyNo")String applyNo);
 

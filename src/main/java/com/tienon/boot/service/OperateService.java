@@ -189,7 +189,7 @@ public class OperateService {
 			// 根据申请序号批量删除
 			int i = operateMapper.deleteByPrimaryKey(list);
 			log.info("批量删除信息表出参：" + i);
-			int j = operateMapper.deleteByPrimaryKeyOnPay(list);
+			int j = payOrderMapper.deleteByPrimaryKeyOnPay(list);
 			log.info("批量删支付表出参：" + j);
 			if(i==0) {
 				return  new ActionResult(false,"删除失败，未查询到需要删除的商标");
@@ -309,6 +309,16 @@ public class OperateService {
 	 */
 	public void download(List<ApplyInfo> list, HttpServletResponse response, String beginTime, String endTime) {
 		log.info("下载表格入参：beginTime=" + beginTime + "   endTime=" + endTime);
+		if (beginTime.isEmpty()) {
+			Calendar calendar = Calendar.getInstance();
+			Date date = new Date();
+			calendar.setTime(date);
+			calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - 7);
+			Date begin = calendar.getTime();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			beginTime = sdf.format(begin) + " 00:00:00";
+			endTime = sdf.format(date) + " 23:59:59";
+		}
 		String tempPath = "C:\\template\\template.xlsx";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		Date date = new Date();

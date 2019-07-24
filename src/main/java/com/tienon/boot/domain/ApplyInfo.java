@@ -39,6 +39,8 @@ public class ApplyInfo {
 	private String operator; //操作人员
 	
 	private String amt; //总金额 690.00
+	
+	private String deleteFlag; //是否删除标记 0未删除    1已删除
 
 	public String getApplyNo() {
 		return applyNo;
@@ -143,6 +145,14 @@ public class ApplyInfo {
 
 	public void setAmt(String amt) {
 		this.amt = amt;
+	}
+
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 	
 	

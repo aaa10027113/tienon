@@ -52,6 +52,13 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
           {field: 'companyName', title: '公司名称', minWidth:150, align:"center"},
 //          {field: 'humanName', title: '自然人名称', minWidth:150, align:"center"},
           {field: 'trademarkName', title: '商标名称', minWidth:150, align:"center"},
+          {field: 'deleteFlag', title: '是否删除', minWidth:150, align:"center",templet:function(d){
+        	  if(d.deleteFlag=="1"){
+        		  return '是';
+        	  }else{
+        		  return '';
+        	  }
+          }},
           {field: 'amt', title: '总金额', minWidth:125, align:"center"},
           {title: '打印', minWidth:170,fixed:"right",align:"center",templet:function(d){
 //        	  return '<a class="layui-btn layui-btn-xs" href="printData.html?'+d.applyNo+'">打印回执</a>';

@@ -39,6 +39,13 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
            {field: 'applyNo', title: '申请序号', minWidth:150, align:"center"},
            {field: 'orderNo', title: '订单编号', minWidth:150, align:'center'},
            {field: 'payTime', title: '支付时间', minWidth:150, align:"center"},
+           {field: 'deleteFlag', title: '是否删除', minWidth:150, align:"center",templet:function(d){
+        	  if(d.deleteFlag=="1"){
+        		  return '是';
+        	  }else{
+        		  return '';
+        	  }
+          }},
            {field: 'amt', title: '支付金额', minWidth:150, align:"center"},
            {field: 'status', title: '支付状态',  minWidth:125, align:'center',
         	   templet:function(d){

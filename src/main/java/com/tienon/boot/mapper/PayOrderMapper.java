@@ -30,4 +30,6 @@ public interface PayOrderMapper {
 	 * @return PageList<PayOrder> 返回类型
 	 */
 	PageList<PayOrder> queryPayOrderList(Object searchCondition, PageBounds pageBounds);
+
+	int deleteByPrimaryKeyOnPay(List<String> list);
 }
