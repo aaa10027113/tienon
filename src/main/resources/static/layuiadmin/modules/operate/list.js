@@ -62,8 +62,12 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
           {field: 'amt', title: '总金额', minWidth:125, align:"center"},
           {title: '打印', minWidth:170,fixed:"right",align:"center",templet:function(d){
 //        	  return '<a class="layui-btn layui-btn-xs" href="printData.html?'+d.applyNo+'">打印回执</a>';
-//        	  if(d.status=="00"){
-        	   return '<button class="layui-btn layui-btn-xs"  lay-event="print">回执打印</button>';
+        	  if(d.deleteFlag=="1"){
+        		  
+        		  return '<button class="layui-btn layui-btn-xs layui-btn-disabled">回执打印</button>';
+        	  }else{
+        		  return '<button class="layui-btn layui-btn-xs"  lay-event="print">回执打印</button>';
+        	  }
 //     	  		 '<button class="layui-btn layui-btn-xs layui-btn-normal"   lay-event="printShouju">收据</button>';
 //        	  }else{
 //        		  return '<button class="layui-btn layui-btn-xs"   lay-event="print">回执</button>'+
