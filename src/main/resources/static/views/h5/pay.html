@@ -192,7 +192,7 @@
 		    	var $ = layui.jquery;
 		    	$(function(){
 					var applyNo = getUrlParms("applyNo");
-					$.post("/operate/printInfoData",{applyNo},function(res){
+					$.post("/operate/printInfoData",{applyNo:applyNo},function(res){
 						if(!res.success){
 							alert(res.msg);
 							return false;
@@ -204,8 +204,7 @@
 						$("#acceptTypeName").text(res.obj.acceptTypeName);
 						
 					},"json")
-
-					$.post("/paymentOnline/queryByApplyNoInfo",{applyNo},function(res){
+					$.post("/paymentOnline/queryByApplyNoInfo",{applyNo:applyNo},function(res){
 						if(!res.success){
 							alert(res.msg);
 							return false;
@@ -215,7 +214,7 @@
 					
 					$(".my-btn").click(function(){
 						$(".loading").css("display","flex");
-						$.post("/paymentOnline/sendPayMessage",{applyNo},function(res){
+						$.post("/paymentOnline/sendPayMessage",{applyNo:applyNo},function(res){
 							$(".loading").css("display","none");
 							if(!res.success){
 								alert(res.msg);
