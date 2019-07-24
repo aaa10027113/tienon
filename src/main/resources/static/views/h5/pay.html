@@ -192,7 +192,7 @@
 		    	var $ = layui.jquery;
 		    	$(function(){
 					var applyNo = getUrlParms("applyNo");
-					$.post("/operate/printInfo",{applyNo},function(res){
+					$.post("/operate/printInfoData",{applyNo},function(res){
 						if(!res.success){
 							alert(res.msg);
 							return false;
@@ -205,7 +205,7 @@
 						
 					},"json")
 
-					$.post("/paymentOnline/queryByApplyNo",{applyNo},function(res){
+					$.post("/paymentOnline/queryByApplyNoInfo",{applyNo},function(res){
 						if(!res.success){
 							alert(res.msg);
 							return false;

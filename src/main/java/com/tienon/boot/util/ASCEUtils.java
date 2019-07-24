@@ -8,7 +8,7 @@ import com.tienon.boot.constant.CommonStatic;
 
 /**
  * @author zouhuaqiang
- * @Description TODO
+ * @Description 加密解密工具类
  * @date 2019/07/24日
  */
 public class ASCEUtils {
