@@ -171,6 +171,7 @@ public class PaymentOnlieService {
 		try {
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			String apply = payOrder.getApplyNo();
+			logger.info("加密后的applyNO="+applyNo);
 			payOrder.setApplyNo(ASCEUtils.encrypt(apply));
 			actionResult = new ActionResult(true, "查询成功", payOrder);
 		} catch (Exception e) {
@@ -180,7 +181,7 @@ public class PaymentOnlieService {
 		return actionResult;
 	}
 	/**
-	 * TODO(根据受理序号查询)
+	 * TODO(根据受理序号解密查询)
 	 *
 	 * @param applyNo
 	 * @return ActionResult 返回类型
@@ -190,6 +191,7 @@ public class PaymentOnlieService {
 		ActionResult actionResult = null;
 		try {
 			applyNo = ASCEUtils.decrypt(applyNo);
+			logger.info("解密后的applyNO="+applyNo);
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			actionResult = new ActionResult(true, "查询成功", payOrder);
 		} catch (Exception e) {
