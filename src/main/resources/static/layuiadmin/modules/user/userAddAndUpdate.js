@@ -76,6 +76,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ],
 					if (!o.success) {
 						$("#checkName").val("");
 					} else {
+                        // $("#last").html("√");
 						layer.msg(o.msg,{time:5*1000});
 					}
 				},
