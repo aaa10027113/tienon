@@ -27,28 +27,28 @@
 <form class="layui-form">
 <div class="layui-form-item layui-row">
 
-	<div class="layui-form-item layui-row">
+	<!--<div class="layui-form-item layui-row">
 		<div class="layui-col-md5">
 			<label class="layui-form-label neccesary">登录名：</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input loginName" name="loginName" lay-verify="required" placeholder="请输入登录名">
-				<!--<a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="loginName" type="button" ></a>-->
+				<input type="text" id = "checkName" class="layui-input loginName" name="loginName" lay-verify="required" placeholder="请输入登录名">
+				&lt;!&ndash;<a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="loginName" type="button" ></a>&ndash;&gt;
 			</div>
 		</div>
-		<div class="layui-col-md1">
-			<a style="color:#009688; line-height: 38px" id="loginName" type="button" >点击验证</a>
+		<div class="layui-col-md1" id ="temp" style="disabled:disabled">
+            <a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688;display:none" id="loginName" type="button"></a>
 		</div>
 		<div class="layui-col-md6"></div>
-	</div>
+	</div>-->
 	<!--             -->
-	<!--<div class="layui-col-md5 layui-form-item">
+	<div class="layui-col-md5 layui-form-item">
 		<label class="layui-form-label neccesary">登录名：</label>
 		 <div class="layui-input-block">
-			<input type="text" class="layui-input loginName" name="loginName" lay-verify="required" placeholder="请输入登录名">
-			 <a class="layui-icon layui-icon-vercode " style="color:#009688" id="loginName" type="button">点击验证</a>
-			<a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="loginName" type="button" ></a>
+			<input type="text" id="checkName" class="layui-input loginName" name="loginName" lay-verify="required" placeholder="请输入登录名">
+			 <!--   <a class="layui-icon layui-icon-vercode " style="color:#009688" id="loginName" type="button">点击验证</a>
+			<a class="layui-icon layui-icon-vercode layui-input-icon-right" style="color:#009688" id="loginName" type="button" ></a>-->
 		</div>
-	</div>-->
+	</div>
 	
 	<div class="layui-form-item layui-row layui-col-md5">
 		<label class="layui-form-label neccesary">用户姓名：</label>
