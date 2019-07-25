@@ -61,7 +61,11 @@ public class PaymentOnlieService {
 		PayOrder payOrder = new PayOrder();
 		ActionResult actionResult = new ActionResult();
 		try {
+			logger.info("在线支付解密数据入参applyNo="+applyNo);
+			applyNo = ASCEUtils.decrypt(applyNo);
+			logger.info("在线支付解密数据出参applyNo=" + applyNo);
 			ApplyInfo info = operateMapper.printInfo(applyNo);
+			logger.info("获取支付对象信息出参："+ JSON.toJSONString(info));
 			if (null == info) {
 				actionResult.setMsg("根据申请序号未获取到数据");
 				actionResult.setSuccess(false);
