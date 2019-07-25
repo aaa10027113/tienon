@@ -6,12 +6,14 @@ package com.tienon.boot.controller;
 
 import javax.annotation.Resource;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.alibaba.fastjson.JSON;
+import com.tienon.boot.domain.RefundOrder;
+import org.springframework.web.bind.annotation.*;
 
 import com.tienon.boot.service.RefundOrderService;
 import com.tienon.boot.util.support.PageGrid;
+
+import java.util.Map;
 
 /**
  * @author zouhuaqiang
@@ -40,12 +42,12 @@ public class RefundOrderController {
 	 *
 	 * 订单退订受理
 	 *
-	 * @param applyNo
+	 * @param refund
 	 * @return
 	 * @return Object 返回类型
 	 */
-	@RequestMapping("/refundPayOrderByApplyNo")
-	public Object refundPayOrder(@RequestBody String applyNo) {
-		return payOrderService.refundPayOrderByApplyNo(applyNo);
+	@PostMapping("/refundPayOrderByApplyNo")
+	public Object refundPayOrder( @RequestBody RefundOrder refund) {
+		return payOrderService.refundPayOrderByApplyNo(refund);
 	}
 }

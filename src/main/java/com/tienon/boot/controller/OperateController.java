@@ -22,101 +22,101 @@ import com.tienon.boot.util.support.PageGrid;
 import com.tienon.framework.supports.ActionResult;
 
 /**
- * 
- * @Description 商标新增、查询等
  * @author ll
+ * @Description 商标新增、查询等
  * @date 2019/07/01
  */
 @RestController
 @RequestMapping("/operate")
 public class OperateController {
 
-	@Autowired 
-	OperateService operateService;
-	
-	
-	/** 
-	 * TODO 查询商标列表
-	 * @param pg
-	 * @return 
-	 * @return Object 返回类型
-	 */
-	@RequestMapping("/queryList")
-	public Object queryList(@RequestBody PageGrid pg) {
-		return operateService.queryList(pg);
-	}
-	
-	/** 
-	 * TODO 添加新的商标
-	 * @param info
-	 * @return 
-	 * @return Object 返回类型
-	 */
-	@RequestMapping("/addNewInfo")
-	public Object addNewInfo(@RequestBody ApplyInfo info) {
-		return operateService.addNewInfo(info);
-	}
-	
-	/** 
-	 * TODO 根据申请序号批量删除
-	 * @param list
-	 * @return 
-	 * @return Object 返回类型
-	 */
-	@PostMapping(value="/deleteByPrimaryKey")
-	public Object deleteByPrimaryKey(@RequestBody List<String> list) {
-		return operateService.deleteByPrimaryKey(list);
-		
-	}
-	
-	
-	/** 
-	 * TODO 获取打印基础数据
-	 * @param applyNo
-	 * @return 
-	 * @return Object 返回类型
-	 */
-	@PostMapping(value="/printInfo")
-	public Object print(@RequestParam("applyNo") String applyNo) {
-		return operateService.printInfo(applyNo);
-		
-	}
-	/** 
-	 * TODO 获取打印基础数据
-	 * @param applyNo
-	 * @return 
-	 * @return Object 返回类型
-	 */
-	@PostMapping(value="/printInfoData")
-	public Object printInfoData(@RequestParam("applyNo") String applyNo) {
-		return operateService.printInfoData(applyNo);
-		
-	}
-	
-	/** 
-	 * TODO 查询导出数据Excel表格
-	 * @param applyNo
-	 * @return 
-	 * @return Object 返回类型
-	 */
-	@PostMapping(value="/reportList")
-	public Object reportList(@RequestBody PageGrid pg) {
-		return operateService.reportList(pg);
-	}
-	
-	/** 
-	 * TODO 导出数据Excel表格
-	 * @param applyNo
-	 * @return 
-	 * @return Object 返回类型
-	 */
-	@GetMapping(value="/download")
-	public void download(String beginTime,String endTime,HttpServletResponse response,HttpServletRequest request) {
-		List<ApplyInfo> list = operateService.downLoadtList(beginTime,endTime);
-		if(null==list) {
-			new ActionResult(false, "根据时间段未获取到需要下载的数据");
-		}
-		operateService.download(list,response,beginTime,endTime);
-		
-	}
+    @Autowired
+    OperateService operateService;
+
+
+    /**
+     * TODO 查询商标列表
+     *
+     * @param pg
+     * @return Object 返回类型
+     */
+    @RequestMapping("/queryList")
+    public Object queryList(@RequestBody PageGrid pg) {
+        return operateService.queryList(pg);
+    }
+
+    /**
+     * TODO 添加新的商标
+     *
+     * @param info
+     * @return Object 返回类型
+     */
+    @RequestMapping("/addNewInfo")
+    public Object addNewInfo(@RequestBody ApplyInfo info) {
+        return operateService.addNewInfo(info);
+    }
+
+    /**
+     * TODO 根据申请序号批量删除
+     *
+     * @param list
+     * @return Object 返回类型
+     */
+    @PostMapping(value = "/deleteByPrimaryKey")
+    public Object deleteByPrimaryKey(@RequestBody List<String> list) {
+        return operateService.deleteByPrimaryKey(list);
+
+    }
+
+
+    /**
+     * TODO 获取打印基础数据
+     *
+     * @param applyNo
+     * @return Object 返回类型
+     */
+    @PostMapping(value = "/printInfo")
+    public Object print(@RequestParam("applyNo") String applyNo) {
+        return operateService.printInfo(applyNo);
+
+    }
+
+    /**
+     * TODO 获取打印基础数据
+     *
+     * @param applyNo
+     * @return Object 返回类型
+     */
+    @PostMapping(value = "/printInfoData")
+    public Object printInfoData(@RequestParam("applyNo") String applyNo) {
+        return operateService.printInfoData(applyNo);
+
+    }
+
+    /**
+     * TODO 查询导出数据Excel表格
+     *
+     * @param applyNo
+     * @return Object 返回类型
+     */
+    @PostMapping(value = "/reportList")
+    public Object reportList(@RequestBody PageGrid pg) {
+        return operateService.reportList(pg);
+    }
+
+    /**
+     * TODO 导出数据Excel表格
+     *
+     * @param applyNo
+     * @return Object 返回类型
+     */
+    @GetMapping(value = "/download")
+    public void download(String beginTime, String endTime, HttpServletResponse response, HttpServletRequest request) {
+        List<ApplyInfo> list = operateService.downLoadtList(beginTime, endTime);
+        if (null == list) {
+            new ActionResult(false, "根据时间段未获取到需要下载的数据");
+        }
+        operateService.download(list, response, beginTime, endTime);
+
+    }
 }

@@ -145,32 +145,69 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     	comExt.full(index);
     	layui.sessionData("index",index);
     }
+    function getReason(applyNo){
+		var refundReasons;
+		var password;
+		layer.prompt({
+			formType: 2,
+			value: '',
+			title: '退款原因',
+			area: ['510px', '200px'] //自定义文本域宽高
+		}, function(value, index0, elem){
+			refundReasons = value;
+			layer.prompt({
+				formType: 1,
+				value: '',
+				title: '请输入操作密码',
+				area: ['510px', '200px'] //自定义文本域宽高
+			}, function(value1, index1, elem1){
+				password = value1;
+				var data = {"applyNo":applyNo,"refundReasons":refundReasons,"password":password};
+				// alert(JSON.stringify(data))
+				$.ajax({
+					type: "post",
+					url: "/refundOrder/refundPayOrderByApplyNo",
+					// data: "applyNo="+applyNo+"&reason="+reason+"&password="+password,
+					data: JSON.stringify(data),
+					dataType: "json",
+					headers: {
+						'Content-Type': 'application/json;charset=utf-8'
+					},
+					success: function(msg){
+						if(msg.success==true){
+							location.reload();
+							layer.msg("操作成功");
+						}else{
+							layer.confirm(msg.msg, {icon: 3, title: '错误信息'})
+							tableIns.reload();
+							layer.close(index1);
+						}
+					},
+
+				});
+				layer.close(index1);
+			});
+			// return reason;
+			layer.close(index0);
+		});
+
+	}
+
     //退款
     function refund(data){
-    	debugger
+    	// debugger
 		if(data){
 			console.log(data);
-			
 			var applyNo = data.applyNo;
 			layer.confirm('确定要对此订单进行退款吗？', {icon: 3, title: '提示信息'}, function (index) {
-            	$.ajax({
-                    type: "post",
-                    url: "/refundOrder/refundPayOrderByApplyNo",
-                    data: applyNo,
-                    dataType: "json",
-                    headers: {
-                    	'Content-Type': 'application/json;charset=utf-8'
-                    },
-                    success: function(msg){
-                    	if(msg!=0){
-                    		location.reload();
-             	            layer.msg("操作成功");
-                    	}else{
-                    		tableIns.reload();
-                            layer.close(index);
-                    	}
-                     },   
-                });
+				// debugger
+				//-------------------------------------
+				// alert(reason)
+				layer.close(index);
+				getReason(applyNo);
+
+				//-------------------------------------
+
                 
             })
 		}
