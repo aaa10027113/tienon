@@ -59,7 +59,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ],
     	}
     });*/
 
-
+	//登录名校验
     $("#checkName").blur(function(){
 		var checkLoginName = $('input[name="loginName"]').val();
 		if(checkLoginName.length ==0){
