@@ -21,6 +21,7 @@ import com.tienon.boot.domain.pay.SendSubInBo2;
 import com.tienon.boot.mapper.OperateMapper;
 import com.tienon.boot.mapper.PayOrderMapper;
 import com.tienon.boot.mapper.pay.PaymentOnlineMapper;
+import com.tienon.boot.util.ASCEUtils;
 import com.tienon.boot.util.PayUtil;
 import com.tienon.boot.util.support.PageGrid;
 import com.tienon.boot.util.support.PageResult;
@@ -60,7 +61,11 @@ public class PaymentOnlieService {
 		PayOrder payOrder = new PayOrder();
 		ActionResult actionResult = new ActionResult();
 		try {
+			logger.info("在线支付解密数据入参applyNo="+applyNo);
+			applyNo = ASCEUtils.decrypt(applyNo);
+			logger.info("在线支付解密数据出参applyNo=" + applyNo);
 			ApplyInfo info = operateMapper.printInfo(applyNo);
+			logger.info("获取支付对象信息出参："+ JSON.toJSONString(info));
 			if (null == info) {
 				actionResult.setMsg("根据申请序号未获取到数据");
 				actionResult.setSuccess(false);
@@ -168,6 +173,29 @@ public class PaymentOnlieService {
 		PayOrder payOrder = null;
 		ActionResult actionResult = null;
 		try {
+			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
+			String apply = payOrder.getApplyNo();
+			logger.info("加密后的applyNO="+applyNo);
+			payOrder.setApplyNo(ASCEUtils.encrypt(apply));
+			actionResult = new ActionResult(true, "查询成功", payOrder);
+		} catch (Exception e) {
+			logger.error("查询支付订单出现异常：[" + e.getMessage() + "]");
+			actionResult = new ActionResult(false, "查询失败,原因：", e.getMessage());
+		}
+		return actionResult;
+	}
+	/**
+	 * TODO(根据受理序号解密查询)
+	 *
+	 * @param applyNo
+	 * @return ActionResult 返回类型
+	 */
+	public Object queryByApplyNoInfo(String applyNo) {
+		PayOrder payOrder = null;
+		ActionResult actionResult = null;
+		try {
+			applyNo = ASCEUtils.decrypt(applyNo);
+			logger.info("解密后的applyNO="+applyNo);
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			actionResult = new ActionResult(true, "查询成功", payOrder);
 		} catch (Exception e) {

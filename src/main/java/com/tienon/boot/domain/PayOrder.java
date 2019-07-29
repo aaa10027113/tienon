@@ -42,6 +42,11 @@ public class PayOrder {
 	 * 支付订单号
 	 */
 	private String payOrderNo;
+	
+	/**
+	 * 订单是否删除   0未删除      1已删除
+	 */
+	private String deleteFlag;
 
 	public String getApplyNo() {
 		return applyNo;
@@ -91,10 +96,20 @@ public class PayOrder {
 		this.payOrderNo = payOrderNo;
 	}
 
+	
+	public String getDeleteFlag() {
+		return deleteFlag;
+	}
+
+	public void setDeleteFlag(String deleteFlag) {
+		this.deleteFlag = deleteFlag;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PayOrder [applyNo=" + applyNo + ", orderNo=" + orderNo + ", payTime=" + payTime + ", amt=" + amt
-				+ ", status=" + status + ", payOrderNo=" + payOrderNo + "]";
+				+ ", status=" + status + ", payOrderNo=" + payOrderNo + ", deleteFlag=" + deleteFlag + "]";
 	}
 
 }

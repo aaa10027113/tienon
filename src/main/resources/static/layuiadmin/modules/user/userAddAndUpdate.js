@@ -36,13 +36,13 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ],
  	})
    
     //登录名检测
-    $(document).on('click','#loginName',function(){
+ /*   $(document).on('click','#loginName',function(){
     	var checkLoginName = $('input[name="loginName"]').val();
     	if(checkLoginName.length ==0){
     		layer.msg('请输入有效内容！',{time:5*1000});
     		return;
     	}else{
-    	var oReqData/*请求数据*/ = {
+    	var oReqData/!*请求数据*!/ = {
                   loginName: checkLoginName
               };
     	comExt.ajax({
@@ -57,8 +57,61 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ],
             },
         });
     	}
-    });
-    
+    });*/
+
+	//登录名校验
+    $("#checkName").blur(function(){
+		var checkLoginName = $('input[name="loginName"]').val();
+		if(checkLoginName.length ==0){
+			layer.msg('请输入有效内容！',{time:5*1000});
+			return;
+		}else{
+			var oReqData/*请求数据*/ = {
+				loginName: checkLoginName
+			};
+			comExt.ajax({
+				url: "/userInfo/getUserInfoByName",
+				data: JSON.stringify(oReqData),
+				success: function(o){
+					if (!o.success) {
+						$("#checkName").val("");
+					} else {
+                        // $("#last").html("√");
+						layer.msg(o.msg,{time:5*1000});
+					}
+				},
+
+			});
+		}
+	})
+    //登录名检测
+    /*$(document).on('blur','#loginName',function(){
+    	alert(7777777)
+    	var checkLoginName = $('input[name="loginName"]').val();
+    	if(checkLoginName.length ==0){
+    		layer.msg('请输入有效内容！',{time:5*1000});
+    		return;
+    	}else{
+    	var oReqData/!*请求数据*!/ = {
+                  loginName: checkLoginName
+              };
+    	comExt.ajax({
+            url: "/userInfo/getUserInfoByName",
+            data: JSON.stringify(oReqData),
+            success: function(o){
+				var tiShi = document.getElementById("tiShi");
+            	if (!o.success) {
+            		$("#tiShi").val(o.msg);
+            		tiShi.style.setProperty('color','#fff');
+				} else {
+					$("#tiShi").val(o.msg);
+					tiShi.style.setProperty('color','red');
+				}
+            },
+        });
+    	}
+    });*/
+
    //ID检测
     $(document).on('click','#userID',function(){
     	var checkLoginId= $('input[name="userId"]').val();
@@ -76,6 +129,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ],
             	if (!o.success) {
             		return;
 				} else {
+            		// alert(123)
 					 layer.msg(o.msg,{time:5*1000});
 				}
             },

@@ -8,9 +8,10 @@
     <result column="amt" jdbcType="DECIMAL" property="amt" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="payOrderNo" jdbcType="VARCHAR" property="payOrderNo" />
+    <result column="deleteFlag" jdbcType="VARCHAR" property="deleteFlag" />
   </resultMap>
   <sql id="Base_Column_List">
-    applyNo, orderNo, payTime, amt, status,payOrderNo
+    applyNo, orderNo, payTime, amt, status,payOrderNo,deleteFlag
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -127,4 +128,11 @@
 		</where>
 		ORDER BY if(ISNULL(PAYTIME),0,1),PAYTIME,APPLYNO  DESC
 	</select>
+	<delete id="deleteByPrimaryKeyOnPay" parameterType="java.util.List">
+		UPDATE TB_PAY_ORDER SET DELETEFLAG = '1'  WHERE APPLYNO IN (
+        <foreach collection="list" item="applyNo" separator=",">
+            #{applyNo}
+        </foreach>
+        )   AND STATUS = '01';
+	</delete>
 </mapper>

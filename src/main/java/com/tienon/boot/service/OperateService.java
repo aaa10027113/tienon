@@ -34,6 +34,7 @@ import com.tienon.boot.domain.DownloadInfo;
 import com.tienon.boot.domain.PayOrder;
 import com.tienon.boot.mapper.OperateMapper;
 import com.tienon.boot.mapper.PayOrderMapper;
+import com.tienon.boot.util.ASCEUtils;
 import com.tienon.boot.util.PayUtil;
 import com.tienon.boot.util.support.PageGrid;
 import com.tienon.boot.util.support.PageResult;
@@ -189,7 +190,7 @@ public class OperateService {
 			// 根据申请序号批量删除
 			int i = operateMapper.deleteByPrimaryKey(list);
 			log.info("批量删除信息表出参：" + i);
-			int j = operateMapper.deleteByPrimaryKeyOnPay(list);
+			int j = payOrderMapper.deleteByPrimaryKeyOnPay(list);
 			log.info("批量删支付表出参：" + j);
 			if(i==0) {
 				return  new ActionResult(false,"删除失败，未查询到需要删除的商标");
@@ -203,7 +204,7 @@ public class OperateService {
 	}
 
 	/**
-	 * TODO 获取打印基础数据
+	 * TODO 获取打印基础加密数据
 	 * 
 	 * @param applyNo
 	 * @return
@@ -211,15 +212,17 @@ public class OperateService {
 	 */
 	public Object printInfo(String applyNo) {
 		try {
-			log.info("获取打印数据入参applyNo=" + applyNo);
+			log.info("获取打印加密数据入参applyNo=" + applyNo);
 			ApplyInfo info = operateMapper.printInfo(applyNo);
 			if (null == info) {
 				return new ActionResult(false, "根据申请序号未获取到数据");
 			}
+			String apply = info.getApplyNo();
+			info.setApplyNoEncrypt(ASCEUtils.encrypt(apply));
 			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(info.getAcceptDate());
 			String applyDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 			info.setAcceptDate(applyDate);
-			log.info("获取打印数据出参:" + JSON.toJSONString(info));
+			log.info("获取打印加密数据出参:" + JSON.toJSONString(info));
 			return new ActionResult(true, "查询成功", info);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -228,6 +231,33 @@ public class OperateService {
 		}
 	}
 
+	/**
+	 * TODO 获取打印基础解密数据
+	 * 
+	 * @param applyNo
+	 * @return
+	 * @return Object 返回类型
+	 */
+	public Object printInfoData(String applyNo) {
+		try {
+			log.info("获取打印解密数据入参applyNo=" + applyNo);
+			applyNo = ASCEUtils.decrypt(applyNo);
+			log.info("获取打印解密后的applyNo=" + applyNo);
+			ApplyInfo info = operateMapper.printInfo(applyNo);
+			if (null == info) {
+				return new ActionResult(false, "根据申请序号未获取到数据");
+			}
+			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(info.getAcceptDate());
+			String applyDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+			info.setAcceptDate(applyDate);
+			log.info("获取打印解密数据出参:" + JSON.toJSONString(info));
+			return new ActionResult(true, "查询成功", info);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]");
+			throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]");
+		}
+	}
 	/**
 	 * TODO 导出数据Excel表格
 	 * 
@@ -309,6 +339,16 @@ public class OperateService {
 	 */
 	public void download(List<ApplyInfo> list, HttpServletResponse response, String beginTime, String endTime) {
 		log.info("下载表格入参：beginTime=" + beginTime + "   endTime=" + endTime);
+		if (beginTime.isEmpty()) {
+			Calendar calendar = Calendar.getInstance();
+			Date date = new Date();
+			calendar.setTime(date);
+			calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - 7);
+			Date begin = calendar.getTime();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			beginTime = sdf.format(begin) + " 00:00:00";
+			endTime = sdf.format(date) + " 23:59:59";
+		}
 		String tempPath = "C:\\template\\template.xlsx";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		Date date = new Date();

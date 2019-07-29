@@ -15,6 +15,10 @@ package com.tienon.boot.constant;
 public class CommonStatic {
 	// 返回码
 	/**
+	 * 本系统加密秘钥
+	 */
+	public final static String KEY = "8k5a2o5";
+	/**
 	 * 系统内部处理错误
 	 */
 	public final static String R_022 = "022";

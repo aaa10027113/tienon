@@ -15,11 +15,12 @@
 		<result column="OPERATOR" 		jdbcType="VARCHAR"	 property="operator" />
 		<result column="AMT" 			jdbcType="NUMERIC"	 property="amt" />
 		<result column="APPLYTYPENAME"  jdbcType="VARCHAR"	 property="acceptTypeName" />
+		<result column="DELETEFLAG"  jdbcType="VARCHAR"	 property="deleteFlag" />
 	</resultMap>
 	
 	<sql id="Base_Column_List">
 		APPLYNO, ACCEPTDATE, COMPANYNAME,HUMANNAME,IDCARDNO,TRADEMARKNAME,
-		ACCEPTTYPE,ADDTYPE,OPERATIONDATE,OPERATOR,AMT
+		ACCEPTTYPE,ADDTYPE,OPERATIONDATE,OPERATOR,AMT,DELETEFLAG
 	</sql>
 	
 	<!-- <sql id="Query_Column_List">
@@ -63,21 +64,14 @@
 		#{operationDate,jdbcType=DATE}, #{operator,jdbcType=VARCHAR}, #{amt,jdbcType=NUMERIC},'0')
 	</insert>
 	
-	<delete id="deleteByPrimaryKey" parameterType="java.util.List">
-		DELETE APPLY FROM TB_APPLY APPLY,TB_PAY_ORDER PAY WHERE APPLY.APPLYNO IN (
-        <foreach collection="list" item="applyNo" separator=",">
+	<update id="deleteByPrimaryKey" parameterType="java.util.List">
+	    UPDATE TB_APPLY SET DELETEFLAG = '1' WHERE APPLYNO IN(
+	    select applyNo from tb_pay_order where applyno in
+	    (<foreach collection="list" item="applyNo" separator=",">
             #{applyNo}
-        </foreach>
-        )   AND APPLY.APPLYNO=PAY.APPLYNO AND PAY.STATUS != '00';
-	</delete>
-	
-	<delete id="deleteByPrimaryKeyOnPay" parameterType="java.util.List">
-		DELETE  FROM TB_PAY_ORDER  WHERE APPLYNO IN (
-        <foreach collection="list" item="applyNo" separator=",">
-            #{applyNo}
-        </foreach>
-        )   AND STATUS != '00';
-	</delete>
+        </foreach>)and status='01'
+        )
+	</update>
 
 	<sql id="Print_List">
 		APPLYNO, ACCEPTDATE, COMPANYNAME,HUMANNAME,IDCARDNO,TRADEMARKNAME,
@@ -98,6 +92,7 @@
     		ACCEPTTYPE =APPLYTYPENO
      		<if test="beginTime != null and beginTime != ''">AND ACCEPTDATE &gt;= #{beginTime}</if>
      		<if test="endTime != null and endTime != ''">AND ACCEPTDATE &lt;= #{endTime}</if>
+     		AND DELETEFLAG != '1'
 		</where>
 		ORDER BY ACCEPTDATE ASC
 	</select>
@@ -110,6 +105,7 @@
     		ACCEPTTYPE =APPLYTYPENO
      		<if test="beginTime != null and beginTime != ''">AND ACCEPTDATE &gt;= #{beginTime}</if>
      		<if test="endTime != null and endTime != ''">AND ACCEPTDATE &lt;= #{endTime}</if>
+     		AND DELETEFLAG != '1'
 		</where>
 		ORDER BY ACCEPTDATE ASC
 	</select>

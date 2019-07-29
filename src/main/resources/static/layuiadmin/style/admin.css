@@ -19,8 +19,8 @@ body{
 .layadmin-tabsbody-item,[template] {
 	display: none
 }[lay-href],[lay-tips],[layadmin-event] {
-	cursor: pointer
-}
+	 cursor: pointer
+ }
 
 .layui-layout-admin .layui-header {
 	height: 50px
@@ -561,7 +561,7 @@ body{
 }
 
 .layui-layout-admin .layui-header a:hover {
-	color: #286090
+	color:  #ffffff !important;
 }
 
 .layui-layout-admin .layui-header .layui-nav .layui-nav-more {
@@ -1111,14 +1111,14 @@ body{
 }
 /*login*/
 .layui-login-bg {
-    position: fixed;
-    top: -5%;
-    left: -5%;
-    width: 110%;
-    height: 110%;
-    background: url(../style/res/login_bg.png) no-repeat 50% 50% / cover;
-   /*  -webkit-filter: blur(2px);
-    filter: blur(2px); */
+	position: fixed;
+	top: -5%;
+	left: -5%;
+	width: 110%;
+	height: 110%;
+	background: url(../style/res/login_bg.png) no-repeat 50% 50% / cover;
+	/*  -webkit-filter: blur(2px);
+     filter: blur(2px); */
 }
 
 .login-form{
@@ -1156,9 +1156,9 @@ body{
 }
 /*闊洤鎳撶欢顓狅拷娑欘殕椤旓拷*/
 .neccesary:before{
-		content:" * ";
-		color:red;
-	}
+	content:" * ";
+	color:red;
+}
 /*缂佸倷鑳堕弫顦弉put婵℃鎷�*/
 .layui-input-disabled{
 	background:#f6f6f6;

@@ -64,18 +64,28 @@ public class RefundOrderService {
 	 * 
 	 * 订单退订受理
 	 * 
-	 * @param applyNo
+	 * @param refund
 	 * @return
 	 * @return Object 返回类型
 	 */
-	public Object refundPayOrderByApplyNo(String applyNo) {
-		String refundReasons = "refundReasons";
+	public Object refundPayOrderByApplyNo(RefundOrder refund) {
+		log.info("订单退款入参"+ JSON.toJSONString(refund));
+//		String refundReasons = "refundReasons";
 		PayOrder payOrder = new PayOrder();
 		RefundOrder refundOrder = new RefundOrder();
 		int i = 0;
 		try {
+			//判断操作密码是否正确
+			if(!"123456".equals(refund.getPassword())){
+				return new ActionResult(false, "输入的操作密码错误，请重新输入");
+			}
+			//查询是否已退款
+			RefundOrder order = refundOrderMapper.selectByPrimaryKey(refund.getApplyNo());
+			if(null != order){
+				return new ActionResult(false, "该订单已申请退款，请勿重复操作");
+			}
 			// 查询受理订单
-			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
+			payOrder = payOrderMapper.selectByPrimaryKey(refund.getApplyNo());
 			log.info("查询支付订单：" + JSON.toJSONString(payOrder));
 
 			// 判断受理的订单是否存在
@@ -90,7 +100,7 @@ public class RefundOrderService {
 				refundOrder.setApplyNo(payOrder.getApplyNo());
 				refundOrder.setOrderNo(payOrder.getOrderNo());
 				refundOrder.setRefundNo(PayUtil.getPaymentOrderNo());
-				refundOrder.setRefundReasons(refundReasons);
+				refundOrder.setRefundReasons(refund.getRefundReasons());
 				refundOrder.setRefundTime(new Date());
 				refundOrder.setAmt(payOrder.getAmt());
 				refundOrder.setStatus("01");// 退款受理中
