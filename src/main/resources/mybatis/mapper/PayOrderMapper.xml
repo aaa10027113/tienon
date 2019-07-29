@@ -133,6 +133,6 @@
         <foreach collection="list" item="applyNo" separator=",">
             #{applyNo}
         </foreach>
-        )   AND STATUS = '01';
+        )   AND (STATUS = '01' or STATUS = '05') ;
 	</delete>
 </mapper>

@@ -69,7 +69,7 @@
 	    select applyNo from tb_pay_order where applyno in
 	    (<foreach collection="list" item="applyNo" separator=",">
             #{applyNo}
-        </foreach>)and status='01'
+        </foreach>)and (status='01' or status='05')
         )
 	</update>
 
