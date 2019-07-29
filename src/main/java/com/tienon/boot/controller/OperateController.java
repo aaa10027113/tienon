@@ -1,11 +1,8 @@
 package com.tienon.boot.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,7 +93,7 @@ public class OperateController {
     /**
      * TODO 查询导出数据Excel表格
      *
-     * @param applyNo
+     * @param pg
      * @return Object 返回类型
      */
     @PostMapping(value = "/reportList")
@@ -107,11 +104,11 @@ public class OperateController {
     /**
      * TODO 导出数据Excel表格
      *
-     * @param applyNo
+     * @param beginTime，endTime，response
      * @return Object 返回类型
      */
     @GetMapping(value = "/download")
-    public void download(String beginTime, String endTime, HttpServletResponse response, HttpServletRequest request) {
+    public void download(String beginTime, String endTime, HttpServletResponse response) {
         List<ApplyInfo> list = operateService.downLoadtList(beginTime, endTime);
         if (null == list) {
             new ActionResult(false, "根据时间段未获取到需要下载的数据");
