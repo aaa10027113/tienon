@@ -55,7 +55,20 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','laytpl'],
           }
     	 
      })
-    
+			//修改密码验证
+    	$('#userPwd').on('blur',function () {
+			var str = $('#userPwd').val();
+			if(str.length<8||str>20){
+				layer.msg("密码长度需要大于8位小于20位",{time:5*1000});
+				$('#userPwd').val("");
+			}
+			var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,20}$/;
+			if(!reg.test(str)){
+				layer.msg("输入的密码必须是字母和数字的组合",{time:5*1000});
+				$('#userPwd').val("");
+			}
+
+		})
         $('#close').on('click',function(){
  		layer.confirm("是否退出当前页面？",function(index){
  			//当你在iframe页面关闭自身时
