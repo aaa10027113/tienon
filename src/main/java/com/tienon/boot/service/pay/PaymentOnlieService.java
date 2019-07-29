@@ -61,11 +61,11 @@ public class PaymentOnlieService {
 		PayOrder payOrder = new PayOrder();
 		ActionResult actionResult = new ActionResult();
 		try {
-			logger.info("在线支付解密数据入参applyNo="+applyNo);
+			logger.info("在线支付解密数据入参applyNo=" + applyNo);
 			applyNo = ASCEUtils.decrypt(applyNo);
 			logger.info("在线支付解密数据出参applyNo=" + applyNo);
 			ApplyInfo info = operateMapper.printInfo(applyNo);
-			logger.info("获取支付对象信息出参："+ JSON.toJSONString(info));
+			logger.info("获取支付对象信息出参：" + JSON.toJSONString(info));
 			if (null == info) {
 				actionResult.setMsg("根据申请序号未获取到数据");
 				actionResult.setSuccess(false);
@@ -107,8 +107,15 @@ public class PaymentOnlieService {
 			bo.setTAXGRP(list2);
 
 			outBo = PayUtil.send(bo, CommonStatic.PUBLIC_KEY);
-			String payUrl = outBo.getPy_URL().replace("http://jsnjjbspj.dmzgovpay.dev.jh",
-					"http://govpaytestjsnjjbspj.mytunnel.site");
+			// String payUrl =
+			// outBo.getPy_URL().replace("http://jsnjjbspj.dmzgovpay.dev.jh",
+			// "http://govpaytestjsnjjbspj.mytunnel.site");
+			String payUrl = outBo.getPy_URL();
+			int i = payUrl.indexOf("?");
+			if (i >= 0) {
+
+				payUrl = "http://govpaytestjsnjjbspj.mytunnel.site/online/pay.html?" + payUrl.substring(i + 1);
+			}
 			outBo.setPy_URL(payUrl);
 
 			try {
@@ -175,7 +182,7 @@ public class PaymentOnlieService {
 		try {
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			String apply = payOrder.getApplyNo();
-			logger.info("加密后的applyNO="+applyNo);
+			logger.info("加密后的applyNO=" + applyNo);
 			payOrder.setApplyNo(ASCEUtils.encrypt(apply));
 			actionResult = new ActionResult(true, "查询成功", payOrder);
 		} catch (Exception e) {
@@ -184,6 +191,7 @@ public class PaymentOnlieService {
 		}
 		return actionResult;
 	}
+
 	/**
 	 * TODO(根据受理序号解密查询)
 	 *
@@ -195,7 +203,7 @@ public class PaymentOnlieService {
 		ActionResult actionResult = null;
 		try {
 			applyNo = ASCEUtils.decrypt(applyNo);
-			logger.info("解密后的applyNO="+applyNo);
+			logger.info("解密后的applyNO=" + applyNo);
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			actionResult = new ActionResult(true, "查询成功", payOrder);
 		} catch (Exception e) {
