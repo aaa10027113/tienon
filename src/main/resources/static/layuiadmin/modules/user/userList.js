@@ -48,13 +48,14 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','laytpl' ],
                 return d.enable == "1" ? "正常使用" : "限制使用";
             }},
             {title: '操作', minWidth:175,fixed:"right",align:"center",templet:function(d){
-                if(d.enable == "1"){
-                	return '<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>'+
-                	'<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del" id="delAll_btn">禁用</a>';
-                }else if(d.enable == "0"){
-                	return '<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>'+
-                	'<a class="layui-btn layui-btn-xs" lay-event="abled" id="abledAll_btn">启用</a>';
-                }
+                    return '<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>';
+                // if(d.enable == "1"){
+                // 	return '<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>'+
+                // 	'<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del" id="delAll_btn">禁用</a>';
+                // }else if(d.enable == "0"){
+                // 	return '<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>'+
+                // 	'<a class="layui-btn layui-btn-xs" lay-event="abled" id="abledAll_btn">启用</a>';
+                // }
             }}
         ]]
     });

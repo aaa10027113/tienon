@@ -58,19 +58,21 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 			title : '日期',
 			minWidth : 150,
 			align : "center"
-		}, {
-			title : "操作",
-			align : 'center',
-			fixed : 'right',
-			width : 100,
-			templet : function(d) {
-				if (d.orgState == "1") {
-					return '<button class="layui-btn layui-btn-xs layui-bg-red"  lay-event="del">停用</button>';
-				}else {
-					return '<button class="layui-btn layui-btn-xs"  lay-event="active">启用</button>';
-				}
-			}
-		} ] ],
+		}
+		// , {
+		// 	title : "操作",
+		// 	align : 'center',
+		// 	fixed : 'right',
+		// 	width : 100,
+		// 	templet : function(d) {
+		// 		if (d.orgState == "1") {
+		// 			return '<button class="layui-btn layui-btn-xs layui-bg-red"  lay-event="del">停用</button>';
+		// 		}else {
+		// 			return '<button class="layui-btn layui-btn-xs"  lay-event="active">启用</button>';
+		// 		}
+		// 	}
+		// }
+		] ],
 		done : function() {
 			var laydate = layui.laydate;
 			var date = $('.date');
