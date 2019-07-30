@@ -2,7 +2,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','laytpl'],
 		function(exports) {
     	var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer,
-        $ = layui.jquery,
+        $ = layui.jquery,updatePwd
         laytpl = layui.laytpl,
         table = layui.table;
 
