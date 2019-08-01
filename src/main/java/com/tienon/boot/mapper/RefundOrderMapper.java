@@ -3,11 +3,9 @@ package com.tienon.boot.mapper;
 import com.tienon.boot.domain.RefundOrder;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface RefundOrderMapper {
     int deleteByPrimaryKey(String applyno);
 
