@@ -50,7 +50,7 @@ import net.sf.jxls.transformer.XLSTransformer;
  * @date 2019/07/01
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class OperateService {
 
 	@Autowired
@@ -69,7 +69,7 @@ public class OperateService {
 	 * @return
 	 * @return List<ApplyInfo> 返回类型
 	 */
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public Object queryList(PageGrid pg) {
 		int page = pg.getPage();
 		int pageSize = pg.getRows();
@@ -267,18 +267,6 @@ public class OperateService {
 	 */
 	public Object reportList(PageGrid pg) {
 		try {
-//			if (pg.getSearchCondition().isEmpty()) {
-//				Calendar calendar = Calendar.getInstance();
-//				Date date = new Date();
-//				calendar.setTime(date);
-//				calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) - 7);
-//				Date today = calendar.getTime();
-//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//				String beginTime = sdf.format(today) + " 00:00:00";
-//				String endTime = sdf.format(date) + " 23:59:59";
-//				pg.getSearchCondition().put("beginTime", beginTime);
-//				pg.getSearchCondition().put("endTime", endTime);
-//			}
 			log.info("获取导出Excel数据入参：searchCondition=" + JSON.toJSONString(pg.getSearchCondition()));
 			// 查询
 			PageList<ApplyInfo> pageList = operateMapper.reportList(pg.getSearchCondition());
@@ -288,8 +276,6 @@ public class OperateService {
 					info.setAcceptDate(info.getAcceptDate().split(" ")[0]);
 				}
 			}
-			// 获取查询结果总条数
-			// int total = pageList.getPaginator().getTotalCount();
 			return new ActionResult(new PageResult(pageList.size(), pageList));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -357,7 +343,7 @@ public class OperateService {
 		String[] begin = beginTime.split(" ")[0].split("-");
 		String[] end = endTime.split(" ")[0].split("-");
 		try {
-			response.setContentType("application/octet-stream");//
+			response.setContentType("application/octet-stream");
 			response.setHeader("content-type", "application/octet-stream");
 			File file = ResourceUtils.getFile(tempPath);
 			response.setContentType("application/vnd.ms-excel");
