@@ -13,12 +13,14 @@ import com.tienon.boot.domain.ApplyInfo;
 import com.tienon.boot.domain.MenuInfo;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
+import org.springframework.stereotype.Service;
 
 /**
  * @Description 商标注册数据库操作
  * @author ll
  * @date 2019/07/01
  */
+@Service
 public interface OperateMapper {
 
 	PageList<ApplyInfo> queryList(Object searchCondition, PageBounds pageBounds);

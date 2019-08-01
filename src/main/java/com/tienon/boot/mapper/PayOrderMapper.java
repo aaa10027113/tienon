@@ -5,7 +5,9 @@ import java.util.List;
 import com.tienon.boot.domain.PayOrder;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface PayOrderMapper {
 	int deleteByPrimaryKey(String applyno);
 
