@@ -10,12 +10,21 @@ package com.tienon.boot.domain;
  * @date 2019/07/02
  */
 public class MenuInfo {
-	
-	private int applyTypeNo; //受理类型序号
-	
-	private String applyTypeName; //受理类型名称
-	
-	private double applyTypePrice; //受理类型价格
+
+	/**
+	 *  受理类型序号
+	 */
+	private int applyTypeNo;
+
+	/**
+	 * 受理类型名称
+	 */
+	private String applyTypeName;
+
+	/**
+	 * 受理类型价格
+	 */
+	private double applyTypePrice;
 
 	public int getApplyTypeNo() {
 		return applyTypeNo;

@@ -14,35 +14,80 @@ package com.tienon.boot.domain;
 
 public class ApplyInfo {
 
-	private String applyNo; //申请序号 20190524-0001
-	
-	private String acceptDate; //受理日期 20190524
-	
-	private String companyName; //公司企业名称
-	
-	private String humanName; //自然人名称
-	
-	private String idCardNo; //身份证号
-	
-	private String trademarkName; //商标名称
-	
-	private String acceptType; //受理类型
-	
-	private String acceptTypeName; //受理类型名称
-	
-	private String addType; //类别 1,2,26,31
-	
-	private String status; //订单状态 支付成功:00        待支付:01        支付失败:02        订单超时:03        未知状态:99
-	
-	private String operationDate; //操作时间 20190524
-	
-	private String operator; //操作人员
-	
-	private String amt; //总金额 690.00
-	
-	private String deleteFlag; //是否删除标记 0未删除    1已删除
-	
-	private String applyNoEncrypt; //申请标号加密
+	/**
+	 * 申请序号 20190524-0001
+	 */
+	private String applyNo;
+
+	/**
+	 * 受理日期 20190524
+	 */
+	private String acceptDate;
+
+	/**
+	 * 公司企业名称
+	 */
+	private String companyName;
+
+	/**
+	 *  自然人名称
+	 */
+	private String humanName;
+
+	/**
+	 * 身份证号
+	 */
+	private String idCardNo;
+
+	/**
+	 * 商标名称
+	 */
+	private String trademarkName;
+
+	/**
+	 * 受理类型
+	 */
+	private String acceptType;
+
+	/**
+	 * 受理类型名称
+	 */
+	private String acceptTypeName;
+
+	/**
+	 * 类别 1,2,26,31
+	 */
+	private String addType;
+
+	/**
+	 * 订单状态 支付成功:00        待支付:01        支付失败:02        订单超时:03        未知状态:99
+	 */
+	private String status;
+
+	/**
+	 *  操作时间 20190524
+	 */
+	private String operationDate;
+
+	/**
+	 *  操作人员
+	 */
+	private String operator;
+
+	/**
+	 * 总金额 690.00
+	 */
+	private String amt;
+
+	/**
+	 *  是否删除标记 0未删除    1已删除
+	 */
+	private String deleteFlag;
+
+	/**
+	 * 申请标号加密
+	 */
+	private String applyNoEncrypt;
 
 	public String getApplyNo() {
 		return applyNo;
