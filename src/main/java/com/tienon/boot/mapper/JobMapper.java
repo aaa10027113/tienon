@@ -26,4 +26,18 @@ public interface JobMapper {
      * @return int
      */
     int addJobInfo(JobInfo info);
+
+    /**
+     * 根据id查询定时任务信息
+     * @param id
+     * @return JobInfo
+     */
+    JobInfo queryInfoById(String id);
+
+    /**
+     *  根据id修改定时任务
+     * @param info
+     * @return
+     */
+    int updateJobInfo(JobInfo info);
 }

@@ -62,9 +62,10 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
           }},
           {title: '操作', minWidth:170,fixed:"right",align:"center",templet:function(d){
         	  if(d.status=="0"){
-        		  return '<button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="start">启动</button>';
+        		  return '<button class="layui-btn layui-btn-xs layui-badge-rim" lay-event="updateJob">修改</button>'+
+                  '<button class="layui-btn layui-btn-xs layui-bg-blue" lay-event="start">启动</button>';
         	  }else{
-        		  return '<button class="layui-btn layui-btn-xs layui-bg-red""  lay-event="stop">停止</button>';
+        		  return '<button class="layui-btn layui-btn-xs layui-bg-red"  lay-event="stop">停止</button>';
         	  }
           }}
         ]]
@@ -98,22 +99,21 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
    })
 
    //点击新增按钮
-    $(".addNews_btn").click(function(){
-    	 addRole();
+    $(".addJobs_btn").click(function(){
+    	 addJob();
     })
     
-    //新增商标
-    function addRole(edit){
+    //新增定时任务
+    function addJob(edit){
     	
         var index = layui.layer.open({
-            title : "新增商标注册",
+            title : "新增定时任务",
             type : 2,
             anim: 3,
             content : "addJob.html",
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
-                	
                    body.find(".roleCode").val(edit.roleCode);
                    body.find(".roleName").val(edit.roleName);
                    body.find(".status").val(edit.status);
@@ -122,31 +122,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         })
         comExt.full(index);
     }
-    
-    //受理类型列表
-    $(function(){
-    	$.ajax({
-            type: "post",
-            url: "/menu/selectMenuInfo",
-            data: {},
-            dataType: "json",
-            headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-            },
-            success: function(msg){
-            	if(msg!=null){
-            		var value ="";
-            	　　　for (var i = 0; i < msg.length; i++) {
-            	　　　　//如果在select中传递其他参数，可以在option 的value属性中添加参数
-            	　　　	value += "<option value='"+msg[i].applyTypeNo+";"+msg[i].applyTypePrice+"'>"+msg[i].applyTypeName+"</option>";
-            	　　	}
-            	　$("#acceptType").append(value);
-            		form.render('select');
-            	}
-             },   
-        });
-    });
-    
+
     //添加服务资源
     function addServer(edit){
     	
@@ -204,7 +180,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     $(".page_btn").click(function(){
    	 var checkStatus = table.checkStatus('roleListTable'),
       data = checkStatus.data,
-      newsId = [];
+        newsId = [];
       if(data.length ==1) {
     	addPage(data[0]);
       }else{
@@ -216,26 +192,26 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     
     
     
-    //打印回执
-    function printData(data){
+    //修改定时任务
+    function updateJob(data){
 		if(!data){
 			var checkStatus = table.checkStatus('operateList');
 			console.log(checkStatus.data);
 			if(checkStatus.data.length >1) {
-		         layer.msg("只能打印一个回执数据");
+		         layer.msg("只能修改一条数据");
 		         return;
 		         }
 			data = checkStatus.data[0];
 		}
 		if(data == null ){
-			layer.msg("请选择需要打印的数据");
+			layer.msg("请选择需要修改的数据");
 			return false;
 		}
 		var index = layui.layer.open({
-            title : "打印回执",
+            title : "定时任务修改",
             type : 2,
             anim: 3,
-            content : "/views/system/operate/printData.html?"+data.applyNo,
+            content : "/views/system/job/updateJob.html?"+data.id,
             success : function(layero, index){
                 var body = layer.getChildFrame('body', index);
                 comExt.fillInput(body,data,form);
@@ -333,8 +309,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         var layEvent = obj.event,
             data = obj.data;
 
-        if(layEvent === 'print'){ //打印回执
-        	printData(data);
+        if(layEvent === 'updateJob'){ //打印回执
+            updateJob(data);
         }
         if(layEvent === 'printShouju'){ //打印回执
         	printShouju(data);

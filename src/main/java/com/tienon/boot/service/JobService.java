@@ -70,7 +70,6 @@ public class JobService {
      */
     public Object addJobInfo(JobInfo info) {
         int i = 0;
-        int j = 0;
         try {
             log.info("添加定时任务入参：" + JSON.toJSONString(info));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -81,14 +80,64 @@ public class JobService {
             info.setStatus("0");
             // 将处理好后的数据添加到数据库中
             i = jobMapper.addJobInfo(info);
-
+            log.info("添加定时任务出参："+i);
         } catch (Exception e) {
             e.printStackTrace();
             log.error("添加定时任务出现异常：[" + e.getMessage() + "]");
-            throw new EjxError(CommonStatic.R_029, "添加新商标出现异常：[" + e.getMessage() + "]");
+            throw new EjxError(CommonStatic.R_029, "添加定时任务出现异常：[" + e.getMessage() + "]");
         }
         if (i == 0) {
             return new ActionResult(false, "添加定时任务错误");
+        }
+        return new ActionResult(true);
+    }
+
+    /**
+     *
+     * @param id
+     * @return Object
+     */
+    public Object queryInfoById(String id) {
+        try {
+            log.info("根据id获取定时任务信息入参id=" + id);
+            JobInfo info = jobMapper.queryInfoById(id);
+            if (null == info) {
+                return new ActionResult(false, "根据id未获取到数据");
+            }
+            log.info("根据id获取定时任务信息出参:" + JSON.toJSONString(info));
+            return new ActionResult(true, "查询成功", info);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("根据id查询定时任务出现异常：[" + e.getMessage() + "]");
+            throw new EjxError(CommonStatic.R_029, "根据id查询定时任务出现异常：[" + e.getMessage() + "]");
+        }
+    }
+
+    /**
+     *  根据id修改定时任务
+     * @param info
+     * @return
+     */
+    public Object updateJobInfo(JobInfo info) {
+        int i = 0;
+        try {
+            log.info("修改定时任务入参：" + JSON.toJSONString(info));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            info.setUpdateDate(sdf.format(date));
+            log.info("修改时间"+info.getUpdateDate());
+            info.setStatus("0");
+            // 将处理好后的数据添加到数据库中
+            i = jobMapper.updateJobInfo(info);
+            log.info("修改定时任务出参："+i);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("修改定时任务出现异常：[" + e.getMessage() + "]");
+            throw new EjxError(CommonStatic.R_029, "修改定时任务出现异常：[" + e.getMessage() + "]");
+        }
+        if (i == 0) {
+            return new ActionResult(false, "修改定时任务错误");
         }
         return new ActionResult(true);
     }

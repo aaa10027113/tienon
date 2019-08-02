@@ -1,3 +1,4 @@
+/*
 layui.config({
 	base : '../../../layuiadmin/' //静态资源所在路径
 }).extend({
@@ -13,6 +14,7 @@ layui.config({
 
 //------------
 });
+*/
 
 layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], function(
 		exports) {
@@ -22,9 +24,32 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
         $ = layui.jquery,
         layedit = layui.layedit;
 
+
+	$(function(){
+		var id = location.href.split("?")[1];
+		$.post("/job/queryInfoById",{id:id},function(res) {
+			console.log(res);
+			if (!res.success) {
+				layer.alert(res.msg, {
+					icon: 5,
+					title: "错误"
+				});
+				return false;
+			}
+			var msg = res.obj;
+			$("#id").val(msg.id);
+			$("#beanName").val(msg.beanName);
+			$("#methodName").val(msg.methodName);
+			$("#parameter").val(msg.parameter);
+			$("#cron").val(msg.cron);
+			$("#description").val(msg.description);
+			$("#operator").val(msg.operator);
+		})
+	});
+
   //获取用户信息
 	comExt.ajax({
-		url : '/session/getSessionData', //实际使用请改成服务端真实接口
+		url : '/session/getSessionData',//实际使用请改成服务端真实接口
 		success : function(data) {
 			layui.data('loginInfo', {
 				key : 'loginInfo',
@@ -32,25 +57,15 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
 			});
 			var userName = layui.data('loginInfo').loginInfo.userName;
 			$('#operator').val(userName);
+
 		}
 	});
-    
-    
-    
-    form.on("submit(addJob)",function(data){
-//    	data.field.amt= $("#amt").val();
-//    	alert(JSON.stringify(data.field));
-//    	return;
+
+    form.on("submit(updateJob)",function(data){
     	data.field = comExt.trim(data.field);
-		// var reg = /^\s{5}$/;
-		// if(reg.test(data.field.cron)){
-		// 	layer.msg("匹配成功",{time:5*1000});
-		// }else{
-		// 	layer.msg("匹配失败",{time:5*1000});
-		// }
     	$.ajax({
             type: "post",
-            url: "/job/addJobInfo",
+            url: "/job/updateJobInfo",
             data: JSON.stringify(data.field),
             dataType: "json",
             headers: {
