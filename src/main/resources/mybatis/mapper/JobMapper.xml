@@ -40,4 +40,20 @@
 		#{cron,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
 		#{creatDate,jdbcType=DATE},#{updateDate,jdbcType=DATE},#{operator,jdbcType=VARCHAR})
 	</insert>
+
+	<select id="queryInfoById" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM SS_JOB  WHERE
+		ID=#{id,jdbcType=VARCHAR}
+	</select>
+
+	<update id="updateJobInfo" parameterType="com.tienon.boot.domain.JobInfo">
+		UPDATE SS_JOB SET
+		BEANNAME=#{beanName,jdbcType=VARCHAR},METHODNAME=#{methodName,jdbcType=VARCHAR},
+		PARAMETER=#{parameter,jdbcType=VARCHAR},CRON=#{cron,jdbcType=VARCHAR},
+		DESCRIPTION=#{description,jdbcType=VARCHAR},STATUS=#{status,jdbcType=VARCHAR},
+		UPDATEDATE=#{updateDate,jdbcType=DATE},OPERATOR=#{operator,jdbcType=VARCHAR}
+		WHERE ID=#{id,jdbcType=INTEGER}
+	</update>
 </mapper>
