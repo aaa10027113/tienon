@@ -147,18 +147,18 @@ public class OrderQuery {
 	public static void trustAllHosts() {
 		// Create a trust manager that does not validate certificate chains
 		TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
-			// @Override
+			@Override
 			public X509Certificate[] getAcceptedIssuers() {
 				// TODO Auto-generated method stub
 				return null;
 			}
 
-			// @Override
+			@Override
 			public void checkServerTrusted(X509Certificate[] chain, String authType) {
 				// TODO Auto-generated method stub
 			}
 
-			// @Override
+			@Override
 			public void checkClientTrusted(X509Certificate[] chain, String authType) {
 				// TODO Auto-generated method stub
 			}

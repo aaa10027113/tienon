@@ -64,10 +64,11 @@ public class ExcelUtil {
             cell = row.createCell(index);
         }
 
-        if (obj != null)
+        if (obj != null){
             cell.setCellValue(obj.toString());
-        else 
+        }else{ 
             cell.setCellValue("");
+        }
     }
     
     /**
@@ -79,10 +80,12 @@ public class ExcelUtil {
             cell = row.createCell(index);
         }
 
-        if (obj != null)
+        if (obj != null){
             cell.setCellValue(obj.toString());
-        else 
+        } else {
             cell.setCellValue("");
+        }
+       
     }
     
     
