@@ -1,16 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tienon.boot</groupId>
 	<artifactId>ejx4boot-pom</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-dependencies</artifactId>
-		<version>1.5.10.RELEASE</version>
-	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,34 +13,71 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<ejx4boot-api.version>1.0.0-SNAPSHOT</ejx4boot-api.version>
-		<ejx4boot-core.version>1.0.0-RELEASE</ejx4boot-core.version>
+		<ejx4boot-core.version>2.0.0-RELEASE</ejx4boot-core.version>
 		<ejx4boot-user.version>1.0.0-RELEASE</ejx4boot-user.version>
 		<ejx4msg.version>4.2.2</ejx4msg.version>
 		<ejx4bpm.version>4.1.2</ejx4bpm.version>
 		<ejx4framework.version>4.2.0</ejx4framework.version>
-		<!-- <ejx4as-core.version>4.2.2.0</ejx4as-core.version> -->
 		<ejx4as-core.version>4.2.2.1</ejx4as-core.version>
 		<ejx4component.version>4.2.0</ejx4component.version>
-		<ejx4as-common.version>1.0</ejx4as-common.version>
-		<ejx4eas-dbconf.version>1.0.0-RELEASE</ejx4eas-dbconf.version>
-		<!-- <ejx4eas-dbconf.version>1.0.1-RELEASE</ejx4eas-dbconf.version> -->
+		<ejx4as-common.version>1.0.1-RELEASE</ejx4as-common.version>
+		<ejx4base.version>4.2.1-RELEASE</ejx4base.version>
+		<ejx4boot.version>1.0.0-RELEASE</ejx4boot.version>
+		<ejx4eas-dbconf.version>1.0.1-RELEASE</ejx4eas-dbconf.version>
+		<!-- 增加jar包管理 -->
+		<commons-lang3.version>3.2</commons-lang3.version>
+		<quartz.version>2.2.1</quartz.version>
+		<druid.version>1.0.11</druid.version>
+		<log4j.version>1.2.17</log4j.version>
+		<!-- 增加jar包管理结束 -->
 	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Edgware.SR4</version>
+				<version>Edgware.SR5</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-dependencies</artifactId> 
-				<version>1.5.10.RELEASE</version> <type>pom</type> <scope>import</scope> 
-				</dependency> -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>1.5.10.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<!-- 增加jar包管理 -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+			<!-- 增加jar包结束 -->
 			<dependency>
 				<groupId>com.tienon</groupId>
 				<artifactId>ejx4framework</artifactId>
 				<version>${ejx4framework.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.tienon</groupId>
+				<artifactId>ejx4base</artifactId>
+				<version>${ejx4base.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.tienon</groupId>

@@ -24,6 +24,10 @@
             <groupId>com.tienon.boot</groupId>
             <artifactId>ejx4boot-user</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.tienon.boot</groupId>
+            <artifactId>ejx4boot-core</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -37,11 +41,6 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>3.17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
             <version>3.17</version>
         </dependency>
         <dependency>
@@ -72,6 +71,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.10.RELEASE</version>
                 <executions>
                     <execution>
                         <goals>
@@ -84,7 +84,7 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.5</version>
+                <version>1.3.6</version>
             </plugin>
         </plugins>
     </build>
