@@ -121,7 +121,7 @@ public class JobService {
     public Object updateJobInfo(JobInfo info) {
         int i = 0;
         try {
-            log.info("添加定时任务入参：" + JSON.toJSONString(info));
+            log.info("修改定时任务入参：" + JSON.toJSONString(info));
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
             info.setUpdateDate(sdf.format(date));
