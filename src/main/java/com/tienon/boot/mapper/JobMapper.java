@@ -12,5 +12,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface JobMapper {
+    /**
+     * 查询定时任务列表
+     * @param searchCondition
+     * @param pageBounds
+     * @return  PageList<JobInfo>
+     */
     PageList<JobInfo> queryJobList(Object searchCondition, PageBounds pageBounds);
+
+    /**
+     * 添加定时任务
+     * @param info
+     * @return int
+     */
+    int addJobInfo(JobInfo info);
 }

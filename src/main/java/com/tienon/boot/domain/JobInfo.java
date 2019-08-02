@@ -14,7 +14,7 @@ public class JobInfo {
     private  int id;
 
     /**
-     * 名称
+     * bean名称
      */
     private String beanName;
 
@@ -46,18 +46,18 @@ public class JobInfo {
     /**
      * 创建时间
      */
-    private Date creatDate;
+    private String creatDate;
 
     /**
      * 修改时间
      */
 
-    private Date updateDate;
+    private String updateDate;
 
     /**
      * 创建|修改人
      */
-    private String userName;
+    private String operator;
 
     public int getId() {
         return id;
@@ -115,27 +115,27 @@ public class JobInfo {
         this.status = status;
     }
 
-    public Date getCreatDate() {
+    public String getCreatDate() {
         return creatDate;
     }
 
-    public void setCreatDate(Date creatDate) {
+    public void setCreatDate(String creatDate) {
         this.creatDate = creatDate;
     }
 
-    public Date getUpdateDate() {
+    public String getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(Date updateDate) {
+    public void setUpdateDate(String updateDate) {
         this.updateDate = updateDate;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getOperator() {
+        return operator;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 }

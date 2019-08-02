@@ -109,7 +109,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
             title : "新增商标注册",
             type : 2,
             anim: 3,
-            content : "addNew.html",
+            content : "addJob.html",
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){

@@ -11,11 +11,11 @@
 	<result column="STATUS" 	   jdbcType="VARCHAR"	 property="status" />
 	<result column="CREATDATE" 	   jdbcType="DATE"	     property="creatDate" />
 	<result column="UPDATEDATE"    jdbcType="DATE"	     property="updateDate" />
-	<result column="USERNAME" 	   jdbcType="VARCHAR"	 property="userName" />
+	<result column="OPERATOR" 	   jdbcType="VARCHAR"	 property="operator" />
 </resultMap>
 	
 	<sql id="Base_Column_List">
-		ID, BEANNAME, METHODNAME,PARAMETER,CRON,DESCRIPTION,STATUS,CREATDATE,UPDATEDATE,USERNAME
+		ID, BEANNAME, METHODNAME,PARAMETER,CRON,DESCRIPTION,STATUS,CREATDATE,UPDATEDATE,OPERATOR
 	</sql>
 	
 	<select id="queryJobList" parameterType="com.tienon.boot.domain.JobInfo" resultMap="BaseResultMap">
@@ -28,4 +28,16 @@
 		</where>
 		ORDER BY CREATDATE DESC
 	</select>
+
+	<insert id="addJobInfo" parameterType="com.tienon.boot.domain.JobInfo">
+		insert into SS_JOB
+		(BEANNAME,METHODNAME,PARAMETER,
+		 CRON,DESCRIPTION,STATUS,
+		 CREATDATE,UPDATEDATE,OPERATOR
+		)
+		values
+		(#{beanName,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR},#{parameter,jdbcType=VARCHAR},
+		#{cron,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
+		#{creatDate,jdbcType=DATE},#{updateDate,jdbcType=DATE},#{operator,jdbcType=VARCHAR})
+	</insert>
 </mapper>

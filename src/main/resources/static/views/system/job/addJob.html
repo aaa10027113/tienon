@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>商标新增</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/layui/css/public.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" />
+	<link rel="stylesheet" href="../../../layuiadmin/style/formSelects-v4.css" media="all"/>
+<style>
+.layui-form-label{
+	width : 170px;
+	padding : 9px 0px;
+}
+.layui-input-block{
+	margin-left : 190px;
+}
+</style>
+</head>
+<body>
+<div class="layui-fluid form-container">
+	<div class="layui-card">
+		<div class="layui-card-body" style="padding: 15px;">
+			<form class="layui-form">
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label"><span style="color:red">*</span>bean名称：</label>
+						<div class="layui-input-block">
+							<input name="beanName" id="beanName" lay-verify="required" class="layui-input beanName"  placeholder="请输入bean名称">
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label"><span style="color:red">*</span>方法名称：</label>
+						<div class="layui-input-block">
+							<input type="text" name="methodName" id="methodName" class="layui-input methodName" lay-verify="required"  placeholder="请输入方法名称">
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">参数：</label>
+						<div class="layui-input-block">
+							<input type="text" name="parameter" id="parameter" class="layui-input parameter" placeholder="参数">
+						</div>
+					</div>
+					<div class="layui-col-md6"></div>
+				</div>
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label"><span style="color:red">*</span>cron表达式：</label>
+						<div class="layui-input-block">
+							<input type="text" name="cron" id="cron" class="layui-input cron"
+							lay-verify="required" placeholder="如:0 0 12 * * ?">
+						</div>
+					</div>
+					<div class="layui-col-md6">
+						<p style="line-height: 38px">示例: 0 0 12 * * ?</p>
+					</div>
+				</div>
+				
+				<div class="layui-form-item layui-row">
+					<div class="layui-col-md6">
+						<label class="layui-form-label">备注：</label>
+						<div class="layui-input-block">
+							<input type="text" name="description" id="description" class="layui-input description">
+						</div>
+					</div>
+					<div class="layui-col-md6">
+						<input id="operator" class="operator" name="operator" hidden="true"/>
+					</div>
+				</div>
+			
+				
+				<div class="layui-form-item layui-layout-admin">
+					<div class="layui-input-block">
+						<div class="layui-footer" style="left: 0;">
+							<button type="button" class="layui-btn" lay-submit lay-filter="addJob">立即添加</button>
+							<button id="close" type="button" class="layui-btn layui-btn-primary">关闭</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			
+			
+			
+		</div>
+	</div>
+</div>	
+
+<script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>	
+<script>
+        layui.config({
+            base : '../../../layuiadmin/' //静态资源所在路径
+        }).extend({
+            index : 'lib/index' //主入口模块
+        }).use([ 'index','job/addJob','laydate'], function() {
+        	
+        	  var laydate = layui.laydate;
+        	  laydate.render({
+        	      elem: '#test13',
+        	      format: 'yyyyMMdd'
+        	    });
+        	
+        });
+</script>
+ 
+</body>
+</html>

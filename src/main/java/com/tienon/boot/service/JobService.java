@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author ll
  * @Description TODO
@@ -56,5 +59,37 @@ public class JobService {
             log.error("查询批量装载表出现异常：[" + e.getMessage() + "]");
             throw new EjxError(CommonStatic.R_029, "查询批量装载表出现异常：[" + e.getMessage() + "]");
         }
+    }
+
+    /**
+     * TODO 添加新的商标
+     *
+     * @param info
+     * @return
+     * @return Object 返回类型
+     */
+    public Object addJobInfo(JobInfo info) {
+        int i = 0;
+        int j = 0;
+        try {
+            log.info("添加定时任务入参：" + JSON.toJSONString(info));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            info.setCreatDate(sdf.format(date));
+            info.setUpdateDate(sdf.format(date));
+            log.info("创建时间"+info.getCreatDate());
+            info.setStatus("0");
+            // 将处理好后的数据添加到数据库中
+            i = jobMapper.addJobInfo(info);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("添加定时任务出现异常：[" + e.getMessage() + "]");
+            throw new EjxError(CommonStatic.R_029, "添加新商标出现异常：[" + e.getMessage() + "]");
+        }
+        if (i == 0) {
+            return new ActionResult(false, "添加定时任务错误");
+        }
+        return new ActionResult(true);
     }
 }

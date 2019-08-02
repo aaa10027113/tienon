@@ -1,5 +1,6 @@
 package com.tienon.boot.controller;
 
+import com.tienon.boot.domain.JobInfo;
 import com.tienon.boot.service.JobService;
 import com.tienon.boot.util.support.PageGrid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,14 @@ public class JobController {
         return jobService.queryList(pg);
     }
 
+    /**
+     * TODO 添加新的商标
+     *
+     * @param info
+     * @return Object 返回类型
+     */
+    @RequestMapping("/addJobInfo")
+    public Object addNewInfo(@RequestBody JobInfo info) {
+        return jobService.addJobInfo(info);
+    }
 }
