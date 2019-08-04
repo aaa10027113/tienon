@@ -58,13 +58,15 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
             		$("#addType_down").html(msg.addType.slice(24,32)+"...");
             	}
             	//将字符串转换为二维码
-            	var address = location.href.split("system")[0];
+            	//var address = location.href.split("system")[0];
+            	var address = "http://47.111.75.26/views/"
             	var qrcode = new QRCode(document.getElementById("code"), {
                 	width : 100,
                 	height : 100
                 });
                 if("0.00" != msg.amt){
-                	var text= address+"business/pay.html?applyNo="+msg.applyNoEncrypt;
+                	
+                	var text= address+"h5/pay.html?applyNo="+msg.applyNoEncrypt;
                 	qrcode.makeCode(text);
                 }
             	//------------------------------------

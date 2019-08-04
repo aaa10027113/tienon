@@ -10,7 +10,7 @@ import com.tienon.boot.modules.business.service.PaymentOnlieService;
 import com.tienon.boot.util.support.PageGrid;
 
 @RestController
-@RequestMapping("paymentOnline")
+@RequestMapping("/business/paymentOnline")
 public class PaymentOnlineController {
 
 	@Autowired
