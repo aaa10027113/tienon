@@ -1,5 +1,7 @@
 package com.tienon.boot.modules.business.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.tienon.boot.modules.business.domain.SendInBo;
 
 /**
@@ -8,6 +10,7 @@ import com.tienon.boot.modules.business.domain.SendInBo;
  * @author 65128
  *
  */
+@Mapper
 public interface PaymentOnlineMapper {
 
 	/**

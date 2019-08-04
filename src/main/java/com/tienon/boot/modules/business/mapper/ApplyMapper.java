@@ -3,6 +3,7 @@ package com.tienon.boot.modules.business.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.tienon.boot.modules.business.domain.ApplyInfo;
@@ -15,6 +16,7 @@ import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
  * @author lilei
  * @date 2019/07/01
  */
+@Mapper
 public interface ApplyMapper {
 
 	/**

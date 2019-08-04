@@ -6,6 +6,9 @@ import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
 public interface RefundOrderMapper {
 	int deleteByPrimaryKey(String applyno);
 

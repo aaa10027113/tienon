@@ -2,10 +2,12 @@ package com.tienon.boot.modules.business.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.tienon.boot.modules.business.domain.PayOrder;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
-
+@Mapper
 public interface PayOrderMapper {
 	int deleteByPrimaryKey(String applyno);
 
