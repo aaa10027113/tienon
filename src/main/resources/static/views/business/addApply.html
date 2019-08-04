@@ -150,7 +150,7 @@
 				<div class="layui-form-item layui-layout-admin">
 					<div class="layui-input-block">
 						<div class="layui-footer" style="left: 0;">
-							<button type="button" class="layui-btn" lay-submit lay-filter="addRole">立即添加</button>
+							<button type="button" class="layui-btn" lay-submit lay-filter="addApply">立即添加</button>
 							<button id="close" type="button" class="layui-btn layui-btn-primary">关闭</button>
 						</div>
 					</div>
@@ -169,7 +169,7 @@
             base : '../../../layuiadmin/' //静态资源所在路径
         }).extend({
             index : 'lib/index' //主入口模块
-        }).use([ 'index','operate/addNew','laydate'], function() {
+        }).use([ 'index','operate/addApply','laydate'], function() {
         	
         	  var laydate = layui.laydate;
         	  laydate.render({
@@ -179,6 +179,6 @@
         	
         });
 </script>
- 
+
 </body>
 </html>
