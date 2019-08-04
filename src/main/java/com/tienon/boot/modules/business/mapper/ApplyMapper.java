@@ -31,7 +31,7 @@ public interface ApplyMapper {
 
 	ApplyInfo getLastApplyNo();
 
-	int addNewInfo(ApplyInfo info);
+	int insertApply(ApplyInfo info);
 
 	int deleteByPrimaryKey(List<String> list);
 

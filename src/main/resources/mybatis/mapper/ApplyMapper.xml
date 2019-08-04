@@ -32,7 +32,7 @@
 		DELETEFLAG
 	</sql>
 
-	<select id="queryList" parameterType="com.tienon.boot.modules.business.domain.ApplyInfo"
+	<select id="listApply" parameterType="com.tienon.boot.modules.business.domain.ApplyInfo"
 		resultMap="BaseResultMap">
 		SELECT
 			<include refid="Base_Column_List" />
@@ -65,7 +65,7 @@
 		LIMIT 1
 	</select>
 
-	<insert id="addNewInfo" parameterType="com.tienon.boot.modules.business.domain.ApplyInfo">
+	<insert id="insertApply" parameterType="com.tienon.boot.modules.business.domain.ApplyInfo">
 		INSERT
 		INTO
    	 		TB_APPLY

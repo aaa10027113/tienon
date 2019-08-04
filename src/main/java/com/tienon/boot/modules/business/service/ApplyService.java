@@ -106,7 +106,7 @@ public class ApplyService {
 			} else {
 				payOrder.setStatus(CommonStatic.ORDER_01);
 			}
-			applyMapper.addNewInfo(applyInfo);
+			applyMapper.insertApply(applyInfo);
 			payOrderMapper.insert(payOrder);
 		} catch (Exception e) {
 			e.printStackTrace();

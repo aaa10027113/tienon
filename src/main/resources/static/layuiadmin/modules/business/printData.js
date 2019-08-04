@@ -9,7 +9,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
 	//初始化数据
     $(function(){
     	var applyNo = location.href.split("?")[1];
-        $.post("/operate/printInfo",{applyNo:applyNo},function(res){
+        $.post("/business/apply/printInfo",{applyNo:applyNo},function(res){
             	console.log(res);
             	if(!res.success){
             		layer.alert(res.msg, {
@@ -64,8 +64,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
                 	height : 100
                 });
                 if("0.00" != msg.amt){
-                	var text= address+"h5/pay.html?applyNo="+msg.applyNoEncrypt;
-//                	alert(text);
+                	var text= address+"business/pay.html?applyNo="+msg.applyNoEncrypt;
                 	qrcode.makeCode(text);
                 }
             	//------------------------------------
@@ -74,13 +73,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
             	temp +="<td><span>"+msg.trademarkName+"</span></td>"
             		 +"<td><span>"+msg.acceptTypeName+"</span></td>"
             		 +"<td><span>"+msg.addType+"</span></td></tr>";
-//            	$("tbody").append(temp);
-            	
              },"json") 
-             
-//        });
     });
-	//=======================================
     var form = layui.form
         layer = parent.layer === undefined ? layui.layer : top.layer,
         comExt = layui.comExt,
@@ -102,7 +96,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
         window.document.body.innerHTML=bdhtml;
     }
 
-    
     $('#close').on('click',function(){
  		layer.confirm("是否退出当前页面？",function(index){
  			//当你在iframe页面关闭自身时
@@ -111,7 +104,4 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
 	 		layer.closeAll();
  		})
  	})
- 	
-
-// 	  exports('role/roleUpdate', {});
 });
