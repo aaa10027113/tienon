@@ -4,7 +4,7 @@
  * All right reserved.
  */
 
-package com.tienon.boot.modules.business.constant;
+package com.tienon.boot.common.constant;
 
 /**
  * @Description TODO(公共常量)
@@ -20,22 +20,22 @@ public class CommonStatic {
 	public final static String R_022 = "022"; // 022:系统内部处理错误
 	public final static String R_029 = "029"; // 029:数据库错误
 	public final static String R_080 = "080"; // 080:交易超时
-	
-    /**
-     * 秘钥
-     */
+
+	/**
+	 * 秘钥
+	 */
 	public final static String KEY = "8k5a2o5";// 秘钥
-    
-    /**
-     * 支付状态	
-     */
+
+	/**
+	 * 支付状态
+	 */
 	public static String ORDER_00 = "00";// 00:支付成功
 	public static String ORDER_01 = "01";// 01:待支付
 	public static String ORDER_02 = "02";// 02:支付失败
 	public static String ORDER_03 = "03";// 03:支付超时
 	public static String ORDER_05 = "05";// 05:无需支付
 	public static String ORDER_99 = "99";// 99:未知状态
-	
+
 	/**
 	 * 退款成功
 	 */
