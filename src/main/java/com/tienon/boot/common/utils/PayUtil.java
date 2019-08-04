@@ -1,4 +1,4 @@
-package com.tienon.boot.util;
+package com.tienon.boot.common.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

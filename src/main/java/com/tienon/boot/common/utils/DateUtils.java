@@ -3,7 +3,7 @@
  * All right reserved.
  */
 
-package com.tienon.boot.util;
+package com.tienon.boot.common.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,7 +19,6 @@ import org.apache.commons.lang3.time.DateFormatUtils;
  * @date 2019/02/22
  */
 public abstract class DateUtils extends org.apache.commons.lang3.time.DateUtils {
-	
 
 	/**
 	 * TODO(格式化时间)
@@ -32,15 +31,15 @@ public abstract class DateUtils extends org.apache.commons.lang3.time.DateUtils 
 	public static String format(Date date, String format) {
 		return new SimpleDateFormat(format).format(date);
 	}
-    
-    /**
-     * TODO(两个时间转换为毫秒相减，得到相差的毫秒数)
-     * 
-     * @param begDate
-     * @param endDate
-     * @return 
-     * @return long 返回类型
-     */
+
+	/**
+	 * TODO(两个时间转换为毫秒相减，得到相差的毫秒数)
+	 * 
+	 * @param begDate
+	 * @param endDate
+	 * @return
+	 * @return long 返回类型
+	 */
 	public static long dateChange(Date begDate, Date endDate) {
 		return endDate.getTime() - begDate.getTime();
 	}
@@ -244,12 +243,12 @@ public abstract class DateUtils extends org.apache.commons.lang3.time.DateUtils 
 		calendar.add(Calendar.DAY_OF_MONTH, addDays);
 		return calendar.getTime();
 	}
-	
-	public static boolean isBetween(Date now,Date start,Date end) {
+
+	public static boolean isBetween(Date now, Date start, Date end) {
 		return (start.getTime() <= now.getTime() && now.getTime() <= end.getTime());
 	}
-	
-	public static boolean isBetween(String now,String start,String end,String format) {
+
+	public static boolean isBetween(String now, String start, String end, String format) {
 		return isBetween(pare(now, format), pare(start, format), pare(end, format));
 	}
 
