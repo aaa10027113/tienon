@@ -45,29 +45,28 @@ import com.tienon.framework.supports.ActionResult;
 import net.sf.jxls.transformer.XLSTransformer;
 
 /**
- * @Description 商标注册后台服务
- * @author ll
- * @date 2019/07/01
+ * 
+ * @Description TODO(这里用一句话描述这个类的作用)
+ * @author Administrator
+ * @date 2019/08/04
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class OperateService {
+	private static Logger log = Logger.getLogger(OperateService.class);
 
 	@Autowired
 	OperateMapper operateMapper;
-
 	@Autowired
 	PayOrderMapper payOrderMapper;
 
-	private static Logger log = Logger.getLogger(OperateService.class);
-
 	/**
 	 * 
-	 * TODO 查询商标注册列表
+	 * TODO(商标受理)
 	 * 
 	 * @param pg
 	 * @return
-	 * @return List<ApplyInfo> 返回类型
+	 * @return Object 返回类型
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	public Object queryList(PageGrid pg) {
@@ -76,28 +75,19 @@ public class OperateService {
 		PageBounds pageBounds = new PageBounds(page, pageSize, true);
 
 		try {
-			log.info("获取商标注册列表入参：searchCondition=" + JSON.toJSONString(pg.getSearchCondition()) + "********pageBounds="
-					+ JSON.toJSONString(pageBounds));
-			// 查询
 			PageList<ApplyInfo> pageList = operateMapper.queryList(pg.getSearchCondition(), pageBounds);
-			if (null != pageList) {
-				for (ApplyInfo info : pageList) {
-					info.setAcceptDate(info.getAcceptDate().split(" ")[0]);
-				}
-			}
-			log.info("获取商标注册列表出参：" + JSON.toJSONString(pageList));
-			// 获取查询结果总条数
 			int total = pageList.getPaginator().getTotalCount();
 			return new ActionResult(new PageResult(total, pageList));
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("查询批量装载表出现异常：[" + e.getMessage() + "]");
-			throw new EjxError(CommonStatic.R_029, "查询批量装载表出现异常：[" + e.getMessage() + "]");
+			log.error("查询商标申请信息出现异常：[" + e.getMessage() + "]");
+			return new ActionResult(false, "查询商标申请信息出现异常！");
 		}
 	}
 
 	/**
-	 * TODO 添加新的商标
+	 * 
+	 * TODO(新增商标)
 	 * 
 	 * @param info
 	 * @return
@@ -115,20 +105,16 @@ public class OperateService {
 			String nowDate = sdf.format(date);
 			info.setApplyNo(getApplyNo(nowDate, sdf));
 			info.setAcceptDate(sdf1.format(date));
-//			info.setStatus("01");// 未支付
 			info.setOperationDate(sdf1.format(date));
 			info.setAcceptType(info.getAcceptType().split(";")[0]);
-			// 将处理好后的数据添加到数据库中
 			i = operateMapper.addNewInfo(info);
-			log.info("添加新商标出参：" + JSON.toJSONString(i));
-			// 添加商品后需要插入往支付订单表插入一条数据
 			payOrder.setApplyNo(info.getApplyNo());
 			payOrder.setOrderNo(PayUtil.getPaymentOrderNo());
 			payOrder.setAmt(new BigDecimal(info.getAmt()));
-			if("0".equals(info.getAmt())) {
+			if ("0".equals(info.getAmt())) {
 				// 支付状态：无需支付
 				payOrder.setStatus("05");
-			}else {
+			} else {
 				// 支付状态：待支付
 				payOrder.setStatus("01");
 			}
@@ -192,10 +178,10 @@ public class OperateService {
 			log.info("批量删除信息表出参：" + i);
 			int j = payOrderMapper.deleteByPrimaryKeyOnPay(list);
 			log.info("批量删支付表出参：" + j);
-			if(i==0) {
-				return  new ActionResult(false,"删除失败，未查询到需要删除的商标");
+			if (i == 0) {
+				return new ActionResult(false, "删除失败，未查询到需要删除的商标");
 			}
-			return new ActionResult(true,"删除成功");
+			return new ActionResult(true, "删除成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]");
@@ -258,6 +244,7 @@ public class OperateService {
 			throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]");
 		}
 	}
+
 	/**
 	 * TODO 导出数据Excel表格
 	 * 

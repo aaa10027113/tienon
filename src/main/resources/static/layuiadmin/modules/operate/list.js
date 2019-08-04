@@ -11,18 +11,15 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
      function aad() {
     	return searchCondition;
 	};
-     //开始时间
+     // 开始时间
      laydate.render({
     	elem: '#beginTime'
     });
-     //结束时间
+     // 结束时间
      laydate.render({
    	  elem: '#endTime'
    });
-   /*  laydate.render({
-    	 elem: '#endTime'
-     });*/
-    //商标列表
+    // 商标列表
     var tableIns = table.render({
         elem: '#operateList',
         url : '/operate/queryList',
@@ -34,45 +31,41 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         method : 'post',
         where: aad(),
         request: {
-        	  pageName: 'page' //页码的参数名称，默认：page
-        	  ,limitName: 'rows' //每页数据量的参数名，默认：limit
+        	  pageName: 'page' // 页码的参数名称，默认：page
+        	  ,limitName: 'rows' // 每页数据量的参数名，默认：limit
         	},
         response: {
-        	   statusName: 'success' //数据状态的字段名称，默认：code
-        	  ,statusCode: true //成功的状态码，默认：0
-        	  ,msgName: 'msg' //状态信息的字段名称，默认：msg
-        	  ,countName: 'obj/total' //数据总数的字段名称，默认：count
-        	  ,dataName: 'obj/rows' //数据列表的字段名称，默认：data
+        	   statusName: 'success' // 数据状态的字段名称，默认：code
+        	  ,statusCode: true // 成功的状态码，默认：0
+        	  ,msgName: 'msg' // 状态信息的字段名称，默认：msg
+        	  ,countName: 'obj/total' // 数据总数的字段名称，默认：count
+        	  ,dataName: 'obj/rows' // 数据列表的字段名称，默认：data
         	} ,
         cols : [[
            {type: "checkbox", fixed:"left", width:50},
-//          {type: "radio", fixed:"left", width:50},
           {field: 'applyNo', title: '申请序号', minWidth:150, align:"center"},
           {field: 'acceptDate', title: '受理日期', minWidth:150, align:'center'},
-          {field: 'companyName', title: '公司名称', minWidth:150, align:"center"},
-//          {field: 'humanName', title: '自然人名称', minWidth:150, align:"center"},
+          {field: 'companyName', title: '公司名称', minWidth:200, align:"center"},
           {field: 'trademarkName', title: '商标名称', minWidth:150, align:"center"},
-          {field: 'deleteFlag', title: '是否删除', minWidth:150, align:"center",templet:function(d){
+          {field: 'amt', title: '总金额', minWidth:125, align:"center"},
+          {field: 'deleteFlag', title: '删除标记', minWidth:100, align:"center",templet:function(d){
         	  if(d.deleteFlag=="1"){
-        		  return '是';
+        		  return '已删除';
         	  }else{
         		  return '';
         	  }
           }},
-          {field: 'amt', title: '总金额', minWidth:125, align:"center"},
-          {title: '打印', minWidth:170,fixed:"right",align:"center",templet:function(d){
-//        	  return '<a class="layui-btn layui-btn-xs" href="printData.html?'+d.applyNo+'">打印回执</a>';
+          {title: '打印', minWidth:100,fixed:"right",align:"center",templet:function(d){
         	  if(d.deleteFlag=="1"){
-        		  
-        		  return '<button class="layui-btn layui-btn-xs layui-btn-disabled">回执打印</button>';
+        		  return '<button class="layui-btn layui-btn-xs layui-btn-disabled">回执</button>';
         	  }else{
-        		  return '<button class="layui-btn layui-btn-xs"  lay-event="print">回执打印</button>';
+        		  return '<button class="layui-btn layui-btn-xs"  lay-event="print">回执</button>';
         	  }
           }}
         ]]
     });
     
-  //重新加载查询结果
+  // 重新加载查询结果
     $(".queryCommit").click(function(){
    	 var companyName=$("#companyName").val();
    	 var humanName=$("#humanName").val();
@@ -89,22 +82,21 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
    	 }
    	 search ={companyName:companyName,humanName:humanName,acceptType:acceptType,beginTime:beginTime,endTime:endTime};
    	 var searchCondition={searchCondition:search};
-//     console.log(searchCondition);
    	 tableIns.reload({
    		  where: 
    			  searchCondition		  
    		  ,page: {
-   		    curr: 1 //重新从第 1 页开始
+   		    curr: 1 // 重新从第 1 页开始
    		  }
    		});
    })
 
-   //点击新增按钮
+   // 点击新增按钮
     $(".addNews_btn").click(function(){
     	 addRole();
     })
     
-    //新增商标
+    // 新增商标
     function addRole(edit){
     	
         var index = layui.layer.open({
@@ -125,7 +117,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         comExt.full(index);
     }
     
-    //受理类型列表
+    // 受理类型列表
     $(function(){
     	$.ajax({
             type: "post",
@@ -139,7 +131,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
             	if(msg!=null){
             		var value ="";
             	　　　for (var i = 0; i < msg.length; i++) {
-            	　　　　//如果在select中传递其他参数，可以在option 的value属性中添加参数
+            	　　　　// 如果在select中传递其他参数，可以在option 的value属性中添加参数
             	　　　	value += "<option value='"+msg[i].applyTypeNo+";"+msg[i].applyTypePrice+"'>"+msg[i].applyTypeName+"</option>";
             	　　	}
             	　$("#acceptType").append(value);
@@ -149,7 +141,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         });
     });
     
-    //添加服务资源
+    // 添加服务资源
     function addServer(edit){
     	
         var index = layui.layer.open({
@@ -170,7 +162,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         comExt.full(index);
     }
     
-    //添加页面资源
+    // 添加页面资源
     function addPage(edit){
         var index = layui.layer.open({
             title : "页面资源",
@@ -215,10 +207,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     	
     })
     
-    
-    
-    
-    //打印回执
+    // 打印回执
     function printData(data){
 		if(!data){
 			var checkStatus = table.checkStatus('operateList');
@@ -252,8 +241,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 		layui.sessionData("index",index);
 	}
 
-    
-    //打印收据
+    // 打印收据
     function printShouju(data){
     	if(!data){
     		var checkStatus = table.checkStatus('operateList');
@@ -287,11 +275,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     	layui.sessionData("index",index);
     }
     
-    
-    
-    //批量删除
+    // 批量删除
     $(".delAll_btn").click(function(){
-    	
         var checkStatus = table.checkStatus('roleListTable'),
             data = checkStatus.data,
             newsId = [];
@@ -330,15 +315,15 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         }
     })
 
-    //列表操作
+    // 列表操作
     table.on('tool(operateList)', function(obj){
         var layEvent = obj.event,
             data = obj.data;
 
-        if(layEvent === 'print'){ //打印回执
+        if(layEvent === 'print'){ // 打印回执
         	printData(data);
         }
-        if(layEvent === 'printShouju'){ //打印回执
+        if(layEvent === 'printShouju'){ // 打印回执
         	printShouju(data);
         }
         
@@ -346,4 +331,3 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     
     exports('role/roleList', {});
 });
-

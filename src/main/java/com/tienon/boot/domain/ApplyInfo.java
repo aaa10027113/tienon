@@ -5,12 +5,6 @@
 
 package com.tienon.boot.domain;
 
-/**
- * 
- * @Description 注册商标实体类
- * @author ll
- * @date 2019/07/01
- */
 
 public class ApplyInfo {
 

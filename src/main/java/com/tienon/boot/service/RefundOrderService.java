@@ -29,9 +29,10 @@ import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 import com.tienon.framework.supports.ActionResult;
 
 /**
- * @author zouhuaqiang
- * @Description TODO
- * @date 2019/07/19日
+ * 
+ * @Description TODO(这里用一句话描述这个类的作用)
+ * @author Administrator
+ * @date 2019/08/04
  */
 @Service
 public class RefundOrderService {
@@ -42,7 +43,14 @@ public class RefundOrderService {
 
 	@Autowired
 	PayOrderMapper payOrderMapper;
-
+     
+    /**
+     * 
+     * TODO(这里用一句话描述这个方法的作用)
+     * @param pg
+     * @return 
+     * @return Object 返回类型
+     */
 	public Object queryList(PageGrid pg) {
 		int page = pg.getPage();
 		int pageSize = pg.getRows();
