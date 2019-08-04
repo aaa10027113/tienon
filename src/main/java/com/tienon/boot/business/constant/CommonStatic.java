@@ -33,6 +33,7 @@ public class CommonStatic {
 	public static String ORDER_01 = "01";// 01:待支付
 	public static String ORDER_02 = "02";// 02:支付失败
 	public static String ORDER_03 = "03";// 03:支付超时
+	public static String ORDER_05 = "05";// 05:无需支付
 	public static String ORDER_99 = "99";// 99:未知状态
 	
 	/**

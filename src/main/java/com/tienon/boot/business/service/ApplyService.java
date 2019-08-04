@@ -11,24 +11,21 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
-
 import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
+import com.tienon.boot.business.constant.CommonStatic;
 import com.tienon.boot.business.domain.ApplyInfo;
+import com.tienon.boot.business.domain.DownloadInfo;
+import com.tienon.boot.business.domain.PayOrder;
 import com.tienon.boot.business.mapper.ApplyMapper;
-import com.tienon.boot.constant.CommonStatic;
-import com.tienon.boot.domain.DownloadInfo;
-import com.tienon.boot.domain.PayOrder;
-import com.tienon.boot.mapper.PayOrderMapper;
+import com.tienon.boot.business.mapper.PayOrderMapper;
 import com.tienon.boot.util.ASCEUtils;
 import com.tienon.boot.util.DateUtils;
 import com.tienon.boot.util.PayUtil;
@@ -103,10 +100,11 @@ public class ApplyService {
 			payOrder.setOrderNo(PayUtil.getPaymentOrderNo());
 			// 订单金额
 			payOrder.setAmt(new BigDecimal(applyInfo.getAmt()));
+			// 支付状态
 			if ("0".equals(applyInfo.getAmt())) {
-				payOrder.setStatus("05");
+				payOrder.setStatus(CommonStatic.ORDER_05);
 			} else {
-				payOrder.setStatus("01");
+				payOrder.setStatus(CommonStatic.ORDER_01);
 			}
 			applyMapper.addNewInfo(applyInfo);
 			payOrderMapper.insert(payOrder);

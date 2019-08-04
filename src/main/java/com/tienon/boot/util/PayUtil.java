@@ -27,13 +27,13 @@ import org.apache.log4j.Logger;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ccb.govpay.sign.SHA256withRSA;
-import com.tienon.boot.domain.pay.ReceiveOutBo;
-import com.tienon.boot.domain.pay.SendInBo;
-import com.tienon.boot.service.pay.PaymentOnlieService;
+import com.tienon.boot.business.domain.ReceiveOutBo;
+import com.tienon.boot.business.domain.SendInBo;
+import com.tienon.boot.business.service.PaymentOnlieService;
 
 public class PayUtil {
 
-	private static Logger logger = Logger.getLogger(PaymentOnlieService.class);
+	private static Logger log = Logger.getLogger(PaymentOnlieService.class);
 
 	/**
 	 * 生成支付订单
@@ -85,9 +85,9 @@ public class PayUtil {
 		String signInf = SHA256withRSA.sign(privateKey, signStr);
 		json.put("SIGN_INF", signInf);
 
-		logger.info("生成支付订单时请求报文" + json.toString());
+		log.info("生成支付订单时请求报文" + json.toString());
 		String result = doJsonPost(url, json.toString());
-		logger.info("生成支付订单时返回报文" + result.toString());
+		log.info("生成支付订单时返回报文" + result.toString());
 		// 收到结果转化成实体
 		ReceiveOutBo outBo = JSONObject.parseObject(result, ReceiveOutBo.class);
 		return outBo;
@@ -242,7 +242,7 @@ public class PayUtil {
 				outwritestream.close();
 			}
 
-			logger.info("http返回码[" + conn.getResponseCode() + "]");
+			log.info("http返回码[" + conn.getResponseCode() + "]");
 
 			if (conn.getResponseCode() == 200) {
 

@@ -26,11 +26,11 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.ccb.govpay.sign.SHA256withRSA;
 import com.tienon.EjxError;
-import com.tienon.boot.constant.CommonStatic;
-import com.tienon.boot.domain.PayOrder;
-import com.tienon.boot.domain.pay.ResultOutBo;
-import com.tienon.boot.mapper.PayOrderMapper;
-import com.tienon.boot.mapper.RefundOrderMapper;
+import com.tienon.boot.business.constant.CommonStatic;
+import com.tienon.boot.business.domain.PayOrder;
+import com.tienon.boot.business.domain.ResultOutBo;
+import com.tienon.boot.business.mapper.PayOrderMapper;
+import com.tienon.boot.business.mapper.RefundOrderMapper;
 import com.tienon.boot.util.PayUtil;
 
 /**

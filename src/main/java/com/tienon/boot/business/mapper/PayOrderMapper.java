@@ -2,7 +2,7 @@ package com.tienon.boot.business.mapper;
 
 import java.util.List;
 
-import com.tienon.boot.domain.PayOrder;
+import com.tienon.boot.business.domain.PayOrder;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 

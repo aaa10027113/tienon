@@ -6,16 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tienon.boot.service.pay.PaymentOnlieService;
+import com.tienon.boot.business.service.PaymentOnlieService;
 import com.tienon.boot.util.support.PageGrid;
 
-/**
- * 
- * 在线支付功能
- * 
- * @author WangQingquan
- * @date 2019年7月19日
- */
 @RestController
 @RequestMapping("paymentOnline")
 public class PaymentOnlineController {
