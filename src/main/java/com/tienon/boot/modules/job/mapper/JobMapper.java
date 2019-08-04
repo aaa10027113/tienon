@@ -5,8 +5,7 @@
 
 package com.tienon.boot.modules.job.mapper;
 
-import org.springframework.stereotype.Service;
-
+import org.apache.ibatis.annotations.Mapper;
 import com.tienon.boot.modules.job.domain.JobInfo;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
@@ -17,7 +16,7 @@ import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
  * @author lilei
  * @date 2019/08/04
  */
-@Service
+@Mapper
 public interface JobMapper {
 
 	/**
