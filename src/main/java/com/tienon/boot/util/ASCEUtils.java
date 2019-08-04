@@ -4,7 +4,7 @@
  */
 package com.tienon.boot.util;
 
-import com.tienon.boot.business.constant.CommonStatic;
+import com.tienon.boot.modules.business.constant.CommonStatic;
 
 /**
  * @author zouhuaqiang

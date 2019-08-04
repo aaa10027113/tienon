@@ -27,9 +27,9 @@ import org.apache.log4j.Logger;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ccb.govpay.sign.SHA256withRSA;
-import com.tienon.boot.business.domain.ReceiveOutBo;
-import com.tienon.boot.business.domain.SendInBo;
-import com.tienon.boot.business.service.PaymentOnlieService;
+import com.tienon.boot.modules.business.domain.ReceiveOutBo;
+import com.tienon.boot.modules.business.domain.SendInBo;
+import com.tienon.boot.modules.business.service.PaymentOnlieService;
 
 public class PayUtil {
 
