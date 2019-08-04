@@ -88,7 +88,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
     	data.field = comExt.trim(data.field);
     	$.ajax({
             type: "post",
-            url: "/operate/addNewInfo",
+            url: "/operate/insertApply",
             data: JSON.stringify(data.field),
             dataType: "json",
             headers: {

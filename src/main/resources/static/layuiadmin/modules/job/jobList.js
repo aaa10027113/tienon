@@ -25,7 +25,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     //商标列表
     var tableIns = table.render({
         elem: '#operateList',
-        url : '/job/queryList',
+        url : '/job/listApply',
         cellMinWidth : 95,
         page : true,
         limits : [10,15,20,25],
