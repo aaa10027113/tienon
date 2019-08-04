@@ -24,7 +24,7 @@ import com.tienon.framework.supports.ActionResult;
  * @date 2019/08/04
  */
 @RestController
-@RequestMapping("business/apply")
+@RequestMapping("/business/apply")
 public class ApplyController {
 
 	@Autowired
