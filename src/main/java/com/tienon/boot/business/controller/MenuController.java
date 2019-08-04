@@ -11,13 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tienon.boot.domain.MenuInfo;
-import com.tienon.boot.service.MenuService;
+import com.tienon.boot.business.domain.MenuInfo;
+import com.tienon.boot.business.service.MenuService;
 
 /**
- * @Description 菜单操作（受理类型）
- * @author ll
- * @date 2019/07/02
+ * @Description TODO(受理类型表Controller)
+ * 
+ * @author lilei
+ * @date 2019/08/04
  */
 @RestController
 @RequestMapping("/menu")

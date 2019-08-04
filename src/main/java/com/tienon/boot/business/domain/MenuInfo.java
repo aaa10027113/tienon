@@ -4,27 +4,17 @@
  */
 
 package com.tienon.boot.business.domain;
+
 /**
- * @Description TODO(功能详细描述)
- * @author ll
- * @date 2019/07/02
+ * @Description TODO(受理类型实体类)
+ * 
+ * @author lilei
+ * @date 2019/08/04
  */
 public class MenuInfo {
-
-	/**
-	 *  受理类型序号
-	 */
-	private int applyTypeNo;
-
-	/**
-	 * 受理类型名称
-	 */
-	private String applyTypeName;
-
-	/**
-	 * 受理类型价格
-	 */
-	private double applyTypePrice;
+	private int applyTypeNo;// 受理类型序号
+	private String applyTypeName;// 受理类型名称
+	private double applyTypePrice;// 受理类型金额
 
 	public int getApplyTypeNo() {
 		return applyTypeNo;

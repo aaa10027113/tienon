@@ -1,6 +1,6 @@
 package com.tienon.boot.business.mapper;
 
-import com.tienon.boot.domain.RefundOrder;
+import com.tienon.boot.business.domain.RefundOrder;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 
