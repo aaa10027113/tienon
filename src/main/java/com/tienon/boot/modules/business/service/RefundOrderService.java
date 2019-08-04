@@ -15,12 +15,12 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
-import com.tienon.boot.modules.business.constant.CommonStatic;
+import com.tienon.boot.common.constant.CommonStatic;
+import com.tienon.boot.common.utils.PayUtil;
 import com.tienon.boot.modules.business.domain.PayOrder;
 import com.tienon.boot.modules.business.domain.RefundOrder;
 import com.tienon.boot.modules.business.mapper.PayOrderMapper;
 import com.tienon.boot.modules.business.mapper.RefundOrderMapper;
-import com.tienon.boot.util.PayUtil;
 import com.tienon.boot.util.support.PageGrid;
 import com.tienon.boot.util.support.PageResult;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
@@ -68,19 +68,19 @@ public class RefundOrderService {
 	 * @return Object 返回类型
 	 */
 	public Object refundPayOrderByApplyNo(RefundOrder refund) {
-		log.info("订单退款入参"+ JSON.toJSONString(refund));
-//		String refundReasons = "refundReasons";
+		log.info("订单退款入参" + JSON.toJSONString(refund));
+		// String refundReasons = "refundReasons";
 		PayOrder payOrder = new PayOrder();
 		RefundOrder refundOrder = new RefundOrder();
 		int i = 0;
 		try {
-			//判断操作密码是否正确
-			if(!"123456".equals(refund.getPassword())){
+			// 判断操作密码是否正确
+			if (!"123456".equals(refund.getPassword())) {
 				return new ActionResult(false, "输入的操作密码错误，请重新输入");
 			}
-			//查询是否已退款
+			// 查询是否已退款
 			RefundOrder order = refundOrderMapper.selectByPrimaryKey(refund.getApplyNo());
-			if(null != order){
+			if (null != order) {
 				return new ActionResult(false, "该订单已申请退款，请勿重复操作");
 			}
 			// 查询受理订单

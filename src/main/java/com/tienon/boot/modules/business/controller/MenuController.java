@@ -26,13 +26,15 @@ public class MenuController {
 
 	@Autowired
 	MenuService menuService;
-	/** 
+
+	/**
 	 * TODO 查询受理类型
-	 * @return 
+	 * 
+	 * @return
 	 * @return List<MenuInfo> 返回类型
 	 */
 	@RequestMapping("/selectMenuInfo")
-	public List<MenuInfo> selectMenuList(){
+	public List<MenuInfo> selectMenuList() {
 		return menuService.selectMenuList();
 	}
 }

@@ -47,7 +47,7 @@ public class RefundOrderController {
 	 * @return Object 返回类型
 	 */
 	@PostMapping("/refundPayOrderByApplyNo")
-	public Object refundPayOrder( @RequestBody RefundOrder refund) {
+	public Object refundPayOrder(@RequestBody RefundOrder refund) {
 		return payOrderService.refundPayOrderByApplyNo(refund);
 	}
 }

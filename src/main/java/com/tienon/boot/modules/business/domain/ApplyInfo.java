@@ -23,90 +23,117 @@ public class ApplyInfo {
 	private String operationDate;// 操作时间
 	private String operator;// 操作人员
 	private String amt;// 受理总金额
-	private String deleteFlag;// 是否删除标记 0未删除   1已删除
+	private String deleteFlag;// 是否删除标记 0未删除 1已删除
 	private String applyNoEncrypt;// 申请序号加密
-	
+
 	public String getApplyNo() {
 		return applyNo;
 	}
+
 	public void setApplyNo(String applyNo) {
 		this.applyNo = applyNo;
 	}
+
 	public String getAcceptDate() {
 		return acceptDate;
 	}
+
 	public void setAcceptDate(String acceptDate) {
 		this.acceptDate = acceptDate;
 	}
+
 	public String getCompanyName() {
 		return companyName;
 	}
+
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
+
 	public String getHumanName() {
 		return humanName;
 	}
+
 	public void setHumanName(String humanName) {
 		this.humanName = humanName;
 	}
+
 	public String getIdCardNo() {
 		return idCardNo;
 	}
+
 	public void setIdCardNo(String idCardNo) {
 		this.idCardNo = idCardNo;
 	}
+
 	public String getTrademarkName() {
 		return trademarkName;
 	}
+
 	public void setTrademarkName(String trademarkName) {
 		this.trademarkName = trademarkName;
 	}
+
 	public String getAcceptType() {
 		return acceptType;
 	}
+
 	public void setAcceptType(String acceptType) {
 		this.acceptType = acceptType;
 	}
+
 	public String getAcceptTypeName() {
 		return acceptTypeName;
 	}
+
 	public void setAcceptTypeName(String acceptTypeName) {
 		this.acceptTypeName = acceptTypeName;
 	}
+
 	public String getAddType() {
 		return addType;
 	}
+
 	public void setAddType(String addType) {
 		this.addType = addType;
 	}
+
 	public String getOperationDate() {
 		return operationDate;
 	}
+
 	public void setOperationDate(String operationDate) {
 		this.operationDate = operationDate;
 	}
+
 	public String getOperator() {
 		return operator;
 	}
+
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
+
 	public String getAmt() {
 		return amt;
 	}
+
 	public void setAmt(String amt) {
 		this.amt = amt;
 	}
+
 	public String getDeleteFlag() {
 		return deleteFlag;
 	}
+
 	public void setDeleteFlag(String deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
+
 	public String getApplyNoEncrypt() {
 		return applyNoEncrypt;
 	}
+
 	public void setApplyNoEncrypt(String applyNoEncrypt) {
 		this.applyNoEncrypt = applyNoEncrypt;
 	}

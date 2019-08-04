@@ -20,15 +20,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
 import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
-import com.tienon.boot.modules.business.constant.CommonStatic;
+import com.tienon.boot.common.constant.CommonStatic;
+import com.tienon.boot.common.utils.ASCEUtils;
+import com.tienon.boot.common.utils.DateUtils;
+import com.tienon.boot.common.utils.PayUtil;
 import com.tienon.boot.modules.business.domain.ApplyInfo;
 import com.tienon.boot.modules.business.domain.DownloadInfo;
 import com.tienon.boot.modules.business.domain.PayOrder;
 import com.tienon.boot.modules.business.mapper.ApplyMapper;
 import com.tienon.boot.modules.business.mapper.PayOrderMapper;
-import com.tienon.boot.util.ASCEUtils;
-import com.tienon.boot.util.DateUtils;
-import com.tienon.boot.util.PayUtil;
 import com.tienon.boot.util.support.PageGrid;
 import com.tienon.boot.util.support.PageResult;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
@@ -119,7 +119,7 @@ public class ApplyService {
 	/**
 	 * TODO(生成申请序号yyyyMMDD-001)
 	 * 
-	 * @return 
+	 * @return
 	 * @return String 返回类型
 	 */
 	private synchronized String getApplyNo() {
@@ -128,10 +128,10 @@ public class ApplyService {
 			ApplyInfo info = applyMapper.getLastApplyNo();
 			if (null == info) {
 				return applyDate + "-00001";
-			}else{
+			} else {
 				int num = Integer.parseInt(info.getApplyNo().split("-")[1]) + 1;
 				return applyDate + "-" + (new DecimalFormat("00000").format(num));
-			} 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]");

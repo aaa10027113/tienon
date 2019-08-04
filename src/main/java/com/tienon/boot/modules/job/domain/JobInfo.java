@@ -52,20 +52,20 @@ public class JobInfo {
 	 */
 	private Integer times;
 
-    /**
-     * 创建时间
-     */
-    private String creatDate;
-    
-    /**
-     * 更新时间
-     */
-    private String updateDate;
+	/**
+	 * 创建时间
+	 */
+	private String creatDate;
 
-    /**
-     * 操作员
-     */
-    private String operator;
+	/**
+	 * 更新时间
+	 */
+	private String updateDate;
+
+	/**
+	 * 操作员
+	 */
+	private String operator;
 
 	public Long getLogId() {
 		return logId;

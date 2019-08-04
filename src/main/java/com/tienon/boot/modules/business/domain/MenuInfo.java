@@ -40,5 +40,4 @@ public class MenuInfo {
 		this.applyTypePrice = applyTypePrice;
 	}
 
-	
 }

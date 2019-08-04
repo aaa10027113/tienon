@@ -23,16 +23,17 @@ import com.tienon.boot.modules.business.mapper.MenuMapper;
 @Transactional
 public class MenuService {
 	private static Logger log = Logger.getLogger(MenuService.class);
-	
+
 	@Autowired
 	MenuMapper menuMapper;
-	
-	/** 
+
+	/**
 	 * TODO 查询受理类型菜单
-	 * @return 
+	 * 
+	 * @return
 	 * @return List<MenuInfo> 返回类型
 	 */
 	public List<MenuInfo> selectMenuList() {
-		return  menuMapper.selectMenuList();
+		return menuMapper.selectMenuList();
 	}
 }

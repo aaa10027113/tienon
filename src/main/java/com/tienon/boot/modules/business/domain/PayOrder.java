@@ -17,49 +17,63 @@ public class PayOrder {
 	private String status;// 支付状态
 	private String payOrderNo;// 支付订单号
 	private String deleteFlag;// 是否删除
+
 	public String getApplyNo() {
 		return applyNo;
 	}
+
 	public void setApplyNo(String applyNo) {
 		this.applyNo = applyNo;
 	}
+
 	public String getOrderNo() {
 		return orderNo;
 	}
+
 	public void setOrderNo(String orderNo) {
 		this.orderNo = orderNo;
 	}
+
 	public Date getPayTime() {
 		return payTime;
 	}
+
 	public void setPayTime(Date payTime) {
 		this.payTime = payTime;
 	}
+
 	public BigDecimal getAmt() {
 		return amt;
 	}
+
 	public void setAmt(BigDecimal amt) {
 		this.amt = amt;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getPayOrderNo() {
 		return payOrderNo;
 	}
+
 	public void setPayOrderNo(String payOrderNo) {
 		this.payOrderNo = payOrderNo;
 	}
+
 	public String getDeleteFlag() {
 		return deleteFlag;
 	}
+
 	public void setDeleteFlag(String deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PayOrder [applyNo=" + applyNo + ", orderNo=" + orderNo + ", payTime=" + payTime + ", amt=" + amt
