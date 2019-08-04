@@ -22,7 +22,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     // 商标列表
     var tableIns = table.render({
         elem: '#operateList',
-        url : 'business/apply/listApply',
+        url : '/business/apply/listApply',
         cellMinWidth : 95,
         page : true,
         limits : [10,15,20,25],
@@ -65,7 +65,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         ]]
     });
     
-  // 重新加载查询结果
+    // 重新加载查询结果
     $(".queryCommit").click(function(){
    	 var companyName=$("#companyName").val();
    	 var humanName=$("#humanName").val();
@@ -75,7 +75,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
    	 if(beginTime!="" && null!=beginTime){
    		 beginTime = beginTime+" 00:00:00";
    	 }
-   	 
    	 var endTime=$("#endTime").val();
    	 if(endTime!="" && null!=endTime){
    		endTime = endTime+" 23:59:59";
@@ -121,7 +120,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     $(function(){
     	$.ajax({
             type: "post",
-            url: "/menu/selectMenuInfo",
+            url: "/business/apply/selectMenuInfo",
             data: {},
             dataType: "json",
             headers: {
@@ -140,48 +139,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
              },   
         });
     });
-    
-    // 添加服务资源
-    function addServer(edit){
-    	
-        var index = layui.layer.open({
-            title : "服务资源",
-            type : 2,
-            anim: 3,
-            content : "roleServer.html",
-            success : function(layero, index){
-                var body = layui.layer.getChildFrame('body', index);
-                if(edit){
-                	
-                   body.find("#roleCode").val(edit.roleCode);
-                   body.find("#roleName").val(edit.roleName);
-                   form.render();
-                }
-            }
-        })
-        comExt.full(index);
-    }
-    
-    // 添加页面资源
-    function addPage(edit){
-        var index = layui.layer.open({
-            title : "页面资源",
-            type : 2,
-            anim: 3,
-            content : "pageResource.html",
-            success : function(layero, index){
-                var body = layui.layer.getChildFrame('body', index);
-                if(edit){
-                	
-                    body.find(".roleCode").val(edit.roleCode);
-                    body.find(".roleName").val(edit.roleName);
-                  
-                    form.render();
-                }
-            }
-        })
-        comExt.full(index);
-    }
     
     $(".servet_btn").click(function(){
     	 var checkStatus = table.checkStatus('roleListTable'),
@@ -204,7 +161,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
       }else{
         layer.msg("请选择一个需要操作的商标",{time:5*1000});
      }     
-    	
     })
     
     // 打印回执
@@ -226,7 +182,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
             title : "打印回执",
             type : 2,
             anim: 3,
-            content : "/views/system/operate/printData.html?"+data.applyNo,
+            content : "/views/business/printData.html?"+data.applyNo,
             success : function(layero, index){
                 var body = layer.getChildFrame('body', index);
                 comExt.fillInput(body,data,form);
@@ -260,7 +216,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     		title : "打印收据",
     		type : 2,
     		anim: 3,
-    		content : "/views/system/operate/printShouju.html?"+data.applyNo,
+    		content : "/views/business/printShouju.html?"+data.applyNo,
     		success : function(layero, index){
     			var body = layer.getChildFrame('body', index);
     			comExt.fillInput(body,data,form);
@@ -326,7 +282,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         if(layEvent === 'printShouju'){ // 打印回执
         	printShouju(data);
         }
-        
     });
     
     exports('role/roleList', {});

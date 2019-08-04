@@ -67,9 +67,10 @@ public class ApplyController {
 	}
 
 	/**
-	 * TODO 获取打印基础数据
-	 *
+	 * TODO(打印回执)
+	 * 
 	 * @param applyNo
+	 * @return 
 	 * @return Object 返回类型
 	 */
 	@PostMapping(value = "/printInfo")

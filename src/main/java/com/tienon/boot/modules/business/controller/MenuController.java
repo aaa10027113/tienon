@@ -21,7 +21,7 @@ import com.tienon.boot.modules.business.service.MenuService;
  * @date 2019/08/04
  */
 @RestController
-@RequestMapping("/menu")
+@RequestMapping("/business/menu")
 public class MenuController {
 
 	@Autowired
