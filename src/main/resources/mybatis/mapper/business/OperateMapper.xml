@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tienon.boot.business.ApplyMapper">
-	<resultMap id="BaseResultMap" type="com.tienon.boot.domain.ApplyInfo">
+<mapper namespace="com.tienon.boot.modules.business.mapper.ApplyMapper">
+	<resultMap id="BaseResultMap" type="com.tienon.boot.modules.business.domain.ApplyInfo">
 		<id column="APPLYNO" jdbcType="VARCHAR" property="applyNo" />
 		<result column="ACCEPTDATE" jdbcType="DATE" property="acceptDate" />
 		<result column="COMPANYNAME" jdbcType="VARCHAR" property="companyName" />
