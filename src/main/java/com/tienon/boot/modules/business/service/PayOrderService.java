@@ -39,7 +39,7 @@ import com.tienon.framework.supports.ActionResult;
  * @date 2019/08/05
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class PayOrderService {
 	private static Logger log = Logger.getLogger(PayOrderService.class);
 

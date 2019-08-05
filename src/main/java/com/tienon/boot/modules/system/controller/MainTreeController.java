@@ -15,10 +15,11 @@ import com.tienon.boot.domain.vo.MainMenuPage;
 import com.tienon.boot.service.sys.SessionService;
 import com.tienon.boot.util.SessionManage;
 
-/***
- * 获取左边目录菜单树
+/**
+ * @Description TODO(菜单Controller)
+ * 
  * @author xiongyi
- *
+ * @date 2019/08/05
  */
 @RestController
 @RequestMapping("maintree")
@@ -27,19 +28,32 @@ public class MainTreeController {
 	@Resource
 	SessionService sessionService;
 	
+	/**
+	 * TODO(获取主菜单)
+	 * 
+	 * @return 
+	 * @return Object 返回类型
+	 */
 	@PostMapping(path="/getMainMenu")
 	public Object getSessionData() {
 		LoginInfo loginInfo = SessionManage.getLoginInfoSession();
 		List<MainMenuPage> mainMenuPages = loginInfo.getMainMenu();
 		JSONArray jr = new JSONArray();
 		for (MainMenuPage mm : mainMenuPages) {
-			jr.add(MainMenuPage2layuitree(mm));
+			jr.add(mainMenuPagelayuitree(mm));
 		}
 
 		return jr;
 	}
-
-	private JSONObject MainMenuPage2layuitree(MainMenuPage mm) {
+   
+	/**
+	 * TODO(主菜单管理树)
+	 * 
+	 * @param mm
+	 * @return 
+	 * @return JSONObject 返回类型
+	 */
+	private JSONObject mainMenuPagelayuitree(MainMenuPage mm) {
 		JSONObject jo = new JSONObject();
 		jo.put("href", mm.getAttributes().get("uri"));
 		jo.put("title", mm.getText());
@@ -48,7 +62,7 @@ public class MainTreeController {
 		JSONArray jr = new JSONArray();
 		if(childrens!=null && childrens.size()>0) {
 			for (MainMenuPage m : childrens) {
-				jr.add(MainMenuPage2layuitree(m));
+				jr.add(mainMenuPagelayuitree(m));
 			}
 		}
 		jo.put("children", jr);

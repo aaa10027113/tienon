@@ -19,7 +19,13 @@ import com.tienon.boot.modules.business.domain.MenuInfo;
  */
 @Mapper
 public interface MenuMapper {
-
+    
+	/**
+	 * TODO(查询受理类型列表)
+	 * 
+	 * @return 
+	 * @return List<MenuInfo> 返回类型
+	 */
 	List<MenuInfo> selectMenuList();
 
 }

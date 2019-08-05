@@ -220,7 +220,7 @@ public class PayUtil {
 	 * @param Json
 	 * @return
 	 */
-	public static String doJsonPost(String urlPath, String Json) {
+	public static String doJsonPost(String urlPath, String json) {
 
 		String result = "";
 		BufferedReader reader = null;
@@ -239,12 +239,12 @@ public class PayUtil {
 			// conn.setRequestProperty("accept","*/*")此处为暴力方法设置接受所有类型，以此来防范返回415;
 			conn.setRequestProperty("accept", "application/json");
 			// 往服务器里面发送数据
-			if (Json != null) {
-				byte[] writebytes = Json.getBytes();
+			if (json != null) {
+				byte[] writebytes = json.getBytes();
 				// 设置文件长度
 				conn.setRequestProperty("Content-Length", String.valueOf(writebytes.length));
 				OutputStream outwritestream = conn.getOutputStream();
-				outwritestream.write(Json.getBytes());
+				outwritestream.write(json.getBytes());
 				outwritestream.flush();
 				outwritestream.close();
 			}

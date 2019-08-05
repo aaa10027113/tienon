@@ -1,7 +1,5 @@
 package com.tienon.boot.modules.job.service;
 
-import com.alibaba.fastjson.JSON;
-import com.tienon.EjxError;
 import com.tienon.boot.modules.job.domain.JobInfo;
 import com.tienon.boot.modules.job.mapper.JobMapper;
 import com.tienon.boot.util.support.PageGrid;
@@ -17,6 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @Description TODO(定时器Service)
+ * 
+ * @author lilei
+ * @date 2019/08/05
+ */
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class JobService {
