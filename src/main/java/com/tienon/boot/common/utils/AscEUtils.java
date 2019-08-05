@@ -12,8 +12,8 @@ import com.tienon.boot.common.constant.CommonStatic;
  * @Description 加密解密工具类
  * @date 2019/07/24日
  */
-public class ASCEUtils {
-	private static ASCEncrypt ascEncrypt = new ASCEncrypt(CommonStatic.KEY);
+public class AscEUtils {
+	private static AscEncrypt ascEncrypt = new AscEncrypt(CommonStatic.KEY);
 
 	public static String encrypt(String msg) {
 		return ascEncrypt.encrypt(msg);

@@ -21,7 +21,7 @@ import org.springframework.util.ResourceUtils;
 import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
 import com.tienon.boot.common.constant.CommonStatic;
-import com.tienon.boot.common.utils.ASCEUtils;
+import com.tienon.boot.common.utils.AscEUtils;
 import com.tienon.boot.common.utils.DateUtils;
 import com.tienon.boot.common.utils.PayUtil;
 import com.tienon.boot.modules.business.domain.ApplyInfo;
@@ -169,7 +169,7 @@ public class ApplyService {
 	public Object getApplyByNo(String applyNo) {
 		try {
 			log.info("密文applyNo=" + applyNo);
-			applyNo = ASCEUtils.decrypt(applyNo);
+			applyNo = AscEUtils.decrypt(applyNo);
 			log.info("明文applyNo" + applyNo);
 			ApplyInfo info = applyMapper.selectApplyByNo(applyNo);
 			if (null == info) {
@@ -197,7 +197,7 @@ public class ApplyService {
 				return new ActionResult(false, "根据受理编号，未查询到受理商标信息！");
 			}
 			String apply = info.getApplyNo();
-			info.setApplyNoEncrypt(ASCEUtils.encrypt(apply));
+			info.setApplyNoEncrypt(AscEUtils.encrypt(apply));
 			return new ActionResult(true, "查询成功", info);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -299,7 +299,7 @@ public class ApplyService {
 					+ "月" + end[2] + "日财务收费汇总表 -.xlsx";
 			response.setHeader("Content-Disposition",
 					"attachment; filename=" + new String(fileName.getBytes("utf-8"), "ISO8859-1"));
-			Map<String, Object> beans = new HashMap<String, Object>();
+			Map<String, Object> beans = new HashMap<String, Object>(16);
 			List<DownloadInfo> listInfo = new ArrayList<DownloadInfo>();
 			double sum = 0.00;
 			int i = 0;

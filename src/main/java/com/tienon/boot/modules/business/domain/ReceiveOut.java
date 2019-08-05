@@ -9,25 +9,39 @@ import java.math.BigDecimal;
  * @date 2019/08/05
  */
 public class ReceiveOut {
-	// 商品订单号
+	/**
+	 * 商品订单号
+	 */
 	private String Cmdty_Ordr_No;
-	// 支付订单号
+	/**
+	 * 支付订单号
+	 */
 	private String Py_Ordr_No;
-	// 订单生成时间
+	/**
+	 * 订单生成时间
+	 */
 	private String Ordr_Gen_Tm;
-	// 订单超时时间
+	/**
+	 * 订单超时时间
+	 */
 	private String Ordr_Ovtm_Tm;
-	// 收银台URL
+	/**
+	 * 收银台URL
+	 */
 	private String Py_URL;
-	// 订单状态代码
+	/**
+	 * 订单状态代码
+	 */
 	private String Ordr_StCd;
-
+    /**
+     * 费项项目金额
+     */
 	public BigDecimal TAmt;
-	// 费项代码
 	public String Rmrk1;
-	// 费项项目金额
 	public String Rmrk2;
-	// 签名信息
+	/**
+	 * 签名信息
+	 */
 	private String SIGN_INF;
 
 	public String getCmdty_Ordr_No() {

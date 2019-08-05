@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
 import com.tienon.boot.common.constant.CommonStatic;
-import com.tienon.boot.common.utils.ASCEUtils;
+import com.tienon.boot.common.utils.AscEUtils;
 import com.tienon.boot.common.utils.PayUtil;
 import com.tienon.boot.modules.business.domain.ApplyInfo;
 import com.tienon.boot.modules.business.domain.PayOrder;
@@ -62,7 +62,7 @@ public class PayOrderService {
 		PayOrder payOrder = new PayOrder();
 		ActionResult actionResult = new ActionResult();
 		try {
-			applyNo = ASCEUtils.decrypt(applyNo);
+			applyNo = AscEUtils.decrypt(applyNo);
 			ApplyInfo info = applyMapper.selectApplyByNo(applyNo);
 			if (null == info) {
 				actionResult.setMsg("不能支付，原因：根据申请编号找不到支付订单！");
@@ -185,7 +185,7 @@ public class PayOrderService {
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			String apply = payOrder.getApplyNo();
 			log.info("加密后的applyNO=" + applyNo);
-			payOrder.setApplyNo(ASCEUtils.encrypt(apply));
+			payOrder.setApplyNo(AscEUtils.encrypt(apply));
 			actionResult = new ActionResult(true, "查询成功", payOrder);
 		} catch (Exception e) {
 			log.error("查询支付订单出现异常：[" + e.getMessage() + "]");
@@ -204,7 +204,7 @@ public class PayOrderService {
 		PayOrder payOrder = null;
 		ActionResult actionResult = null;
 		try {
-			applyNo = ASCEUtils.decrypt(applyNo);
+			applyNo = AscEUtils.decrypt(applyNo);
 			log.info("解密后的applyNO=" + applyNo);
 			payOrder = payOrderMapper.selectByPrimaryKey(applyNo);
 			actionResult = new ActionResult(true, "查询成功", payOrder);

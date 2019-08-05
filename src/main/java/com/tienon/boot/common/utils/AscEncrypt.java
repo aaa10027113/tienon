@@ -18,11 +18,11 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.SecureRandom;
 
-public class ASCEncrypt {
+public class AscEncrypt {
 
 	private String key;
 
-	public ASCEncrypt(String key) {
+	public AscEncrypt(String key) {
 
 		this.key = key;
 	}

@@ -27,15 +27,15 @@ import com.tienon.auto.conf.FilterConfiguration;
 @EnableScheduling
 @ImportResource({ "classpath:spring/spring-ejx4component-pro.xml" })
 @Import({ FilterConfiguration.class })
-public class sbzcApplication extends SpringBootServletInitializer implements WebApplicationInitializer {
+public class SbzcApplication extends SpringBootServletInitializer implements WebApplicationInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(sbzcApplication.class, args);
+		SpringApplication.run(SbzcApplication.class, args);
 
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(sbzcApplication.class);
+		return application.sources(SbzcApplication.class);
 	}
 }

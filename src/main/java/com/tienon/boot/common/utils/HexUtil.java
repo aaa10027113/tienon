@@ -68,8 +68,6 @@ public class HexUtil {
 		}
 
 		final byte[] out = new byte[len >> 1];
-
-		// two characters form the hex value.
 		for (int i = 0, j = 0; j < len; i++) {
 			int f = toDigit(data[j], j) << 4;
 			j++;
@@ -100,7 +98,6 @@ public class HexUtil {
 	protected static char[] encodeHex(final byte[] data, final char[] toDigits) {
 		final int l = data.length;
 		final char[] out = new char[l << 1];
-		// two characters form the hex value.
 		for (int i = 0, j = 0; i < l; i++) {
 			out[j++] = toDigits[(0xF0 & data[i]) >>> 4];
 			out[j++] = toDigits[0x0F & data[i]];
