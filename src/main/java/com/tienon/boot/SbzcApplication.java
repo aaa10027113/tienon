@@ -1,6 +1,7 @@
 package com.tienon.boot;
 
 import org.springframework.boot.SpringApplication;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -11,16 +12,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.WebApplicationInitializer;
 
 import com.tienon.auto.conf.FilterConfiguration;
-
-/***
- * import参数 1、加载流程：Ejx4easConfig 2、加载流程冲正机制：EasReversConf
- * 3、默认登录权限控制FilterConfiguration.class
- * 
- * ServletComponentScan：扫描servlet EnableScheduling：启动定时任�?
- * ImportResource：还在xml配置文件，不常用
- * 
- * @author xiongyi
- *
+/**
+ * @Description TODO(启动)
+ * @author xieyongqiang
+ * @date 2019/08/05
  */
 @SpringBootApplication
 @ServletComponentScan
@@ -31,7 +26,6 @@ public class SbzcApplication extends SpringBootServletInitializer implements Web
 
 	public static void main(String[] args) {
 		SpringApplication.run(SbzcApplication.class, args);
-
 	}
 
 	@Override

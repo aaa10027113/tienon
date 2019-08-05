@@ -92,7 +92,7 @@ public class PayOrderService {
 			// 操作员号
 			bo.setOpr_No(info.getOperator());
 			// 用户ID
-			bo.setUsr_ID("13100112233");
+			bo.setUsr_ID(CommonStatic.FEE_ITM_CD);
 			// 客户名称
 			bo.setCst_Nm(info.getHumanName());
 			// 证件号码
@@ -111,9 +111,9 @@ public class PayOrderService {
 			List<SendSubInBo1> list1 = new ArrayList<SendSubInBo1>();
 			SendSubInBo1 subInvo1 = new SendSubInBo1();
 			// 序号
-			subInvo1.setSN("1");
+			subInvo1.setSN(CommonStatic.SN);
 			// 费项代码
-			subInvo1.setFee_Itm_Cd("320100100001");
+			subInvo1.setFee_Itm_Cd(CommonStatic.FEE_ITM_CD);
 			// 此费项缴费金额
 			subInvo1.setFee_Itm_Prj_Amt(new BigDecimal(0.01));
 			subInvo1.setRmrk1("");

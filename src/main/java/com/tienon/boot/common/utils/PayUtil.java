@@ -104,15 +104,11 @@ public class PayUtil {
 	 * 生成原串
 	 */
 	public static String createSign(String json, Set<String> set) {
-
 		SortedMap<String, Object> sortedMap = new TreeMap<String, Object>();
-
 		// 转换JSON对象
 		JSONObject jsonObject = JSONObject.parseObject(json);
-
 		// 遍历循坏外字段
 		for (Entry<String, Object> entry : jsonObject.entrySet()) {
-
 			if (null != entry.getValue() && !"".equals(entry.getValue()) && !set.contains(entry.getKey())) {
 				sortedMap.put(entry.getKey(), entry.getValue());
 			}
@@ -123,12 +119,10 @@ public class PayUtil {
 			Iterator<String> it = set.iterator();
 			while (it.hasNext()) {
 				String listKey = it.next();
-
 				String listValue = processingSet(jsonObject, listKey);
 				sortedMap.put(listKey, listValue);
 			}
 		}
-
 		// 字段拼接
 		String sign = splicingSign("UTF-8", sortedMap, set);
 		sign = sign.substring(0, sign.length() - 1);
@@ -143,14 +137,11 @@ public class PayUtil {
 		Set<String> set = new HashSet<String>();
 		// 返回拼接的原串
 		StringBuffer sbuffer = new StringBuffer();
-
 		// 根据key获取集合json字符串
 		String list = jsonObj.getString(listKey);
-		// System.out.println("获取List json字符串----------" + list);
 		if (list != null && list != "") {
 			// list转换对象
 			JSONArray jarr = JSONArray.parseArray(list);
-
 			// 创建json集合
 			List<JSONObject> jsonValues = new ArrayList<JSONObject>();
 			for (int i = 0; i < jarr.size(); i++) {
@@ -173,21 +164,16 @@ public class PayUtil {
 			for (JSONObject j : jsonValues) {
 				sortedMap = new TreeMap<String, Object>();
 				for (Entry<String, Object> entry : j.entrySet()) {
-
 					if (null != entry.getValue() && !"".equals(entry.getValue())) {
-
 						sortedMap.put(entry.getKey(), entry.getValue());
 					}
 				}
 				s = splicingSign("UTF-8", sortedMap, set);
 				sbuffer.append(s);
 			}
-
 			return sbuffer.toString();
 		}
-
 		return sbuffer.toString();
-
 	}
 
 	/**
@@ -221,7 +207,6 @@ public class PayUtil {
 	 * @return
 	 */
 	public static String doJsonPost(String urlPath, String json) {
-
 		String result = "";
 		BufferedReader reader = null;
 		try {
@@ -248,15 +233,11 @@ public class PayUtil {
 				outwritestream.flush();
 				outwritestream.close();
 			}
-
 			log.info("http返回码[" + conn.getResponseCode() + "]");
-
 			if (conn.getResponseCode() == 200) {
-
 				reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 				result = reader.readLine();
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
