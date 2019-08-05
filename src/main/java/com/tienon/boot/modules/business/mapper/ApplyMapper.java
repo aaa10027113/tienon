@@ -20,65 +20,66 @@ import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 public interface ApplyMapper {
 
 	/**
-	 * TODO(查询商标列表)
+	 * 查询商标列表
 	 * 
 	 * @param searchCondition
 	 * @param pageBounds
 	 * @return
 	 * @return PageList<ApplyInfo> 返回类型
 	 */
-	PageList<ApplyInfo> listApply(Object searchCondition, PageBounds pageBounds);
-    
+	PageList<ApplyInfo> selectApply(Object searchCondition, PageBounds pageBounds);
+
 	/**
+	 * 生成申请序号
 	 * 
-	 * TODO(生成申请序号)
-	 * @return 
+	 * @return
 	 * @return ApplyInfo 返回类型
 	 */
 	ApplyInfo getLastApplyNo();
-    
+
 	/**
+	 * 新增商标信息
 	 * 
-	 * TODO(新增商标信息)
 	 * @param info
-	 * @return 
+	 * @return
 	 * @return int 返回类型
 	 */
-	int insertApply(ApplyInfo info);
-    
+	int insert(ApplyInfo info);
+
 	/**
+	 * 删除商标信息
 	 * 
-	 * TODO(删除商标信息)
 	 * @param list
-	 * @return 
+	 * @return
 	 * @return int 返回类型
 	 */
-	int deleteByPrimaryKey(List<String> list);
-    
+	int updateByapplyNo(List<String> list);
+
 	/**
+	 * 根据申请编号，查询商标信息
 	 * 
-	 * TODO(根据申请编号，查询商标信息)
 	 * @param applyNo
-	 * @return 
+	 * @return
 	 * @return ApplyInfo 返回类型
 	 */
-	ApplyInfo printInfo(@Param("applyNo") String applyNo);
-    
+	ApplyInfo selectApplyByNo(@Param("applyNo") String applyNo);
+
 	/**
-	 * 
 	 * TODO(打印)
+	 * 
 	 * @param searchCondition
-	 * @return 
+	 * @return
 	 * @return PageList<ApplyInfo> 返回类型
 	 */
 	PageList<ApplyInfo> reportList(Map<String, Object> searchCondition);
-    
+
 	/**
 	 * 
 	 * TODO(下载)
+	 * 
 	 * @param beginTime
 	 * @param endTime
-	 * @return 
+	 * @return
 	 * @return List<ApplyInfo> 返回类型
 	 */
 	List<ApplyInfo> downloadList(@Param("beginTime") String beginTime, @Param("endTime") String endTime);

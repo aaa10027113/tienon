@@ -40,6 +40,7 @@ import com.tienon.boot.modules.business.mapper.RefundOrderMapper;
  */
 @Component
 @EnableScheduling
+@Transactional(rollbackFor = Exception.class)
 public class OrderQuery {
 
 	private final Logger log = LoggerFactory.getLogger(OrderQuery.class);
@@ -55,7 +56,6 @@ public class OrderQuery {
 	 * @return
 	 * @return void 返回类型
 	 */
-	@Transactional
 	public void queryPayOrder() {
 		PayOrder queryPayOrder = new PayOrder();
 		queryPayOrder.setPayTime(DateUtils.addDays(new Date(), -3));

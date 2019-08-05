@@ -33,7 +33,7 @@ import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 import com.tienon.framework.supports.ActionResult;
 
 /**
- * @Description TODO(支付Service)
+ * @Description TODO(支付订单)
  * 
  * @author wangqingquan
  * @date 2019/08/05
@@ -63,7 +63,7 @@ public class PayOrderService {
 		ActionResult actionResult = new ActionResult();
 		try {
 			applyNo = ASCEUtils.decrypt(applyNo);
-			ApplyInfo info = applyMapper.printInfo(applyNo);
+			ApplyInfo info = applyMapper.selectApplyByNo(applyNo);
 			if (null == info) {
 				actionResult.setMsg("不能支付，原因：根据申请编号找不到支付订单！");
 				actionResult.setSuccess(false);

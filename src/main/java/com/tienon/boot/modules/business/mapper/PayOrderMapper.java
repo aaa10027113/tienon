@@ -97,5 +97,5 @@ public interface PayOrderMapper {
 	 * @return 
 	 * @return int 返回类型
 	 */
-	int deleteByPrimaryKeyOnPay(List<String> list);
+	int updateByapplyNo(List<String> list);
 }

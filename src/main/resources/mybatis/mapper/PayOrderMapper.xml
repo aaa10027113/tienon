@@ -115,7 +115,6 @@
     where applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>
   
-  <!-- 根据查询条件查询订单支付状态列表 -->
   <select id="queryPayOrderList" parameterType="com.tienon.boot.modules.business.domain.PayOrder" resultMap="BaseResultMap">
 		SELECT 
 			<include refid="Base_Column_List" />
@@ -128,11 +127,13 @@
 		</where>
 		ORDER BY if(ISNULL(PAYTIME),0,1),PAYTIME,APPLYNO  DESC
 	</select>
-	<delete id="deleteByPrimaryKeyOnPay" parameterType="java.util.List">
+	
+	<delete id="updateByapplyNo" parameterType="java.util.List">
 		UPDATE TB_PAY_ORDER SET DELETEFLAG = '1'  WHERE APPLYNO IN (
         <foreach collection="list" item="applyNo" separator=",">
             #{applyNo}
         </foreach>
         )   AND (STATUS = '01' or STATUS = '05') ;
 	</delete>
+	
 </mapper>
