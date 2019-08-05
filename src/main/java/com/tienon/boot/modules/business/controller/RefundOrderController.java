@@ -6,17 +6,16 @@ package com.tienon.boot.modules.business.controller;
 
 import javax.annotation.Resource;
 
-import com.alibaba.fastjson.JSON;
 import org.springframework.web.bind.annotation.*;
 
 import com.tienon.boot.modules.business.domain.RefundOrder;
 import com.tienon.boot.modules.business.service.RefundOrderService;
 import com.tienon.boot.util.support.PageGrid;
 
-import java.util.Map;
 
 /**
  * @author zouhuaqiang
+ * 
  * @Description TODO
  * @date 2019/07/19日
  */
@@ -24,7 +23,7 @@ import java.util.Map;
 @RequestMapping("/refundOrder")
 public class RefundOrderController {
 	@Resource
-	RefundOrderService payOrderService;
+	RefundOrderService refundOrderService;
 
 	/**
 	 * TODO 查询商标列表
@@ -35,7 +34,7 @@ public class RefundOrderController {
 	 */
 	@RequestMapping("/queryList")
 	public Object queryList(@RequestBody PageGrid pg) {
-		return payOrderService.queryList(pg);
+		return refundOrderService.queryList(pg);
 	}
 
 	/**
@@ -48,6 +47,6 @@ public class RefundOrderController {
 	 */
 	@PostMapping("/refundPayOrderByApplyNo")
 	public Object refundPayOrder(@RequestBody RefundOrder refund) {
-		return payOrderService.refundPayOrderByApplyNo(refund);
+		return refundOrderService.refundPayOrderByApplyNo(refund);
 	}
 }

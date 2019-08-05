@@ -23,7 +23,7 @@ import com.tienon.boot.util.support.PageGrid;
 public class PayOrderController {
 
 	@Autowired
-	PayOrderService paymentOnlieService;
+	PayOrderService payOrderService;
     
 	/**
 	 * TODO(发送在线支付信息)
@@ -34,7 +34,7 @@ public class PayOrderController {
 	 */
 	@RequestMapping("/sendPayMessage")
 	public Object sendPayMessage(@RequestParam("applyNo") String applyNo) {
-		return paymentOnlieService.sendPaymessage(applyNo);
+		return payOrderService.sendPaymessage(applyNo);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class PayOrderController {
 	 */
 	@RequestMapping("/queryPayOrderList")
 	public Object queryPayOrderList(@RequestBody PageGrid pageGrid) {
-		return paymentOnlieService.queryPayOrderList(pageGrid);
+		return payOrderService.queryPayOrderList(pageGrid);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class PayOrderController {
 	 */
 	@RequestMapping("/queryByApplyNo")
 	public Object queryPayOrderList(@RequestParam("applyNo") String applyNo) {
-		return paymentOnlieService.queryByApplyNo(applyNo);
+		return payOrderService.queryByApplyNo(applyNo);
 	}
 
     /**
@@ -70,6 +70,6 @@ public class PayOrderController {
      */
 	@RequestMapping("/queryByApplyNoInfo")
 	public Object queryPayOrderListInfo(@RequestParam("applyNo") String applyNo) {
-		return paymentOnlieService.queryByApplyNoInfo(applyNo);
+		return payOrderService.queryByApplyNoInfo(applyNo);
 	}
 }
