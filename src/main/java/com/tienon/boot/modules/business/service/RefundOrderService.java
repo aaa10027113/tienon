@@ -26,11 +26,11 @@ import com.tienon.boot.util.support.PageResult;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 import com.tienon.framework.supports.ActionResult;
-
 /**
- * @author zouhuaqiang
- * @Description TODO
- * @date 2019/07/19日
+ * @Description TODO(退款Service)
+ * 
+ * @author 
+ * @date 2019/08/05
  */
 @Service
 public class RefundOrderService {
@@ -38,7 +38,6 @@ public class RefundOrderService {
 
 	@Resource
 	RefundOrderMapper refundOrderMapper;
-
 	@Autowired
 	PayOrderMapper payOrderMapper;
 
@@ -47,9 +46,7 @@ public class RefundOrderService {
 		int pageSize = pg.getRows();
 		PageBounds pageBounds = new PageBounds(page, pageSize, true);
 		try {
-			// 查询
 			PageList<RefundOrder> pageList = refundOrderMapper.selectBySelective(pg.getSearchCondition(), pageBounds);
-			// 获取查询结果总条数
 			int total = pageList.getPaginator().getTotalCount();
 			return new ActionResult(new PageResult(total, pageList));
 		} catch (Exception e) {
@@ -102,7 +99,7 @@ public class RefundOrderService {
 				refundOrder.setRefundReasons(refund.getRefundReasons());
 				refundOrder.setRefundTime(new Date());
 				refundOrder.setAmt(payOrder.getAmt());
-				refundOrder.setStatus("01");// 退款受理中
+				refundOrder.setStatus("01");
 
 				// 插入一条受理记录
 				i = refundOrderMapper.insert(refundOrder);

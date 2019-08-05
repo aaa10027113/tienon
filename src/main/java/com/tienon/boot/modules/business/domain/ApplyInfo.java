@@ -11,20 +11,62 @@ package com.tienon.boot.modules.business.domain;
  * @date 2019/08/04
  */
 public class ApplyInfo {
-	private String applyNo;// 申请序号
-	private String acceptDate;// 受理日期
-	private String companyName;// 公司企业名称
-	private String humanName;// 自然人名称
-	private String idCardNo;// 身份证号
-	private String trademarkName;// 商标名称
-	private String acceptType;// 受理类型
-	private String acceptTypeName;// 受理类型名称
-	private String addType;// 类别
-	private String operationDate;// 操作时间
-	private String operator;// 操作人员
-	private String amt;// 受理总金额
-	private String deleteFlag;// 是否删除标记 0未删除 1已删除
-	private String applyNoEncrypt;// 申请序号加密
+	/**
+	 * 申请序号
+	 */
+	private String applyNo;
+	/**
+	 * 受理日期
+	 */
+	private String acceptDate; 
+	/**
+	 * 公司企业名称
+	 */
+	private String companyName;
+	/**
+	 * 自然人名称
+	 */
+	private String humanName;
+	/**
+	 *  身份证号
+	 */
+	private String idCardNo;
+	/**
+	 * 商标名称
+	 */
+	private String trademarkName;
+	/**
+	 * 受理类型
+	 */
+	private String acceptType;
+	/**
+	 * 受理类型名称
+	 */
+	private String acceptTypeName;
+	/**
+	 * 类别
+	 */
+	private String addType;
+	/**
+	 * 操作时间
+	 */
+	private String operationDate;
+	/**
+	 * 操作人员
+	 */
+	private String operator;
+	/**
+	 * 受理总金额
+	 */
+	private String amt;
+	/**
+	 * 是否删除标记 0未删除 1已删除
+	 */
+	private String deleteFlag;
+	/**
+	 * 申请序号加密
+	 */
+	private String applyNoEncrypt;
 
 	public String getApplyNo() {
 		return applyNo;

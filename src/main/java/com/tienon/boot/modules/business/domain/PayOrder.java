@@ -10,13 +10,40 @@ import java.util.Date;
  * @date 2019/08/04
  */
 public class PayOrder {
-	private String applyNo;// 申请序号
-	private String orderNo;// 订单编号
-	private Date payTime;// 支付时间
-	private BigDecimal amt;// 支付金额
-	private String status;// 支付状态
-	private String payOrderNo;// 支付订单号
-	private String deleteFlag;// 是否删除
+	/**
+	 * 申请序号
+	 */
+	private String applyNo;
+	
+	/**
+	 * 订单编号
+	 */
+	private String orderNo;
+	
+	/**
+	 * 支付时间
+	 */
+	private Date payTime;
+	
+	/**
+	 * 支付金额
+	 */
+	private BigDecimal amt;
+	
+	/**
+	 * 支付状态
+	 */
+	private String status;
+	
+	/**
+	 * 支付订单号
+	 */
+	private String payOrderNo;
+	
+	/**
+	 * 是否删除
+	 */
+	private String deleteFlag;
 
 	public String getApplyNo() {
 		return applyNo;

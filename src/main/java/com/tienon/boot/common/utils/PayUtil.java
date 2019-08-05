@@ -27,13 +27,20 @@ import org.apache.log4j.Logger;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ccb.govpay.sign.SHA256withRSA;
+import com.tienon.boot.common.constant.CommonStatic;
 import com.tienon.boot.modules.business.domain.ReceiveOutBo;
 import com.tienon.boot.modules.business.domain.SendInBo;
-import com.tienon.boot.modules.business.service.PaymentOnlieService;
+import com.tienon.boot.modules.business.service.PayOrderService;
 
+/**
+ * @Description TODO(PayUtil)
+ * 
+ * @author wangqingquan
+ * @date 2019/08/05
+ */
 public class PayUtil {
 
-	private static Logger log = Logger.getLogger(PaymentOnlieService.class);
+	private static Logger log = Logger.getLogger(PayOrderService.class);
 
 	/**
 	 * 生成支付订单
@@ -154,9 +161,9 @@ public class PayUtil {
 			Collections.sort(jsonValues, new Comparator<JSONObject>() {
 				@Override
 				public int compare(JSONObject a, JSONObject b) {
-					String valA = a.getString("SN");
-					String valB = b.getString("SN");
-					return valA.compareTo(valB);
+					String vala = a.getString("SN");
+					String valb = b.getString("SN");
+					return vala.compareTo(valb);
 				}
 			});
 
@@ -198,7 +205,7 @@ public class PayUtil {
 			if (set.contains(k)) {
 				sbuffer.append(v);
 			} else {
-				if (!k.equals("SIGN_INF")) {
+				if (!k.equals(CommonStatic.SIGN_INF)) {
 					sbuffer.append(k + "=" + v + "&");
 				}
 			}

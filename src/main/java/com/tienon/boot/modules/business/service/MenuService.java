@@ -20,7 +20,7 @@ import com.tienon.boot.modules.business.mapper.MenuMapper;
  * @date 2019/07/02
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class MenuService {
 	private static Logger log = Logger.getLogger(MenuService.class);
 

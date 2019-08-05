@@ -1,5 +1,11 @@
 package com.tienon.boot.common.utils;
 
+/**
+ * @Description TODO(HexUtil)
+ * 
+ * @author lilei
+ * @date 2019/08/05
+ */
 public class HexUtil {
 	private static final char[] DIGITS_LOWER = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
 			'e', 'f' };

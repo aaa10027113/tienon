@@ -44,7 +44,7 @@ public class ASCEncrypt {
 		byte[] bytes = HexUtil.hex2Bytes(string);
 		String aesDecrypt = null;
 		try {
-			String string2 = new String(bytes, "utf-8"); // 转回来要注意编码的问题
+			String string2 = new String(bytes, "utf-8");
 			aesDecrypt = aesDecrypt(string2, key);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

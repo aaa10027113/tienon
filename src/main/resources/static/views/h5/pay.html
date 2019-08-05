@@ -204,7 +204,7 @@
 						$("#acceptTypeName").text(res.obj.acceptTypeName);
 						
 					},"json")
-					$.post("/business/paymentOnline/queryByApplyNoInfo",{applyNo:applyNo},function(res){
+					$.post("/business/pay/queryByApplyNoInfo",{applyNo:applyNo},function(res){
 						if(!res.success){
 							alert(res.msg);
 							return false;
@@ -214,7 +214,7 @@
 					
 					$(".my-btn").click(function(){
 						$(".loading").css("display","flex");
-						$.post("/business/paymentOnline/sendPayMessage",{applyNo:applyNo},function(res){
+						$.post("/business/pay/sendPayMessage",{applyNo:applyNo},function(res){
 							$(".loading").css("display","none");
 							if(!res.success){
 								alert(res.msg);

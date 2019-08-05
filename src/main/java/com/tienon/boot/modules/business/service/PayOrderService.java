@@ -1,5 +1,8 @@
+/**
+ * Copyright by www.tienon.com
+ * All right reserved.
+ */
 package com.tienon.boot.modules.business.service;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +32,16 @@ import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 import com.tienon.framework.supports.ActionResult;
 
+/**
+ * @Description TODO(支付Service)
+ * 
+ * @author wangqingquan
+ * @date 2019/08/05
+ */
 @Service
 @Transactional
-public class PaymentOnlieService {
-	private static Logger log = Logger.getLogger(PaymentOnlieService.class);
+public class PayOrderService {
+	private static Logger log = Logger.getLogger(PayOrderService.class);
 
 	@Autowired
 	PaymentOnlineMapper paymentOnlineMapper;
@@ -53,43 +62,60 @@ public class PaymentOnlieService {
 		PayOrder payOrder = new PayOrder();
 		ActionResult actionResult = new ActionResult();
 		try {
-			log.info("在线支付解密数据入参applyNo=" + applyNo);
 			applyNo = ASCEUtils.decrypt(applyNo);
-			log.info("在线支付解密数据出参applyNo=" + applyNo);
 			ApplyInfo info = applyMapper.printInfo(applyNo);
-			log.info("获取支付对象信息出参：" + JSON.toJSONString(info));
 			if (null == info) {
-				actionResult.setMsg("根据申请序号未获取到数据");
+				actionResult.setMsg("不能支付，原因：根据申请编号找不到支付订单！");
 				actionResult.setSuccess(false);
 				return actionResult;
 			}
-			bo.setUrl(CommonStatic.PAY_SEND_URL);// 发送地址
+			// 发送地址
+			bo.setUrl(CommonStatic.PAY_SEND_URL);
+			// 支付秘钥
 			bo.setAntherKek(CommonStatic.ANTHER_KEY);
-			bo.setVNo(CommonStatic.PAY_VERSION);// 版本号
-			bo.setSgn_Algr(CommonStatic.SIGNATURE_ALGORITHM);// 签名算法
-			bo.setIttParty_Stm_ID(CommonStatic.ITTPARTY_STM_ID);// 发起渠道编号
-			bo.setPy_Chnl_Cd(CommonStatic.PAY_CHANNEL_CODE);// 支付渠道代码
-			bo.setRqs_Py_Tp(CommonStatic.REQUEST_PAY_TYPE);// 请求支付类型
-			bo.setOnLn_Ofln_IndCd(CommonStatic.ONLINE_OFFLINE_CODE);// 线上线下标志代码
-			bo.setCrdt_Tp(CommonStatic.CERTIFICATE_TYPE);// 证件类型
-			bo.setCcy(CommonStatic.MONEY_TYPE);// 币种
-
-			bo.setOpr_No(info.getOperator());// 操作员号
-			bo.setUsr_ID("13100112233");// 用户ID
-			bo.setCst_Nm(info.getHumanName());// 客户名称
-			bo.setCrdt_No(info.getIdCardNo());// 证件号码
-			bo.setMblPh_No("");// 手机号码
-			bo.setEmail("");// 电子邮箱
-			bo.setPgFc_Ret_URL_Adr("http://www.baidu.com");// 页面返回URL地址
-			bo.setTAmt(new BigDecimal(0.01));// 总金额
+			// 版本号
+			bo.setVNo(CommonStatic.PAY_VERSION);
+			// 签名算法
+			bo.setSgn_Algr(CommonStatic.SIGNATURE_ALGORITHM);
+			// 发起渠道编号
+			bo.setIttParty_Stm_ID(CommonStatic.ITTPARTY_STM_ID);
+			// 支付渠道代码
+			bo.setPy_Chnl_Cd(CommonStatic.PAY_CHANNEL_CODE);
+			// 请求支付类型
+			bo.setRqs_Py_Tp(CommonStatic.REQUEST_PAY_TYPE);
+			// 线上线下标志代码
+			bo.setOnLn_Ofln_IndCd(CommonStatic.ONLINE_OFFLINE_CODE);
+			// 证件类型
+			bo.setCrdt_Tp(CommonStatic.CERTIFICATE_TYPE);
+			// 币种
+			bo.setCcy(CommonStatic.MONEY_TYPE);
+			// 操作员号
+			bo.setOpr_No(info.getOperator());
+			// 用户ID
+			bo.setUsr_ID("13100112233");
+			// 客户名称
+			bo.setCst_Nm(info.getHumanName());
+			// 证件号码
+			bo.setCrdt_No(info.getIdCardNo());
+			// 手机号码
+			bo.setMblPh_No("");
+			// 电子邮箱
+			bo.setEmail("");
+			// 页面返回URL地址
+			bo.setPgFc_Ret_URL_Adr("http://www.baidu.com");
+			// 总金额
+			bo.setTAmt(new BigDecimal(0.01));
 			bo.setRmrk1("");
 			bo.setRmrk2("");
 
 			List<SendSubInBo1> list1 = new ArrayList<SendSubInBo1>();
 			SendSubInBo1 subInvo1 = new SendSubInBo1();
-			subInvo1.setSN("1");// 序号
-			subInvo1.setFee_Itm_Cd("320100100001");// 费项代码
-			subInvo1.setFee_Itm_Prj_Amt(new BigDecimal(0.01));// 此费项缴费金额
+			// 序号
+			subInvo1.setSN("1");
+			// 费项代码
+			subInvo1.setFee_Itm_Cd("320100100001");
+			// 此费项缴费金额
+			subInvo1.setFee_Itm_Prj_Amt(new BigDecimal(0.01));
 			subInvo1.setRmrk1("");
 			subInvo1.setRmrk2("");
 			list1.add(subInvo1);
@@ -99,7 +125,6 @@ public class PaymentOnlieService {
 			bo.setTAXGRP(list2);
 			outBo = PayUtil.send(bo, CommonStatic.PUBLIC_KEY);
 			try {
-				// 保存支付订单号
 				payOrder.setPayOrderNo(outBo.getPy_Ordr_No());
 				payOrder.setApplyNo(applyNo);
 				payOrderMapper.updateByPrimaryKeySelective(payOrder);
@@ -108,11 +133,9 @@ public class PaymentOnlieService {
 				actionResult.setSuccess(false);
 				log.error("保存支付订单号出现异常：[" + e.getMessage() + "]");
 			}
-
 			actionResult.setMsg("跳转支付连接中请稍后...");
 			actionResult.setSuccess(true);
 			actionResult.setObj(outBo);
-
 		} catch (Exception e) {
 			actionResult.setMsg("发送支付连接出错");
 			actionResult.setSuccess(false);
@@ -139,7 +162,6 @@ public class PaymentOnlieService {
 			// 查询
 			PageList<PayOrder> pageList = payOrderMapper.queryPayOrderList(pg.getSearchCondition(), pageBounds);
 			log.info("获订单支付状态列列表出参：" + JSON.toJSONString(pageList));
-			// 获取查询结果总条数
 			int total = pageList.getPaginator().getTotalCount();
 			return new ActionResult(new PageResult(total, pageList));
 		} catch (Exception e) {

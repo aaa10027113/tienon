@@ -1,33 +1,47 @@
+/**
+ * Copyright by www.tienon.com
+ * All right reserved.
+ */
 package com.tienon.boot.modules.business.controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tienon.boot.modules.business.service.PaymentOnlieService;
+import com.tienon.boot.modules.business.service.PayOrderService;
 import com.tienon.boot.util.support.PageGrid;
 
+/**
+ * @Description TODO(支付controller)
+ * 
+ * @author wangqingquan
+ * @date 2019/08/05
+ */
 @RestController
-@RequestMapping("/business/paymentOnline")
-public class PaymentOnlineController {
+@RequestMapping("/business/pay")
+public class PayOrderController {
 
 	@Autowired
-	PaymentOnlieService paymentOnlieService;
-
+	PayOrderService paymentOnlieService;
+    
+	/**
+	 * TODO(发送在线支付信息)
+	 * 
+	 * @param applyNo
+	 * @return 
+	 * @return Object 返回类型
+	 */
 	@RequestMapping("/sendPayMessage")
-	public Object SendPayMessage(@RequestParam("applyNo") String applyNo) {
-
+	public Object sendPayMessage(@RequestParam("applyNo") String applyNo) {
 		return paymentOnlieService.sendPaymessage(applyNo);
 	}
 
 	/**
-	 * 
-	 * 查询订单支付状态
+	 * TODO(这里用一句话描述这个方法的作用)
 	 * 
 	 * @param pageGrid
-	 * @return
+	 * @return 
 	 * @return Object 返回类型
 	 */
 	@RequestMapping("/queryPayOrderList")
@@ -36,11 +50,10 @@ public class PaymentOnlineController {
 	}
 
 	/**
-	 *
-	 * 查询订单支付
-	 *
+	 * TODO(这里用一句话描述这个方法的作用)
+	 * 
 	 * @param applyNo
-	 * @return
+	 * @return 
 	 * @return Object 返回类型
 	 */
 	@RequestMapping("/queryByApplyNo")
@@ -48,14 +61,13 @@ public class PaymentOnlineController {
 		return paymentOnlieService.queryByApplyNo(applyNo);
 	}
 
-	/**
-	 *
-	 * 查询订单支付
-	 *
-	 * @param applyNo
-	 * @return
-	 * @return Object 返回类型
-	 */
+    /**
+     * TODO(这里用一句话描述这个方法的作用)
+     * 
+     * @param applyNo
+     * @return 
+     * @return Object 返回类型
+     */
 	@RequestMapping("/queryByApplyNoInfo")
 	public Object queryPayOrderListInfo(@RequestParam("applyNo") String applyNo) {
 		return paymentOnlieService.queryByApplyNoInfo(applyNo);

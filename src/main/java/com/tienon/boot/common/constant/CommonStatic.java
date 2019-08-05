@@ -16,34 +16,50 @@ public class CommonStatic {
 	/**
 	 * 返回码
 	 */
-	public final static String R_000 = "000"; // 000:交易成功
-	public final static String R_022 = "022"; // 022:系统内部处理错误
-	public final static String R_029 = "029"; // 029:数据库错误
-	public final static String R_080 = "080"; // 080:交易超时
+	// 000:交易成功
+	public final static String R_000 = "000"; 
+	// 022:系统内部处理错误
+	public final static String R_022 = "022"; 
+	// 029:数据库错误
+	public final static String R_029 = "029"; 
+	 // 080:交易超时
+	public final static String R_080 = "080";
 
 	/**
 	 * 秘钥
 	 */
-	public final static String KEY = "8k5a2o5";// 秘钥
+	// 秘钥
+	public final static String KEY = "8k5a2o5";
 
 	/**
 	 * 支付状态
 	 */
-	public static String ORDER_00 = "00";// 00:支付成功
-	public static String ORDER_01 = "01";// 01:待支付
-	public static String ORDER_02 = "02";// 02:支付失败
-	public static String ORDER_03 = "03";// 03:支付超时
-	public static String ORDER_05 = "05";// 05:无需支付
-	public static String ORDER_99 = "99";// 99:未知状态
+	// 00:支付成功
+	public static String ORDER_00 = "00";
+	// 01:待支付
+	public static String ORDER_01 = "01";
+	// 02:支付失败
+	public static String ORDER_02 = "02";
+	// 03:支付超时
+	public static String ORDER_03 = "03";
+	// 05:无需支付
+	public static String ORDER_05 = "05";
+	// 99:未知状态
+	public static String ORDER_99 = "99";
 
 	/**
 	 * 退款成功
 	 */
-	public static String refund_00 = "00";// 00:退款成功
-	public static String refund_01 = "01";// 01:退款受理中
-	public static String refund_02 = "02";// 02:退款失败
-	public static String refund_03 = "03";// 退款超时
-	public static String refund_99 = "99";// 99：未知状态
+	// 00:退款成功
+	public static String refund_00 = "00";
+	// 01:退款受理中
+	public static String refund_01 = "01";
+	// 02:退款失败
+	public static String refund_02 = "02";
+	// 退款超时
+	public static String refund_03 = "03";
+	// 99：未知状态
+	public static String refund_99 = "99";
 
 	/**
 	 * 支付结果查询url
@@ -112,5 +128,10 @@ public class CommonStatic {
 	 * 币种：人民币
 	 */
 	public final static String MONEY_TYPE = "156";
+	
+	/**
+	 * SIGN_INF
+	 */
+	public final static String SIGN_INF = "SIGN_INF";
 
 }
