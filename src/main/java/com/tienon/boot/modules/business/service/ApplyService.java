@@ -54,19 +54,19 @@ public class ApplyService {
 	PayOrderMapper payOrderMapper;
 
 	/**
-	 * TODO(查询商标信息)
+	 * 查询商标信息
 	 * 
 	 * @param pg
 	 * @return
 	 * @return Object 返回类型
 	 */
-	public Object listApply(PageGrid pg) {
+	public Object queryList(PageGrid pg) {
 		int page = pg.getPage();
 		int pageSize = pg.getRows();
 		PageBounds pageBounds = new PageBounds(page, pageSize, true);
 
 		try {
-			PageList<ApplyInfo> pageList = applyMapper.listApply(pg.getSearchCondition(), pageBounds);
+			PageList<ApplyInfo> pageList = applyMapper.selectApply(pg.getSearchCondition(), pageBounds);
 			int total = pageList.getPaginator().getTotalCount();
 			return new ActionResult(new PageResult(total, pageList));
 		} catch (Exception e) {
@@ -77,13 +77,13 @@ public class ApplyService {
 	}
 
 	/**
-	 * TODO(新增商标)
+	 * 保存商标
 	 * 
 	 * @param info
 	 * @return
 	 * @return Object 返回类型
 	 */
-	public Object insertApply(ApplyInfo applyInfo) {
+	public Object addApply(ApplyInfo applyInfo) {
 		PayOrder payOrder = new PayOrder();
 		try {
 			// 申请编号
@@ -106,12 +106,12 @@ public class ApplyService {
 			} else {
 				payOrder.setStatus(CommonStatic.ORDER_01);
 			}
-			applyMapper.insertApply(applyInfo);
+			applyMapper.insert(applyInfo);
 			payOrderMapper.insert(payOrder);
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("添加新商标出现异常：[" + e.getMessage() + "]");
-			throw new EjxError(CommonStatic.R_029, "添加新商标出现异常：[" + e.getMessage() + "]");
+			log.error("添加新商标出现异常[" + e.getMessage() + "]");
+			return new ActionResult(false, "添加新商标出现异常！");
 		}
 		return new ActionResult(true);
 	}
@@ -141,89 +141,73 @@ public class ApplyService {
 	}
 
 	/**
-	 * TODO 根据申请序号批量删除
+	 * 根据申请序号,批量删除商标受理信息
 	 * 
 	 * @param list
 	 * @return
 	 * @return Object 返回类型
 	 */
-	public Object deleteByPrimaryKey(List<String> list) {
+	public Object updateByapplyNo(List<String> list) {
 		try {
-			log.info("批量删除入参：" + JSON.toJSONString(list));
-			// 根据申请序号批量删除
-			int i = applyMapper.deleteByPrimaryKey(list);
-			log.info("批量删除信息表出参：" + i);
-			int j = payOrderMapper.deleteByPrimaryKeyOnPay(list);
-			log.info("批量删支付表出参：" + j);
-			if (i == 0) {
-				return new ActionResult(false, "删除失败，未查询到需要删除的商标");
-			}
-			return new ActionResult(true, "删除成功");
+			applyMapper.updateByapplyNo(list);
+			payOrderMapper.updateByapplyNo(list);
+			return new ActionResult(true, "删除商标受理信息成功！");
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]");
-			throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]");
+			log.error("删除商标受理信息失败[" + e.getMessage() + "]");
+			return new ActionResult(false, "删除商标受理信息失败！");
 		}
 	}
-
+    
 	/**
-	 * TODO 获取打印基础加密数据
+	 * 根据加密申请编号，查询商标受理信息
 	 * 
 	 * @param applyNo
-	 * @return
+	 * @return 
+	 * @return Object 返回类型
+	 */
+	public Object getApplyByNo(String applyNo) {
+		try {
+			log.info("密文applyNo=" + applyNo);
+			applyNo = ASCEUtils.decrypt(applyNo);
+			log.info("明文applyNo" + applyNo);
+			ApplyInfo info = applyMapper.selectApplyByNo(applyNo);
+			if (null == info) {
+				return new ActionResult(false, "根据受理编号，未查询到受理商标信息！");
+			}
+			return new ActionResult(true, "查询成功", info);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("根据加密申请编号，查询商标受理信息出现异常：[" + e.getMessage() + "]");
+			return new ActionResult(false, "根据加密申请编号，查询商标受理信息出现异常!");
+		}
+	}
+	
+	/**
+	 * 打印受理单
+	 * 
+	 * @param applyNo
+	 * @return 
 	 * @return Object 返回类型
 	 */
 	public Object printInfo(String applyNo) {
 		try {
-			log.info("获取打印加密数据入参applyNo=" + applyNo);
-			ApplyInfo info = applyMapper.printInfo(applyNo);
+			ApplyInfo info = applyMapper.selectApplyByNo(applyNo);
 			if (null == info) {
-				return new ActionResult(false, "根据申请序号未获取到数据");
+				return new ActionResult(false, "根据受理编号，未查询到受理商标信息！");
 			}
 			String apply = info.getApplyNo();
 			info.setApplyNoEncrypt(ASCEUtils.encrypt(apply));
-			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(info.getAcceptDate());
-			String applyDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-			info.setAcceptDate(applyDate);
-			log.info("获取打印加密数据出参:" + JSON.toJSONString(info));
 			return new ActionResult(true, "查询成功", info);
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]");
-			throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]");
+			log.error("打印受理单出现异常[" + e.getMessage() + "]");
+			return new ActionResult(false, "打印受理单出现异常！");
 		}
 	}
 
 	/**
-	 * TODO 获取打印基础解密数据
-	 * 
-	 * @param applyNo
-	 * @return
-	 * @return Object 返回类型
-	 */
-	public Object printInfoData(String applyNo) {
-		try {
-			log.info("获取打印解密数据入参applyNo=" + applyNo);
-			applyNo = ASCEUtils.decrypt(applyNo);
-			log.info("获取打印解密后的applyNo=" + applyNo);
-			ApplyInfo info = applyMapper.printInfo(applyNo);
-			if (null == info) {
-				return new ActionResult(false, "根据申请序号未获取到数据");
-			}
-			Date date = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(info.getAcceptDate());
-			String applyDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-			info.setAcceptDate(applyDate);
-			log.info("获取打印解密数据出参:" + JSON.toJSONString(info));
-			return new ActionResult(true, "查询成功", info);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.error("查询最新申请序号出现异常：[" + e.getMessage() + "]");
-			throw new EjxError(CommonStatic.R_029, "查询最新申请序号出现异常：[" + e.getMessage() + "]");
-		}
-	}
-
-	/**
-	 * TODO 导出数据Excel表格
+	 * 导出数据Excel表格
 	 * 
 	 * @param pg
 	 * @return

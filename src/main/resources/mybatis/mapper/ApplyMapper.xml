@@ -32,7 +32,7 @@
 		DELETEFLAG
 	</sql>
 
-	<select id="listApply" parameterType="com.tienon.boot.modules.business.domain.ApplyInfo"
+	<select id="selectApply" parameterType="com.tienon.boot.modules.business.domain.ApplyInfo"
 		resultMap="BaseResultMap">
 		SELECT
 			<include refid="Base_Column_List" />
@@ -65,7 +65,7 @@
 		LIMIT 1
 	</select>
 
-	<insert id="insertApply" parameterType="com.tienon.boot.modules.business.domain.ApplyInfo">
+	<insert id="insert" parameterType="com.tienon.boot.modules.business.domain.ApplyInfo">
 		INSERT
 		INTO
    	 		TB_APPLY
@@ -98,7 +98,7 @@
 		       #{amt,jdbcType=NUMERIC},'0')
 	</insert>
 
-	<update id="deleteByPrimaryKey" parameterType="java.util.List">
+	<update id="updateByapplyNo" parameterType="java.util.List">
 		UPDATE
     		TB_APPLY
 		SET
@@ -125,7 +125,7 @@
 		COMPANYNAME,HUMANNAME,IDCARDNO,TRADEMARKNAME,
 		ACCEPTTYPE,ADDTYPE,OPERATIONDATE,OPERATOR,AMT,APPLYTYPENAME
 	</sql>
-	<select id="printInfo" parameterType="java.lang.String"
+	<select id="selectApplyByNo" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		SELECT
 		<include refid="Print_List" />

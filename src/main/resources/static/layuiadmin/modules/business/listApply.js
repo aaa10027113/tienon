@@ -22,7 +22,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     // 商标列表
     var tableIns = table.render({
         elem: '#operateList',
-        url : '/business/apply/listApply',
+        url : '/business/apply/queryList',
         cellMinWidth : 95,
         page : true,
         limits : [10,15,20,25],
@@ -247,7 +247,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
             layer.confirm('确定要删除选中的商标受理信息吗？', {icon: 3, title: '提示信息'}, function (index) {
             	$.ajax({
                     type: "post",
-                    url: "/operate/deleteByPrimaryKey",
+                    url: "/business/apply/updateByapplyNo",
                     data: JSON.stringify(newsId),
                     dataType: "json",
                     headers: {
