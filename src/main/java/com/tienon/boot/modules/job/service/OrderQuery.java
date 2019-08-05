@@ -28,7 +28,7 @@ import com.tienon.EjxError;
 import com.tienon.boot.common.constant.CommonStatic;
 import com.tienon.boot.common.utils.PayUtil;
 import com.tienon.boot.modules.business.domain.PayOrder;
-import com.tienon.boot.modules.business.domain.ResultOutBo;
+import com.tienon.boot.modules.business.domain.ResultOut;
 import com.tienon.boot.modules.business.mapper.PayOrderMapper;
 import com.tienon.boot.modules.business.mapper.RefundOrderMapper;
 
@@ -80,7 +80,7 @@ public class OrderQuery {
 			// 发送
 			trustAllHosts();
 			String result = PayUtil.doJsonPost(CommonStatic.SELECT_URL, json.toString());
-			ResultOutBo outBo = JSON.parseObject(result, ResultOutBo.class);
+			ResultOut outBo = JSON.parseObject(result, ResultOut.class);
 			log.info("查询交易出参：[{}]", outBo);
 			StringBuffer strBuf = new StringBuffer();
 			strBuf.append("Cmdty_Ordr_No=").append(outBo.getCmdty_Ordr_No()).append("&Py_Ordr_No=")

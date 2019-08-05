@@ -19,7 +19,7 @@ import com.tienon.boot.common.utils.ASCEUtils;
 import com.tienon.boot.common.utils.PayUtil;
 import com.tienon.boot.modules.business.domain.ApplyInfo;
 import com.tienon.boot.modules.business.domain.PayOrder;
-import com.tienon.boot.modules.business.domain.ReceiveOutBo;
+import com.tienon.boot.modules.business.domain.ReceiveOut;
 import com.tienon.boot.modules.business.domain.SendInBo;
 import com.tienon.boot.modules.business.domain.SendSubInBo1;
 import com.tienon.boot.modules.business.domain.SendSubInBo2;
@@ -57,7 +57,7 @@ public class PayOrderService {
 	 * @return
 	 */
 	public ActionResult sendPaymessage(String applyNo) {
-		ReceiveOutBo outBo = new ReceiveOutBo();
+		ReceiveOut outBo = new ReceiveOut();
 		SendInBo bo = new SendInBo();
 		PayOrder payOrder = new PayOrder();
 		ActionResult actionResult = new ActionResult();

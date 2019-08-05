@@ -64,7 +64,7 @@ public class ApplyController {
 	 * @param list
 	 * @return Object 返回类型
 	 */
-	@PostMapping(value = "/deleteByPrimaryKey")
+	@PostMapping(value = "/updateByapplyNo")
 	public Object deleteByPrimaryKey(@RequestBody List<String> list) {
 		return applyService.updateByapplyNo(list);
 

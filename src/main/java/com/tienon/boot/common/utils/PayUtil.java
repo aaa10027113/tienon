@@ -28,7 +28,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ccb.govpay.sign.SHA256withRSA;
 import com.tienon.boot.common.constant.CommonStatic;
-import com.tienon.boot.modules.business.domain.ReceiveOutBo;
+import com.tienon.boot.modules.business.domain.ReceiveOut;
 import com.tienon.boot.modules.business.domain.SendInBo;
 import com.tienon.boot.modules.business.service.PayOrderService;
 
@@ -49,7 +49,7 @@ public class PayUtil {
 	 * @param publicKey
 	 * @return void 返回类型
 	 */
-	public static ReceiveOutBo send(SendInBo bo, String publicKey) {
+	public static ReceiveOut send(SendInBo bo, String publicKey) {
 		Random r = new Random();
 		String jrn = UUID.randomUUID().toString().replace("-", "");
 		LocalDateTime dateTime = LocalDateTime.now();
@@ -96,7 +96,7 @@ public class PayUtil {
 		String result = doJsonPost(url, json.toString());
 		log.info("生成支付订单时返回报文" + result.toString());
 		// 收到结果转化成实体
-		ReceiveOutBo outBo = JSONObject.parseObject(result, ReceiveOutBo.class);
+		ReceiveOut outBo = JSONObject.parseObject(result, ReceiveOut.class);
 		return outBo;
 	}
 

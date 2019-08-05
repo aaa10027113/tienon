@@ -19,7 +19,7 @@ import java.util.List;
  *       修改者姓名 修改内容说明
  *       </p>
  */
-public class ResultOutBo {
+public class ResultOut {
 	// 商品订单号
 	private String Cmdty_Ordr_No;
 	// 支付订单号
@@ -37,7 +37,7 @@ public class ResultOutBo {
 	// 费项项目金额
 	public String Rmrk2;
 	// 签名信息
-	public List<ResultOutBo> LIST;
+	public List<ResultOut> LIST;
 
 	private String SIGN_INF;
 
@@ -105,11 +105,11 @@ public class ResultOutBo {
 		Rmrk2 = rmrk2;
 	}
 
-	public List<ResultOutBo> getLIST() {
+	public List<ResultOut> getLIST() {
 		return LIST;
 	}
 
-	public void setLIST(List<ResultOutBo> lIST) {
+	public void setLIST(List<ResultOut> lIST) {
 		LIST = lIST;
 	}
 

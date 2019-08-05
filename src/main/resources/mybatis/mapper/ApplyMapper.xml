@@ -50,7 +50,7 @@
 			<if test="endTime != null and endTime != ''">AND ACCEPTDATE &lt;= #{endTime}</if>
 		</where>
 		ORDER BY 
-			ACCEPTDATE 
+			APPLYNO 
 		DESC
 	</select>
 

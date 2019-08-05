@@ -89,9 +89,7 @@ public class ApplyService {
 			// 申请编号
 			applyInfo.setApplyNo(getApplyNo());
 			// 申请日期
-			applyInfo.setAcceptDate(DateUtils.format(new Date(), "yyyyMMdd"));
-			// 操作时间
-			applyInfo.setOperationDate(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+			applyInfo.setAcceptDate(DateUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 			// 受理类型
 			applyInfo.setAcceptType(applyInfo.getAcceptType().split(";")[0]);
 			// 申请编号
@@ -106,6 +104,8 @@ public class ApplyService {
 			} else {
 				payOrder.setStatus(CommonStatic.ORDER_01);
 			}
+			// 操作时间
+			applyInfo.setOperationDate(DateUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 			applyMapper.insert(applyInfo);
 			payOrderMapper.insert(payOrder);
 		} catch (Exception e) {

@@ -3,11 +3,12 @@ package com.tienon.boot.modules.business.domain;
 import java.math.BigDecimal;
 
 /**
+ * @Description TODO(这里用一句话描述这个类的作用)
  * 
- * @author 65128
- *
+ * @author wangqingquan
+ * @date 2019/08/05
  */
-public class ReceiveOutBo {
+public class ReceiveOut {
 	// 商品订单号
 	private String Cmdty_Ordr_No;
 	// 支付订单号
