@@ -59,8 +59,10 @@
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM 
-			TB_APPLY ORDER 
-		BY 
+			TB_APPLY,TB_APPLY_TYPE 
+		WHERE
+		     ACCEPTTYPE = APPLYTYPENO 
+		ORDER BY 
 			ACCEPTDATE 
 		DESC 
 		LIMIT 1
