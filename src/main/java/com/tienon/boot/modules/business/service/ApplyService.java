@@ -138,10 +138,10 @@ public class ApplyService {
 			String applyDate = DateUtils.format(new Date(), "yyyyMMdd");
 			ApplyInfo info = applyMapper.getLastApplyNo();
 			if (null == info) {
-				return applyDate + "-" + str + "-00001";
+				return applyDate + str + "-00001";
 			} else {
 				int num = Integer.parseInt(info.getApplyNo().split("-")[1]) + 1;
-				return applyDate + "-" + str + "-"
+				return applyDate + str + "-"
 						+ (new DecimalFormat("00000").format(num));
 			}
 		} catch (Exception e) {
