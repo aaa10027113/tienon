@@ -160,11 +160,7 @@ public class PayOrderService {
 		PageBounds pageBounds = new PageBounds(page, pageSize, true);
 
 		try {
-			log.info("获取订单支付状态列表入参：searchCondition=" + JSON.toJSONString(pg.getSearchCondition())
-					+ "********pageBounds=" + JSON.toJSONString(pageBounds));
-			// 查询
 			PageList<PayOrder> pageList = payOrderMapper.queryPayOrderList(pg.getSearchCondition(), pageBounds);
-			log.info("获订单支付状态列列表出参：" + JSON.toJSONString(pageList));
 			int total = pageList.getPaginator().getTotalCount();
 			return new ActionResult(new PageResult(total, pageList));
 		} catch (Exception e) {

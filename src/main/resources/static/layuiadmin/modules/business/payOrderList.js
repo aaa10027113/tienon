@@ -15,7 +15,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
      
     var tableIns = table.render({
         elem: '#payOrderList',
-        url : '/paymentOnline/queryPayOrderList',
+        url : '/business/queryList',
         cellMinWidth : 95,
         page : true,
         limits : [10,15,20,25],
@@ -49,30 +49,33 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
            {field: 'amt', title: '支付金额', minWidth:150, align:"center"},
            {field: 'status', title: '支付状态',  minWidth:125, align:'center',
         	   templet:function(d){
-		          	if(d.status=="00"){
-		          		return d.status="支付成功";
-		          	}else if(d.status=="01"){
-		          		return d.status="待支付";
-		          	}else if(d.status=="02"){
-		          		return d.status="支付失败";
-		          	}else if(d.status=="03"){
-		          		return d.status="订单超时";
-		          	}else if(d.status=="04"){
-		          		return d.status="不确定";
-		          	}else if(d.status=="05"){
-		          		return d.status="无需支付";
-		          	}else if(d.status=="99"){
-		          		return d.status="未知状态";
+		          	if(d.status=="1"){
+		          		return d.status="待缴费";
+		          	}else if(d.status=="2"){
+		          		return d.status="成功";
+		          	}else if(d.status=="3"){
+		          		return d.status="失败";
+		          	}else if(d.status=="4"){
+		          		return d.status="全部退费";
+		          	}else if(d.status=="5"){
+		          		return d.status="部分退费";
+		          	}else if(d.status=="6"){
+		          		return d.status="失效";
+		          	}else if(d.status=="9"){
+		          		return d.status="取消";
+		          	}else if(d.status=="a"){
+		          		return d.status="处理中";
+		          	}else if(d.status=="b"){
+		          		return d.status="待冲正";
+		          	}else if(d.status=="c"){
+		          		return d.status="待系统退款";
+		          	}else if(d.status=="d"){
+		          		return d.status="落地";
 		          	}
         	   }
           },
           {title: '操作', minWidth:125,fixed:"right",align:"center",templet:function(d){
-        	  if(d.status=="00"){
-        		  return '<button class="layui-btn layui-btn-xs"   lay-event="refund">退款</button>'+
-        		  '<button class="layui-btn layui-btn-xs layui-btn-normal"   lay-event="printShouju">收据打印</button>';
-        	  }else{
-        		  return '<button class="layui-btn layui-btn-xs layui-btn-disabled" >退款</button>'+
-        		  '<button class="layui-btn layui-btn-xs layui-btn-disabled">收据打印</button>';
+        <button class="layui-btn layui-btn-xs layui-btn-normal"   lay-event="printShouju">收据打印</button>;
         	  }
           }}
         ]]
@@ -163,11 +166,9 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 			}, function(value1, index1, elem1){
 				password = value1;
 				var data = {"applyNo":applyNo,"refundReasons":refundReasons,"password":password};
-				// alert(JSON.stringify(data))
 				$.ajax({
 					type: "post",
 					url: "/refundOrder/refundPayOrderByApplyNo",
-					// data: "applyNo="+applyNo+"&reason="+reason+"&password="+password,
 					data: JSON.stringify(data),
 					dataType: "json",
 					headers: {
@@ -183,36 +184,24 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 							layer.close(index1);
 						}
 					},
-
 				});
 				layer.close(index1);
 			});
-			// return reason;
 			layer.close(index0);
 		});
-
 	}
 
     //退款
     function refund(data){
-    	// debugger
 		if(data){
 			console.log(data);
 			var applyNo = data.applyNo;
 			layer.confirm('确定要对此订单进行退款吗？', {icon: 3, title: '提示信息'}, function (index) {
-				// debugger
-				//-------------------------------------
-				// alert(reason)
 				layer.close(index);
-				getReason(applyNo);
-
-				//-------------------------------------
-
-                
+				getReason(applyNo); 
             })
 		}
     }
-    
     exports('payorder/payOrderList', {});
 });
 

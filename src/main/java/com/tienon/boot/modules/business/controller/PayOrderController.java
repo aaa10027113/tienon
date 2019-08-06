@@ -38,13 +38,13 @@ public class PayOrderController {
 	}
 
 	/**
-	 * TODO(这里用一句话描述这个方法的作用)
+	 * TODO(查询支付订单列表)
 	 * 
 	 * @param pageGrid
 	 * @return 
 	 * @return Object 返回类型
 	 */
-	@RequestMapping("/queryPayOrderList")
+	@RequestMapping("/queryList")
 	public Object queryPayOrderList(@RequestBody PageGrid pageGrid) {
 		return payOrderService.queryPayOrderList(pageGrid);
 	}
