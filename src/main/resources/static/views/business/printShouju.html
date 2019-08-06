@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>文章列表--layui后台管理模板 2.0</title>
+	<title>打印收据</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -33,12 +33,8 @@
 	font-family: 宋体; border: 0px solid;"></span>
 	
 </div>
-<!--endprint-->
-
 <script type="text/javascript" src="../../../layuiadmin/qrcode/jquery-2.1.1.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 <script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
-<!-- <script type="text/javascript" src="../../../layuiadmin/qrcode/jquery.jqprint-0.3.js"></script> -->
 <script type="text/javascript" src="../../../layuiadmin/qrcode/jquery.qrcode.min.js"></script>
 
 <script>
@@ -46,7 +42,7 @@
             base : '../../../layuiadmin/' //静态资源所在路径
         }).extend({
             index : 'lib/index' //主入口模块
-        }).use([ 'index','operate/printShouju','laydate'], function() {
+        }).use([ 'index','business/printShouju','laydate'], function() {
             
         	 var laydate = layui.laydate;
         	 laydate.render({

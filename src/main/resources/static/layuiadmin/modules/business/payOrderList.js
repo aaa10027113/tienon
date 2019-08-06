@@ -78,9 +78,9 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
           }},
           {title: '打印', minWidth:100,fixed:"right",align:"center",templet:function(d){
         	  if(d.status=="2" || d.status=="4" || d.status=="5"){
-        		  return '<button class="layui-btn layui-btn-xs layui-btn-printShouju">回执</button>';
+        		  return '<button class="layui-btn layui-btn-xs layui-btn-printShouju">收据</button>';
         	  }else{
-        		  return '<button class="layui-btn layui-btn-xs"  lay-event="disabled">回执</button>';
+        		  return '<button class="layui-btn layui-btn-xs"  lay-event="disabled">收据</button>';
         	  }
           }}
         ]]
@@ -118,7 +118,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         
     });
     
-  //打印收据
+    // 打印收据
     function printShouju(data){
     	if(!data){
     		var checkStatus = table.checkStatus('payOrderList');
@@ -137,7 +137,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     		title : "打印收据",
     		type : 2,
     		anim: 3,
-    		content : "/views/system/operate/printShouju.html?"+data.applyNo,
+    		content : "/views/business/printShouju.html?"+data.applyNo,
     		success : function(layero, index){
     			var body = layer.getChildFrame('body', index);
     			comExt.fillInput(body,data,form);

@@ -9,7 +9,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt','layedit' ], functio
 	//初始化数据
     $(function(){
     	var applyNo = location.href.split("?")[1];
-        $.post("/operate/printInfo",{applyNo},function(res){
+        $.post("/business/apply/printInfo",{applyNo},function(res){
             	console.log(res);
             	if(!res.success){
             		layer.alert(res.msg, {

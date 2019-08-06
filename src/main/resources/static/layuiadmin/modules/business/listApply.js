@@ -103,7 +103,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     
     // 新增商标
     function addApply(edit){
-    	
         var index = layui.layer.open({
             title : "新增商标注册",
             type : 2,
@@ -156,7 +155,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
          layer.msg("请选择一个需要操作的商标",{time:5*1000});
      }     
     })
-    
     
     $(".page_btn").click(function(){
    	 var checkStatus = table.checkStatus('roleListTable'),
