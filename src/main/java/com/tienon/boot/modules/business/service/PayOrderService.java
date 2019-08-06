@@ -5,6 +5,7 @@
 package com.tienon.boot.modules.business.service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -16,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
 import com.tienon.boot.common.constant.CommonStatic;
 import com.tienon.boot.common.utils.AscEUtils;
+import com.tienon.boot.common.utils.DateUtils;
 import com.tienon.boot.common.utils.PayUtil;
 import com.tienon.boot.modules.business.domain.ApplyInfo;
 import com.tienon.boot.modules.business.domain.PayOrder;
@@ -125,8 +127,9 @@ public class PayOrderService {
 			bo.setTAXGRP(list2);
 			outBo = PayUtil.send(bo, CommonStatic.PUBLIC_KEY);
 			try {
-				payOrder.setPayOrderNo(outBo.getPy_Ordr_No());
-				payOrder.setApplyNo(applyNo);
+				payOrder.setApplyNo(applyNo);// 申请编号
+				payOrder.setPayOrderNo(outBo.getPy_Ordr_No());// 支付订单号
+				payOrder.setPayTime(DateUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
 				payOrderMapper.updateByPrimaryKeySelective(payOrder);
 			} catch (Exception e) {
 				actionResult.setMsg("保存支付订单号出错");

@@ -73,12 +73,12 @@ public interface PayOrderMapper {
 	int updateByPrimaryKey(PayOrder record);
 	
 	/**
-	 * TODO(这里用一句话描述这个方法的作用)
+	 * 支付结果轮训订单列表
 	 * @param record
 	 * @return 
 	 * @return List<PayOrder> 返回类型
 	 */
-	List<PayOrder> selectByrefundtimeAndStatus(PayOrder record);
+	List<PayOrder> selectBystatus();
 
 	/**
 	 * TODO(这里用一句话描述这个方法的作用)

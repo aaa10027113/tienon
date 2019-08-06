@@ -11,38 +11,63 @@
     <result column="deleteFlag" jdbcType="VARCHAR" property="deleteFlag" />
   </resultMap>
   <sql id="Base_Column_List">
-    applyNo, orderNo, payTime, amt, status,payOrderNo,deleteFlag
+    APPLYNO, ORDERNO, PAYTIME, AMT, STATUS,PAYORDERNO,DELETEFLAG
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tb_pay_order
-    where applyNo = #{applyNo,jdbcType=VARCHAR}
+  <select id="selectBystatus" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    	<include refid="Base_Column_List" />
+    FROM 
+    	tb_pay_order
+    WHERE 
+    	status in ('1','6','9','a','b','c','d')
+    AND payOrderNo is not null
   </select>
 
   <select id="selectByPaytimeAndStatus" parameterType="com.tienon.boot.modules.business.domain.PayOrder" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from tb_pay_order
-    where status = #{status,jdbcType=VARCHAR}
-    and payTime >= #{payTime,jdbcType=TIMESTAMP}
+    SELECT
+    	<include refid="Base_Column_List" />
+    FROM 
+    	tb_pay_order
+    WHERE 
+    	status = #{status,jdbcType=VARCHAR}
+    AND payTime >= #{payTime,jdbcType=TIMESTAMP}
   </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tb_pay_order
-    where applyNo = #{applyNo,jdbcType=VARCHAR}
+    DELETE
+	FROM
+    	tb_pay_order
+	WHERE
+     	applyNo = #{applyNo,jdbcType=VARCHAR}
   </delete>
+  
   <insert id="insert" parameterType="com.tienon.boot.modules.business.domain.PayOrder">
-    insert into tb_pay_order (applyNo, orderNo, payTime, amt, status, payOrderNo)
-    values (
-	    #{applyNo,jdbcType=VARCHAR}, 
-	    #{orderNo,jdbcType=VARCHAR},
-	    #{payTime,jdbcType=TIMESTAMP},
-	    #{amt,jdbcType=DECIMAL}, 
-	    #{status,jdbcType=VARCHAR}, 
-	    #{payOrderNo,jdbcType=VARCHAR})
+	INSERT
+	INTO
+    	tb_pay_order
+    	(
+        	applyNo,
+        	orderNo,
+        	payTime,
+        	amt,
+        	status,
+        	payOrderNo
+    	)
+    	VALUES
+    	(
+	    	#{applyNo,jdbcType=VARCHAR}, 
+	    	#{orderNo,jdbcType=VARCHAR},
+	    	#{payTime,jdbcType=TIMESTAMP},
+	    	#{amt,jdbcType=DECIMAL}, 
+	    	#{status,jdbcType=VARCHAR}, 
+	    	#{payOrderNo,jdbcType=VARCHAR}
+	    )
   </insert>
+  
   <insert id="insertSelective" parameterType="com.tienon.boot.modules.business.domain.PayOrder">
-    insert into tb_pay_order
+    INSERT
+	INTO
+    	tb_pay_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="applyNo != null">
         applyNo,
@@ -84,8 +109,10 @@
       </if>
     </trim>
   </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.tienon.boot.modules.business.domain.PayOrder">
-    update tb_pay_order
+    UPDATE
+    	tb_pay_order
     <set>
       <if test="orderNo != null">
         orderNo = #{orderNo,jdbcType=VARCHAR},
@@ -103,20 +130,24 @@
         payOrderNo = #{payOrderNo,jdbcType=VARCHAR},
       </if>
     </set>
-    where applyNo = #{applyNo,jdbcType=VARCHAR}
+    WHERE 
+    	applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>
+  
   <update id="updateByPrimaryKey" parameterType="com.tienon.boot.modules.business.domain.PayOrder">
-    update tb_pay_order
-    set orderNo = #{orderNo,jdbcType=VARCHAR},
-      payTime = #{payTime,jdbcType=TIMESTAMP},
-      amt = #{amt,jdbcType=DECIMAL},
-      status = #{status,jdbcType=VARCHAR},
-       payOrderNo = #{payOrderNo,jdbcType=VARCHAR}
-    where applyNo = #{applyNo,jdbcType=VARCHAR}
+    UPDATE
+    	tb_pay_order
+    SET orderNo = #{orderNo,jdbcType=VARCHAR},
+      	payTime = #{payTime,jdbcType=TIMESTAMP},
+      	amt = #{amt,jdbcType=DECIMAL},
+      	status = #{status,jdbcType=VARCHAR},
+       	payOrderNo = #{payOrderNo,jdbcType=VARCHAR}
+    WHERE 
+    	applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>
   
   <select id="queryPayOrderList" parameterType="com.tienon.boot.modules.business.domain.PayOrder" resultMap="BaseResultMap">
-		SELECT 
+	SELECT 
 			<include refid="Base_Column_List" />
 		FROM TB_PAY_ORDER
     	<where>

@@ -23,7 +23,7 @@ public class PayOrder {
 	/**
 	 * 支付时间
 	 */
-	private Date payTime;
+	private String payTime;
 	
 	/**
 	 * 支付金额
@@ -32,6 +32,17 @@ public class PayOrder {
 	
 	/**
 	 * 支付状态
+	 * 1-待缴费
+	 * 2-成功
+	 * 3-失败
+	 * 4-全部退费
+	 * 5-部分退费
+	 * 6-失效
+	 * 9-取消
+	 * a-处理中
+	 * b-待冲正
+	 * c-待系统退款
+	 * d-一落地
 	 */
 	private String status;
 	
@@ -61,11 +72,11 @@ public class PayOrder {
 		this.orderNo = orderNo;
 	}
 
-	public Date getPayTime() {
+	public String getPayTime() {
 		return payTime;
 	}
 
-	public void setPayTime(Date payTime) {
+	public void setPayTime(String payTime) {
 		this.payTime = payTime;
 	}
 
