@@ -25,6 +25,7 @@
 		IDCARDNO,
 		TRADEMARKNAME,
 		ACCEPTTYPE,
+		APPLYTYPENAME,
 		ADDTYPE,
 		OPERATIONDATE,
 		OPERATOR,
@@ -37,9 +38,10 @@
 		SELECT
 			<include refid="Base_Column_List" />
 		FROM
-			TB_APPLY
-		<where>
-			<if test="companyName != null and companyName != ''">COMPANYNAME like
+			TB_APPLY,TB_APPLY_TYPE
+		WHERE
+		     ACCEPTTYPE = APPLYTYPENO 
+			<if test="companyName != null and companyName != ''">AND COMPANYNAME like
 				concat(concat('%',#{companyName,jdbcType=VARCHAR}),'%')</if>
 			<if test="humanName != null and humanName != ''">AND HUMANNAME like
 				concat(concat('%',#{humanName,jdbcType=VARCHAR}),'%')</if>
@@ -48,9 +50,8 @@
 			<if test="acceptType != null and acceptType != '' and acceptType != '请选择'">AND ACCEPTTYPE = #{acceptType,jdbcType=VARCHAR}</if>
 			<if test="beginTime != null and beginTime != ''">AND ACCEPTDATE &gt;= #{beginTime}</if>
 			<if test="endTime != null and endTime != ''">AND ACCEPTDATE &lt;= #{endTime}</if>
-		</where>
 		ORDER BY 
-			APPLYNO 
+			OPERATIONDATE 
 		DESC
 	</select>
 

@@ -43,17 +43,17 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         	} ,
         cols : [[
            {type: "checkbox", fixed:"left", width:50},
-          {field: 'applyNo', title: '申请序号', minWidth:150, align:"center"},
-          {field: 'acceptDate', title: '受理日期', minWidth:150, align:'center'},
+          {field: 'applyNo', title: '申请序号', minWidth:220, align:"center"},
+          {field: 'acceptDate', title: '受理日期', minWidth:200, align:'center'},
           {field: 'acceptTypeName', title: '受理类型', minWidth:125, align:"center"},
           {field: 'addType', title: '类别', minWidth:125, align:"center"},
           {field: 'amt', title: '受理总金额', minWidth:125, align:"center"},
           {field: 'companyName', title: '公司企业名称', minWidth:200, align:"center"},
           {field: 'humanName', title: '自然人名称', minWidth:150, align:"center"},
-          {field: 'idCardNo', title: '身份证号', minWidth:125, align:"center"},
+          {field: 'idCardNo', title: '身份证号', minWidth:150, align:"center"},
           {field: 'trademarkName', title: '商标名称', minWidth:125, align:"center"},
-          {field: 'operationDate', title: '操作时间', minWidth:125, align:"center"},
-          {field: 'operator', title: '操作人员', minWidth:125, align:"center"},
+          {field: 'operationDate', title: '操作时间', minWidth:200, align:"center"},
+          {field: 'operator', title: '操作人员', minWidth:100, align:"center"},
           {field: 'deleteFlag', title: '删除标记', minWidth:100, align:"center",templet:function(d){
         	  if(d.deleteFlag=="1"){
         		  return '已删除';
