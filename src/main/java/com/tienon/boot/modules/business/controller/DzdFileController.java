@@ -25,7 +25,7 @@ public class DzdFileController {
 	 * @return
 	 * @return Object 返回类型
 	 */
-	@RequestMapping("/receive")
+	@RequestMapping("/receiveDzdFile")
 	public Object receiveDzd() {
 		System.out.println("开始接收对账单......");
 		return null;
