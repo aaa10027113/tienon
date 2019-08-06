@@ -15,7 +15,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
      
     var tableIns = table.render({
         elem: '#payOrderList',
-        url : '/business/queryList',
+        url : '/business/pay/queryList',
         cellMinWidth : 95,
         page : true,
         limits : [10,15,20,25],
@@ -36,18 +36,12 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         } ,
         cols : [[
            {type: "checkbox", fixed:"left", width:50},
-           {field: 'applyNo', title: '申请序号', minWidth:150, align:"center"},
-           {field: 'orderNo', title: '订单编号', minWidth:150, align:'center'},
-           {field: 'payTime', title: '支付时间', minWidth:150, align:"center"},
-           {field: 'deleteFlag', title: '是否删除', minWidth:150, align:"center",templet:function(d){
-        	  if(d.deleteFlag=="1"){
-        		  return '是';
-        	  }else{
-        		  return '';
-        	  }
-          }},
-           {field: 'amt', title: '支付金额', minWidth:150, align:"center"},
-           {field: 'status', title: '支付状态',  minWidth:125, align:'center',
+           {field: 'applyNo', title: '申请序号', minWidth:100, align:"center"},
+           {field: 'orderNo', title: '订单编号', minWidth:100, align:'center'},
+           {field: 'payOrderNo', title: '支付订单号', minWidth:150, align:"center"},
+           {field: 'payTime', title: '支付时间', minWidth:100, align:"center"},
+           {field: 'amt', title: '支付金额', minWidth:50, align:"center"},
+           {field: 'status', title: '支付状态',  minWidth:50, align:'center',
         	   templet:function(d){
 		          	if(d.status=="1"){
 		          		return d.status="待缴费";
@@ -74,8 +68,18 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 		          	}
         	   }
           },
-          {title: '操作', minWidth:125,fixed:"right",align:"center",templet:function(d){
-        <button class="layui-btn layui-btn-xs layui-btn-normal"   lay-event="printShouju">收据打印</button>;
+          {field: 'deleteFlag', title: '是否删除', minWidth:50, align:"center",templet:function(d){
+        	  if(d.deleteFlag=="1"){
+        		  return '是';
+        	  }else{
+        		  return '';
+        	  }
+          }},
+          {title: '打印', minWidth:100,fixed:"right",align:"center",templet:function(d){
+        	  if(d.status=="2" || d.status=="4" || d.status=="5"){
+        		  return '<button class="layui-btn layui-btn-xs layui-btn-printShouju">回执</button>';
+        	  }else{
+        		  return '<button class="layui-btn layui-btn-xs"  lay-event="disabled">回执</button>';
         	  }
           }}
         ]]
@@ -112,8 +116,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
         }
         
     });
-    
-    
     
   //打印收据
     function printShouju(data){
@@ -202,6 +204,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
             })
 		}
     }
-    exports('payorder/payOrderList', {});
+    exports('business/payOrderList', {});
 });
 
