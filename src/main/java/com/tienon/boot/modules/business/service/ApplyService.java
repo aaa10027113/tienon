@@ -100,9 +100,9 @@ public class ApplyService {
 			payOrder.setAmt(new BigDecimal(applyInfo.getAmt()));
 			// 支付状态
 			if ("0".equals(applyInfo.getAmt())) {
-				payOrder.setStatus(CommonStatic.ORDER_05);
+				payOrder.setStatus(CommonStatic.STATUS_88);
 			} else {
-				payOrder.setStatus(CommonStatic.ORDER_01);
+				payOrder.setStatus(CommonStatic.STATUS_1);
 			}
 			// 操作时间
 			applyInfo.setOperationDate(DateUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));

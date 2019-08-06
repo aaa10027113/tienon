@@ -9,7 +9,6 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 
     var searchCondition="";
     function aad() {
-    	 
     	return searchCondition;
 	};
      
@@ -65,6 +64,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
 		          		return d.status="待系统退款";
 		          	}else if(d.status=="d"){
 		          		return d.status="落地";
+		          	}else if(d.status=="88"){
+		          		return d.status="无需支付";
 		          	}
         	   }
           },
