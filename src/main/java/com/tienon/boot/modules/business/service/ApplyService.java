@@ -11,8 +11,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -116,12 +114,6 @@ public class ApplyService {
 			return new ActionResult(false, "添加新商标出现异常！");
 		}
 		return new ActionResult(true);
-	}
-
-	public static void main(String[] args) {
-		int i = (int) (Math.random() * 900000000 + 100000000);
-		String myStr = Integer.toString(i);
-		System.out.println(myStr);
 	}
 
 	/**

@@ -77,7 +77,7 @@ public class ApplyController {
 	 * @return Object 返回类型
 	 */
 	@PostMapping(value = "/getApplyByNo")
-	public Object printInfoData(@RequestParam("applyNo") String applyNo) {
+	public Object getApplyByNo(@RequestParam("applyNo") String applyNo) {
 		return applyService.getApplyByNo(applyNo);
 
 	}
