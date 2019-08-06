@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
 import com.tienon.boot.common.constant.CommonStatic;
 import com.tienon.boot.common.utils.AscEUtils;
@@ -106,7 +105,7 @@ public class PayOrderService {
 			// 页面返回URL地址
 			bo.setPgFc_Ret_URL_Adr("http://www.baidu.com");
 			// 总金额
-			bo.setTAmt(new BigDecimal(0.01));
+			bo.setTAmt(new BigDecimal(info.getAmt()));
 			bo.setRmrk1("");
 			bo.setRmrk2("");
 
@@ -117,7 +116,7 @@ public class PayOrderService {
 			// 费项代码
 			subInvo1.setFee_Itm_Cd(CommonStatic.FEE_ITM_CD);
 			// 此费项缴费金额
-			subInvo1.setFee_Itm_Prj_Amt(new BigDecimal(0.01));
+			subInvo1.setFee_Itm_Prj_Amt(new BigDecimal(info.getAmt()));
 			subInvo1.setRmrk1("");
 			subInvo1.setRmrk2("");
 			list1.add(subInvo1);
