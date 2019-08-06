@@ -95,7 +95,7 @@ public class ApplyController {
 	}
 
 	/**
-	 * 查询导出数据Excel表格
+	 * 统计查询
 	 *
 	 * @param pg
 	 * @return Object 返回类型

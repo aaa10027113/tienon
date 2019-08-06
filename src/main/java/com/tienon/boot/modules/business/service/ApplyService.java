@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ResourceUtils;
-import com.alibaba.fastjson.JSON;
 import com.tienon.EjxError;
 import com.tienon.boot.common.constant.CommonStatic;
 import com.tienon.boot.common.utils.AscEUtils;
@@ -54,7 +53,7 @@ public class ApplyService {
 	PayOrderMapper payOrderMapper;
 
 	/**
-	 * 查询商标信息
+	 * 查询商标申请列表
 	 * 
 	 * @param pg
 	 * @return
@@ -71,8 +70,8 @@ public class ApplyService {
 			return new ActionResult(new PageResult(total, pageList));
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("查询商标申请信息出现异常：[" + e.getMessage() + "]");
-			return new ActionResult(false, "查询商标申请信息出现异常！");
+			log.error("查询商标申请列表出现异常：[" + e.getMessage() + "]");
+			return new ActionResult(false, "查询商标申请列表出现异常！");
 		}
 	}
 
@@ -89,7 +88,7 @@ public class ApplyService {
 			// 申请编号
 			applyInfo.setApplyNo(getApplyNo());
 			// 申请日期
-			applyInfo.setAcceptDate(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+			applyInfo.setAcceptDate(DateUtils.format(new Date(), "yyyy-MM-dd"));
 			// 受理类型
 			applyInfo.setAcceptType(applyInfo.getAcceptType().split(";")[0]);
 			// 申请编号
@@ -211,7 +210,7 @@ public class ApplyService {
 	}
 
 	/**
-	 * 导出数据Excel表格
+	 * 统计查询商标申请列表
 	 * 
 	 * @param pg
 	 * @return
@@ -219,20 +218,12 @@ public class ApplyService {
 	 */
 	public Object reportList(PageGrid pg) {
 		try {
-			log.info("获取导出Excel数据入参：searchCondition=" + JSON.toJSONString(pg.getSearchCondition()));
-			// 查询
 			PageList<ApplyInfo> pageList = applyMapper.reportList(pg.getSearchCondition());
-			log.info("获取导出Excel数据出参：" + JSON.toJSONString(pageList));
-			if (null != pageList) {
-				for (ApplyInfo info : pageList) {
-					info.setAcceptDate(info.getAcceptDate().split(" ")[0]);
-				}
-			}
 			return new ActionResult(new PageResult(pageList.size(), pageList));
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("查询导出Excel数据出现异常：[" + e.getMessage() + "]");
-			throw new EjxError(CommonStatic.R_029, "查询导出Excel数据出现异常：[" + e.getMessage() + "]");
+			log.error("统计查询商标申请列表出错[" + e.getMessage() + "]");
+			throw new EjxError(CommonStatic.R_029, "统计查询商标申请列表出现异常[" + e.getMessage() + "]");
 		}
 	}
 
@@ -246,19 +237,10 @@ public class ApplyService {
 	 */
 	public List<ApplyInfo> downLoadtList(String beginTime, String endTime) {
 		try {
-			log.info("下载导出Excel数据入参：searchCondition=" + JSON.toJSONString(beginTime + endTime));
-			// 查询
 			List<ApplyInfo> list = applyMapper.downloadList(beginTime, endTime);
-			if (null != list) {
-				for (ApplyInfo info : list) {
-					info.setAcceptDate(info.getAcceptDate().split(" ")[0]);
-				}
-			}
-			log.info("下载导出Excel数据出参：" + JSON.toJSONString(list));
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("查询下载Excel数据出现异常：[" + e.getMessage() + "]");
 			throw new EjxError(CommonStatic.R_029, "查询下载Excel数据出现异常：[" + e.getMessage() + "]");
 		}
 	}

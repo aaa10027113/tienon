@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>业务操作</title>
+<title>统计报表</title>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport"
@@ -58,31 +58,20 @@
 			<a id="dlink" style="display:none;"></a>
 			<!-- 表格 -->
 			<table id="reportList" lay-filter="reportList"></table>
-			
 		</div>
 	</div>
 </div>
 <script type="text/javascript" src="../../../layuiadmin/qrcode/jquery.js"></script>
-<!-- <script type="text/javascript" src="../../../layuiadmin/qrcode/jquery-2.1.1.min.js"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
 <script type="text/javascript" src="../../../layuiadmin/layui/layui.js"></script>
 <script type="text/html" id="num">
     {{d.LAY_TABLE_INDEX+1}}
 </script>
-<!-- <script>
-
-	layui.config({
-		base: 'd/'
-	}).extend({
-		excel: 'excel'
-	});
-</script> -->
 <script>
   layui.config({
 	  base : '../../../layuiadmin/' //静态资源所在路径
   }).extend({
       index : 'lib/index' //主入口模块
-  }).use([ 'index','operate/reportForm'], function() {
+  }).use([ 'index','business/reportForm'], function() {
   
   });
 </script>
