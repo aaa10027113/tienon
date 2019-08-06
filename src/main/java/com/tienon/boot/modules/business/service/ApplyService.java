@@ -127,10 +127,10 @@ public class ApplyService {
 			String applyDate = DateUtils.format(new Date(), "yyyyMMdd");
 			ApplyInfo info = applyMapper.getLastApplyNo();
 			if (null == info) {
-				return applyDate + "-00001";
+				return applyDate +"-"+Math.random()*9+1*100000+"-00001";
 			} else {
 				int num = Integer.parseInt(info.getApplyNo().split("-")[1]) + 1;
-				return applyDate + "-" + (new DecimalFormat("00000").format(num));
+				return applyDate +"-"+Math.random()*9+1*100000+"-" + (new DecimalFormat("00000").format(num));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
