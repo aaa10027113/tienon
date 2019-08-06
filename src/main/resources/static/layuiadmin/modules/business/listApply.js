@@ -126,7 +126,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     $(function(){
     	$.ajax({
             type: "post",
-            url: "/business/apply/selectMenuInfo",
+            url: "/business/menu/selectMenuInfo",
             data: {},
             dataType: "json",
             headers: {

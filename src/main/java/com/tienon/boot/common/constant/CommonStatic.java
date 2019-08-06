@@ -34,18 +34,30 @@ public class CommonStatic {
 	/**
 	 * 支付状态
 	 */
-	/**00:支付成功*/
-	public static String ORDER_00 = "00";
-	/**01:待支付*/
-	public static String ORDER_01 = "01";
-	/**02:支付失败*/
-	public static String ORDER_02 = "02";
-	/**03:支付超时*/
-	public static String ORDER_03 = "03";
-	/**05:无需支付*/
-	public static String ORDER_05 = "05";
-	/**99:未知状态*/
-	public static String ORDER_99 = "99";
+	/**1-待缴费*/
+	public static String STATUS_1 = "1";
+	/**2-成功*/
+	public static String STATUS_2 = "2";
+	/**3-失败*/
+	public static String STATUS_3 = "3";
+	/**4-全部退费*/
+	public static String STATUS_4 = "4";
+	/**5-部分退费*/
+	public static String STATUS_5 = "5";
+	/**6-失效*/
+	public static String STATUS_6 = "6";
+	/**9-取消*/
+	public static String STATUS_9 = "9";
+	/**a-处理中*/
+	public static String STATUS_a = "a";
+	/**b-待冲正*/
+	public static String STATUS_b = "b";
+	/**c-待系统退款*/
+	public static String STATUS_c = "c";
+	/**d-一落地*/
+	public static String STATUS_d = "d";
+	/**88-一无需支付*/
+	public static String STATUS_88 = "88";
 
 	/**
 	 * 退款成功

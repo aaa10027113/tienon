@@ -28,7 +28,6 @@ import com.tienon.boot.common.utils.PayUtil;
 import com.tienon.boot.modules.business.domain.PayOrder;
 import com.tienon.boot.modules.business.domain.ResultOut;
 import com.tienon.boot.modules.business.mapper.PayOrderMapper;
-import com.tienon.boot.modules.business.mapper.RefundOrderMapper;
 
 /**
  * @Description 定时查询订单状态
@@ -40,13 +39,10 @@ import com.tienon.boot.modules.business.mapper.RefundOrderMapper;
 @EnableScheduling
 @Transactional(rollbackFor = Exception.class)
 public class OrderQuery {
-
 	private final Logger log = LoggerFactory.getLogger(OrderQuery.class);
 
 	@Resource
 	PayOrderMapper payOrderMapper;
-	@Resource
-	RefundOrderMapper refundOrderMapper;
 
 	/**
 	 * TODO(查询支付订单)
