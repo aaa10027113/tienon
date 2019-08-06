@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -89,7 +91,7 @@ public class ApplyService {
 			// 申请编号
 			applyInfo.setApplyNo(getApplyNo());
 			// 申请日期
-			applyInfo.setAcceptDate(DateUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+			applyInfo.setAcceptDate(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
 			// 受理类型
 			applyInfo.setAcceptType(applyInfo.getAcceptType().split(";")[0]);
 			// 申请编号
@@ -105,7 +107,7 @@ public class ApplyService {
 				payOrder.setStatus(CommonStatic.STATUS_1);
 			}
 			// 操作时间
-			applyInfo.setOperationDate(DateUtils.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+			applyInfo.setOperationDate(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
 			applyMapper.insert(applyInfo);
 			payOrderMapper.insert(payOrder);
 		} catch (Exception e) {
@@ -116,6 +118,12 @@ public class ApplyService {
 		return new ActionResult(true);
 	}
 
+	public static void main(String[] args) {
+		int i = (int) (Math.random() * 900000000 + 100000000);
+		String myStr = Integer.toString(i);
+		System.out.println(myStr);
+	}
+
 	/**
 	 * TODO(生成申请序号yyyyMMDD-001)
 	 * 
@@ -124,13 +132,17 @@ public class ApplyService {
 	 */
 	private synchronized String getApplyNo() {
 		try {
+			int i = (int) (Math.random() * 900000000 + 100000000);
+			String str = Integer.toString(i);
+
 			String applyDate = DateUtils.format(new Date(), "yyyyMMdd");
 			ApplyInfo info = applyMapper.getLastApplyNo();
 			if (null == info) {
-				return applyDate +"-"+Math.random()*9+1*100000+"-00001";
+				return applyDate + "-" + str + "-00001";
 			} else {
 				int num = Integer.parseInt(info.getApplyNo().split("-")[1]) + 1;
-				return applyDate +"-"+Math.random()*9+1*100000+"-" + (new DecimalFormat("00000").format(num));
+				return applyDate + "-" + str + "-"
+						+ (new DecimalFormat("00000").format(num));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,12 +170,12 @@ public class ApplyService {
 			return new ActionResult(false, "删除商标受理信息失败！");
 		}
 	}
-    
+
 	/**
 	 * 根据加密申请编号，查询商标受理信息
 	 * 
 	 * @param applyNo
-	 * @return 
+	 * @return
 	 * @return Object 返回类型
 	 */
 	public Object getApplyByNo(String applyNo) {
@@ -182,12 +194,12 @@ public class ApplyService {
 			return new ActionResult(false, "根据加密申请编号，查询商标受理信息出现异常!");
 		}
 	}
-	
+
 	/**
 	 * 打印受理单
 	 * 
 	 * @param applyNo
-	 * @return 
+	 * @return
 	 * @return Object 返回类型
 	 */
 	public Object printInfo(String applyNo) {
