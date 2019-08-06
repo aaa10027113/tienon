@@ -192,7 +192,7 @@
 		    	var $ = layui.jquery;
 		    	$(function(){
 					var applyNo = getUrlParms("applyNo");
-					$.post("/business/apply/printInfoData",{applyNo:applyNo},function(res){
+					$.post("/business/apply/getApplyByNo",{applyNo:applyNo},function(res){
 						if(!res.success){
 							alert(res.msg);
 							return false;
@@ -203,15 +203,7 @@
 						$("#trademarkName").text(res.obj.trademarkName);
 						$("#acceptTypeName").text(res.obj.acceptTypeName);
 						
-					},"json")
-					$.post("/business/pay/queryByApplyNoInfo",{applyNo:applyNo},function(res){
-						if(!res.success){
-							alert(res.msg);
-							return false;
-						}
-						$("#orderNo").text(res.obj.orderNo)
-					},"json")
-					
+					},"json")					
 					$(".my-btn").click(function(){
 						$(".loading").css("display","flex");
 						$.post("/business/pay/sendPayMessage",{applyNo:applyNo},function(res){
