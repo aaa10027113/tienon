@@ -1,7 +1,6 @@
 package com.tienon.boot.modules.system.service;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tienon.EjxError;
 import com.tienon.boot.common.constant.CommonStatic;
 import com.tienon.boot.modules.system.domain.JobInfo;

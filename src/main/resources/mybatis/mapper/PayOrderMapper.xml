@@ -63,7 +63,7 @@
         <if test="payTime != null and payTime != ''">,payTime = #{payTime,jdbcType=DATE}</if>
         <if test="payUrl != null and payUrl != ''">,payUrl = #{payUrl,jdbcType=VARCHAR}</if>
         <if test="amt != null and amt != ''">,amt = #{amt,jdbcType=VARCHAR}</if>
-        <if test="status != null and amt != ''">,status = #{amt,jdbcType=VARCHAR}</if>
+        <if test="status != null and amt != ''">,status = #{status,jdbcType=VARCHAR}</if>
     WHERE 
     	applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>

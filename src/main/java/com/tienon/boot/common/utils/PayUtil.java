@@ -216,17 +216,14 @@ public class PayUtil {
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
 			conn.setUseCaches(false);
+			conn.setConnectTimeout(30000);
+			conn.setReadTimeout(30000);
 			conn.setRequestProperty("Connection", "Keep-Alive");
 			conn.setRequestProperty("Charset", "UTF-8");
-			// 设置文件类型:
 			conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-			// 设置接收类型否则返回415错误
-			// conn.setRequestProperty("accept","*/*")此处为暴力方法设置接受所有类型，以此来防范返回415;
 			conn.setRequestProperty("accept", "application/json");
-			// 往服务器里面发送数据
 			if (json != null) {
 				byte[] writebytes = json.getBytes();
-				// 设置文件长度
 				conn.setRequestProperty("Content-Length", String.valueOf(writebytes.length));
 				OutputStream outwritestream = conn.getOutputStream();
 				outwritestream.write(json.getBytes());
