@@ -73,20 +73,8 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
     
   //重新加载查询结果
     $(".queryCommit").click(function(){
-   	 var companyName=$("#companyName").val();
-   	 var humanName=$("#humanName").val();
-   	 var acceptType=$("#acceptType option:checked").val().split(";")[0];
-   	 var trademarkName=$("#trademarkName").val();
-   	 var beginTime=$("#beginTime").val();
-   	 if(beginTime!="" && null!=beginTime){
-   		 beginTime = beginTime+" 00:00:00";
-   	 }
-   	 
-   	 var endTime=$("#endTime").val();
-   	 if(endTime!="" && null!=endTime){
-   		endTime = endTime+" 23:59:59";
-   	 }
-   	 search ={companyName:companyName,humanName:humanName,acceptType:acceptType,beginTime:beginTime,endTime:endTime};
+   	 var beanName=$("#beanName").val();
+   	 search ={beanName:beanName};
    	 var searchCondition={searchCondition:search};
 //     console.log(searchCondition);
    	 tableIns.reload({
