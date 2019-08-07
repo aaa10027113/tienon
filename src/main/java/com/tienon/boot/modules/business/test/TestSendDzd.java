@@ -219,7 +219,7 @@ public class TestSendDzd {
 	}
 
 	public static void main(String[] args) {
-		String Default_Address = "http://127.0.0.1/business/dzd/upload";
+		String Default_Address = "http://47.111.75.26/business/dzd/upload";
 		try {
 			Map<String, String> requestParamsMap = new HashMap<String, String>();
 			requestParamsMap.put("jsonStr", "huadoumi");
