@@ -47,54 +47,14 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 	</appender>
-
-	<!--ELK -->
-	<!-- <appender name="LOGSTASH"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<rollingPolicy
-			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-			<fileNamePattern>D:/logs/szh-simservice/elk.%d{yyyy-MM-dd}.%i.json
-			</fileNamePattern>
-			<MaxHistory>30</MaxHistory>
-			<maxFileSize>200MB</maxFileSize>
-		</rollingPolicy>
-		<encoder
-			class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-			<providers>
-				<timestamp>
-					<timeZone></timeZone>
-				</timestamp>
-				<pattern>
-					<pattern>
-						{
-						"severity": "%level",
-						"service": "${springAppName:-}",
-						"trace": "%X{X-B3-TraceId:-}",
-						"span": "%X{X-B3-SpanId:-}",
-						"exportable": "%X{X-Span-Export:-}",
-						"pid": "${PID:-}",
-						"id":
-						"%X{id:-}",
-						"ejxPid": "%X{pid:-}",
-						"thread": "%thread",
-						"class":
-						"%logger{40}",
-						"rest": "%message"
-						}
-					</pattern>
-				</pattern>
-			</providers>
-		</encoder>
-	</appender> -->
-	<logger name="com.tienon.boot.conf" level="INFO" />
-	<logger name="com.tienon.boot.mapper" level="INFO" />
-	<logger name="com.tienon.eas.mapper" level="INFO" />
-	<logger name="com.tienon.component.mapper" level="INFO" />
+	<logger name="com.tienon.boot.conf" level="DUBEG" />
+	<logger name="com.tienon.boot.modules.business.mapper" level="DUBEG" />
+	<logger name="com.tienon.eas.mapper" level="DUBEG" />
+	<logger name="com.tienon.component.mapper" level="DUBEG" />
 	
 	<!-- 日志输出级别 -->
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />
-		<!-- <appender-ref ref="LOGSTASH" /> -->
 		<appender-ref ref="BIZ" />
 		<appender-ref ref="ERROR" />
 	</root>

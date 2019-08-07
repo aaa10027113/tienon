@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.tienon.boot.modules.business.domain.PayOrder">
     <id column="applyNo" jdbcType="VARCHAR" property="applyNo" />
     <result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
-    <result column="payTime" jdbcType="VARCHAR" property="payTime" />
+    <result column="payTime" jdbcType="DATE" property="payTime" />
     <result column="amt" jdbcType="DECIMAL" property="amt" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="payOrderNo" jdbcType="VARCHAR" property="payOrderNo" />
@@ -48,7 +48,7 @@
     	(
 	    	#{applyNo,jdbcType=VARCHAR}, 
 	    	#{orderNo,jdbcType=VARCHAR},
-	    	#{payTime,jdbcType=TIMESTAMP},
+	    	#{payTime,jdbcType=DATE},
 	    	#{amt,jdbcType=DECIMAL}, 
 	    	#{status,jdbcType=VARCHAR}, 
 	    	#{payOrderNo,jdbcType=VARCHAR}
@@ -59,11 +59,11 @@
     UPDATE
     	tb_pay_order
     SET 
-        payOrderNo = #{payOrderNo,jdbcType=VARCHAR}
-      	payTime = #{payTime,jdbcType=TIMESTAMP},
-      	payUrl = #{payUrl,jdbcType=VARCHAR},
-      	amt = #{amt,jdbcType=DECIMAL},
-      	status = #{status,jdbcType=VARCHAR}
+        <if test="payOrderNo != null and payOrderNo != ''">payOrderNo = #{payOrderNo,jdbcType=VARCHAR}</if>
+        <if test="payTime != null and payTime != ''">,payTime = #{payTime,jdbcType=DATE}</if>
+        <if test="payUrl != null and payUrl != ''">,payUrl = #{payUrl,jdbcType=VARCHAR}</if>
+        <if test="amt != null and amt != ''">,amt = #{amt,jdbcType=VARCHAR}</if>
+        <if test="status != null and amt != ''">,status = #{amt,jdbcType=VARCHAR}</if>
     WHERE 
     	applyNo = #{applyNo,jdbcType=VARCHAR}
   </update>
