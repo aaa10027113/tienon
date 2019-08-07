@@ -13,7 +13,8 @@ import org.springframework.web.WebApplicationInitializer;
 
 import com.tienon.auto.conf.FilterConfiguration;
 /**
- * @Description TODO(启动)
+ * @Description 启动项目
+ * 
  * @author xieyongqiang
  * @date 2019/08/05
  */

@@ -1,7 +1,6 @@
 package com.tienon.boot.modules.business.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * @Description TODO(支付订单实体类)
@@ -29,6 +28,11 @@ public class PayOrder {
 	 * 支付金额
 	 */
 	private BigDecimal amt;
+	
+	/**
+	 * 支付URL
+	 */
+	private String payUrl;
 	
 	/**
 	 * 支付状态
@@ -88,6 +92,14 @@ public class PayOrder {
 		this.amt = amt;
 	}
 
+	public String getPayUrl() {
+		return payUrl;
+	}
+
+	public void setPayUrl(String payUrl) {
+		this.payUrl = payUrl;
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -112,10 +124,5 @@ public class PayOrder {
 		this.deleteFlag = deleteFlag;
 	}
 
-	@Override
-	public String toString() {
-		return "PayOrder [applyNo=" + applyNo + ", orderNo=" + orderNo + ", payTime=" + payTime + ", amt=" + amt
-				+ ", status=" + status + ", payOrderNo=" + payOrderNo + ", deleteFlag=" + deleteFlag + "]";
-	}
-
+	
 }
