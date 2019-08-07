@@ -11,6 +11,8 @@ import com.tienon.boot.modules.system.domain.JobInfo;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 
+import java.util.List;
+
 /**
  * @Description TODO(定时器Mapper)
  * 
@@ -56,4 +58,13 @@ public interface JobMapper {
 	 * @return int 返回类型
 	 */
 	int updateJobInfo(JobInfo info);
+
+	/**
+	 * 删除定时任务
+	 *
+	 * @param list
+	 * @return
+	 * @return int 返回类型
+	 */
+	int updateByapplyNo(List<String> list);
 }

@@ -25,6 +25,7 @@
 		<where>
 			1=1
 			<if test="beanName!=null and beanName!=''">AND BEANNAME like concat(concat('%',#{beanName,jdbcType=VARCHAR}),'%')</if>
+			AND DELETEFLAG ='0'
 		</where>
 		ORDER BY CREATDATE DESC
 	</select>
@@ -33,12 +34,12 @@
 		insert into SS_JOB
 		(BEANNAME,METHODNAME,PARAMETER,
 		 CRON,DESCRIPTION,STATUS,
-		 CREATDATE,UPDATEDATE,OPERATOR
+		 CREATDATE,UPDATEDATE,OPERATOR,DELETEFLAG
 		)
 		values
 		(#{beanName,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR},#{parameter,jdbcType=VARCHAR},
 		#{cron,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{status,jdbcType=VARCHAR},
-		#{creatDate,jdbcType=DATE},#{updateDate,jdbcType=DATE},#{operator,jdbcType=VARCHAR})
+		#{creatDate,jdbcType=DATE},#{updateDate,jdbcType=DATE},#{operator,jdbcType=VARCHAR},'0')
 	</insert>
 
 	<select id="queryInfoById" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -55,5 +56,17 @@
 		DESCRIPTION=#{description,jdbcType=VARCHAR},STATUS=#{status,jdbcType=VARCHAR},
 		UPDATEDATE=#{updateDate,jdbcType=DATE},OPERATOR=#{operator,jdbcType=VARCHAR}
 		WHERE ID=#{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateByapplyNo" parameterType="java.util.List">
+		UPDATE
+		SS_JOB
+		SET
+		DELETEFLAG = '1'
+		WHERE
+		ID IN
+		(<foreach collection="list" item="id" separator=",">
+			#{id}
+		</foreach>)
 	</update>
 </mapper>

@@ -271,16 +271,16 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
             newsId = [];
         if(data.length > 0) {
             for (var i in data) {
-            	if(data[i].status=="00"){
-            		layer.confirm('选中的订单含有支付成功的订单，支付成功的订单不允许删除！！！', {icon: 3, title: '提示信息'});
+            	if(data[i].status!="0"){
+            		layer.confirm('选中的定时任务中含有已启动的项目，请先停止后删除！！！', {icon: 3, title: '提示信息'});
             		return;
             	}
-                newsId.push(data[i].applyNo);
+                newsId.push(data[i].id);
             }
-            layer.confirm('确定要删除选中的商标受理信息吗？', {icon: 3, title: '提示信息'}, function (index) {
+            layer.confirm('确定要删除选中的定时任务吗？', {icon: 3, title: '提示信息'}, function (index) {
             	$.ajax({
                     type: "post",
-                    url: "/operate/deleteByPrimaryKey",
+                    url: "/system/job/updateByapplyNo",
                     data: JSON.stringify(newsId),
                     dataType: "json",
                     headers: {

@@ -4,10 +4,9 @@ import com.tienon.boot.modules.system.domain.JobInfo;
 import com.tienon.boot.modules.system.service.JobService;
 import com.tienon.boot.util.support.PageGrid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author ll
@@ -61,5 +60,11 @@ public class JobController {
     @RequestMapping("/updateJobInfo")
     public Object updateJobInfo(@RequestBody JobInfo info) {
         return jobService.updateJobInfo(info);
+    }
+
+    @PostMapping(value = "/updateByapplyNo")
+    public Object deleteByPrimaryKey(@RequestBody List<String> list) {
+        return jobService.updateByapplyNo(list);
+
     }
 }

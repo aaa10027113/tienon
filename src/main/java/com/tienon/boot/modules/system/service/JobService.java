@@ -1,6 +1,7 @@
 package com.tienon.boot.modules.system.service;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tienon.EjxError;
 import com.tienon.boot.common.constant.CommonStatic;
 import com.tienon.boot.modules.system.domain.JobInfo;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author ll
@@ -139,5 +141,25 @@ public class JobService {
             return new ActionResult(false, "修改定时任务错误");
         }
         return new ActionResult(true);
+    }
+
+    /**
+     * 根据申请序号,批量删除商定时任务
+     *
+     * @param list
+     * @return
+     * @return Object 返回类型
+     */
+    public Object updateByapplyNo(List<String> list) {
+        try {
+            log.info("删除定时任务入参："+JSON.toJSONString(list));
+            int i = jobMapper.updateByapplyNo(list);
+            log.info("删除定时任务出参: "+ i);
+            return new ActionResult(true, "删除定时任务成功！");
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("删除定时任务失败[" + e.getMessage() + "]");
+            return new ActionResult(false, "删除定时任务失败！");
+        }
     }
 }
