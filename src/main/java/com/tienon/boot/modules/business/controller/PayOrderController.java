@@ -6,6 +6,7 @@ package com.tienon.boot.modules.business.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.tienon.boot.modules.business.service.PayOrderService;
 import com.tienon.boot.util.support.PageGrid;
@@ -33,6 +34,18 @@ public class PayOrderController {
 	@RequestMapping("/queryList")
 	public Object queryPayOrderList(@RequestBody PageGrid pageGrid) {
 		return payOrderService.queryPayOrderList(pageGrid);
+	}
+	
+	/**
+	 * 发送在线支付请求
+	 * 
+	 * @param applyNo
+	 * @return 
+	 * @return Object 返回类型
+	 */
+	@RequestMapping("/sendPayMessage")
+	public Object sendPayMessage(@RequestParam("applyNo") String applyNo) {
+		return payOrderService.sendPaymessage(applyNo);
 	}
 
 }

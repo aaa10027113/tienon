@@ -29,7 +29,7 @@
     FROM 
     	tb_pay_order
     WHERE 
-    	status = #{status,jdbcType=VARCHAR}
+    	applyNo = #{applyNo,jdbcType=VARCHAR}
   </select>
   
   <insert id="insert" parameterType="com.tienon.boot.modules.business.domain.PayOrder">
