@@ -62,9 +62,14 @@ public class JobController {
         return jobService.updateJobInfo(info);
     }
 
+    /**
+     * 根据id批量删除定时任务
+     * @param list
+     * @return
+     */
     @PostMapping(value = "/updateByapplyNo")
     public Object deleteByPrimaryKey(@RequestBody List<String> list) {
-        return jobService.updateByapplyNo(list);
+        return jobService.deleteByPrimaryKey(list);
 
     }
 }

@@ -150,10 +150,10 @@ public class JobService {
      * @return
      * @return Object 返回类型
      */
-    public Object updateByapplyNo(List<String> list) {
+    public Object deleteByPrimaryKey(List<String> list) {
         try {
             log.info("删除定时任务入参："+JSON.toJSONString(list));
-            int i = jobMapper.updateByapplyNo(list);
+            int i = jobMapper.deleteByPrimaryKey(list);
             log.info("删除定时任务出参: "+ i);
             return new ActionResult(true, "删除定时任务成功！");
         } catch (Exception e) {

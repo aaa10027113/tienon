@@ -66,5 +66,5 @@ public interface JobMapper {
 	 * @return
 	 * @return int 返回类型
 	 */
-	int updateByapplyNo(List<String> list);
+	int deleteByPrimaryKey(List<String> list);
 }

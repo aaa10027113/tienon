@@ -58,7 +58,7 @@
 		WHERE ID=#{id,jdbcType=INTEGER}
 	</update>
 
-	<update id="updateByapplyNo" parameterType="java.util.List">
+	<update id="deleteByPrimaryKey" parameterType="java.util.List">
 		UPDATE
 		SS_JOB
 		SET
