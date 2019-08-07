@@ -20,7 +20,7 @@ public class PayOrder {
 	private String orderNo;
 	
 	/**
-	 * 支付时间
+	 * 支付提交时间
 	 */
 	private String payTime;
 	

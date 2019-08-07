@@ -38,7 +38,7 @@ layui.define([ 'form', 'table', 'layer', 'laydate','comExt' ], function(
            {field: 'applyNo', title: '申请序号', minWidth:100, align:"center"},
            {field: 'orderNo', title: '订单编号', minWidth:200, align:'center'},
            {field: 'payOrderNo', title: '支付订单号', minWidth:200, align:"center"},
-           {field: 'payTime', title: '支付时间', minWidth:200, align:"center"},
+           {field: 'payTime', title: '支付提交时间', minWidth:200, align:"center"},
            {field: 'amt', title: '支付金额', minWidth:100, align:"center"},
            {field: 'status', title: '支付状态',  minWidth:100, align:'center',
         	   templet:function(d){

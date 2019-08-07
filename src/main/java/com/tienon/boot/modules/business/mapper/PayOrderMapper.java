@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.tienon.boot.modules.business.domain.PayOrder;
 import com.tienon.framework.persistence.mybatis.paginator.domain.PageBounds;
@@ -19,40 +20,22 @@ import com.tienon.framework.persistence.mybatis.paginator.domain.PageList;
 public interface PayOrderMapper {
 	
 	/**
-	 * TODO(这里用一句话描述这个方法的作用)
+	 * 保存支付订单
 	 * 
 	 * @param record
 	 * @return 
 	 * @return int 返回类型
 	 */
-	int insert(PayOrder record);
-    
+	int insert(PayOrder payOrder);
+    	    
 	/**
-	 * TODO(这里用一句话描述这个方法的作用)
-	 * 
-	 * @param record
-	 * @return 
-	 * @return int 返回类型
-	 */
-	int insertSelective(PayOrder record);
-	
-	/**
-	 * TODO(这里用一句话描述这个方法的作用)
-	 * 
-	 * @param applyno
-	 * @return 
-	 * @return int 返回类型
-	 */
-	int deleteByPrimaryKey(String applyno);
-    
-	/**
-	 * TODO(这里用一句话描述这个方法的作用)
+	 * 根据申请编号，查询支付订单
 	 * 
 	 * @param applyno
 	 * @return 
 	 * @return PayOrder 返回类型
 	 */
-	PayOrder selectByPrimaryKey(String applyno);
+	PayOrder selectByApplyNo(@Param("applyNo") String applyNo);
     
 	/**
 	 * TODO(这里用一句话描述这个方法的作用)
@@ -61,17 +44,8 @@ public interface PayOrderMapper {
 	 * @return 
 	 * @return int 返回类型
 	 */
-	int updateByPrimaryKeySelective(PayOrder record);
-    
-	/**
-	 * TODO(这里用一句话描述这个方法的作用)
-	 * 
-	 * @param record
-	 * @return 
-	 * @return int 返回类型
-	 */
-	int updateByPrimaryKey(PayOrder record);
-	
+	int update(PayOrder payOrder);
+    	
 	/**
 	 * 支付结果轮训订单列表
 	 * @param record
