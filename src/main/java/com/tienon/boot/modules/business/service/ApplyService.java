@@ -103,6 +103,7 @@ public class ApplyService {
 			} else {
 				payOrder.setStatus(CommonStatic.STATUS_1);
 			}
+			payOrder.setQueryNm(0);// 查询次数
 			// 操作时间
 			applyInfo.setOperationDate(DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
 			applyMapper.insert(applyInfo);

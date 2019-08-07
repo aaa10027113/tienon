@@ -9,9 +9,10 @@
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="payOrderNo" jdbcType="VARCHAR" property="payOrderNo" />
     <result column="deleteFlag" jdbcType="VARCHAR" property="deleteFlag" />
+    <result column="queryNm"    jdbcType="VARCHAR" property="queryNm" />
   </resultMap>
   <sql id="Base_Column_List">
-    APPLYNO, ORDERNO, PAYTIME, AMT, STATUS,PAYORDERNO,DELETEFLAG,PAYURL
+    APPLYNO, ORDERNO, PAYTIME, AMT, STATUS,PAYORDERNO,DELETEFLAG,PAYURL,QUERYNM
   </sql>
   <select id="selectBystatus" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT 
@@ -21,6 +22,7 @@
     WHERE 
     	status in ('1','6','9','a','b','c','d')
     AND payOrderNo is not null
+    AND queryNm &lt;= 200
   </select>
 
   <select id="selectByApplyNo" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -39,6 +41,7 @@
     	(
         	applyNo,
         	orderNo,
+        	queryNm,
         	payTime,
         	amt,
         	status,
@@ -48,6 +51,7 @@
     	(
 	    	#{applyNo,jdbcType=VARCHAR}, 
 	    	#{orderNo,jdbcType=VARCHAR},
+	    	#{queryNm,jdbcType=INTEGER},
 	    	#{payTime,jdbcType=DATE},
 	    	#{amt,jdbcType=DECIMAL}, 
 	    	#{status,jdbcType=VARCHAR}, 
@@ -61,6 +65,7 @@
     SET 
         <if test="payOrderNo != null and payOrderNo != ''">payOrderNo = #{payOrderNo,jdbcType=VARCHAR}</if>
         <if test="payTime != null and payTime != ''">,payTime = #{payTime,jdbcType=DATE}</if>
+        <if test="queryNm != null and queryNm != ''">,queryNm = #{queryNm,jdbcType=INTEGER}</if>
         <if test="payUrl != null and payUrl != ''">,payUrl = #{payUrl,jdbcType=VARCHAR}</if>
         <if test="amt != null and amt != ''">,amt = #{amt,jdbcType=VARCHAR}</if>
         <if test="status != null and amt != ''">,status = #{status,jdbcType=VARCHAR}</if>

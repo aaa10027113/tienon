@@ -20,6 +20,11 @@ public class PayOrder {
 	private String orderNo;
 	
 	/**
+	 * 查询次数
+	 */
+	private int queryNm;
+	
+	/**
 	 * 支付提交时间
 	 */
 	private String payTime;
@@ -59,6 +64,15 @@ public class PayOrder {
 	 * 是否删除
 	 */
 	private String deleteFlag;
+    
+
+	public int getQueryNm() {
+		return queryNm;
+	}
+
+	public void setQueryNm(int queryNm) {
+		this.queryNm = queryNm;
+	}
 
 	public String getApplyNo() {
 		return applyNo;
@@ -124,5 +138,11 @@ public class PayOrder {
 		this.deleteFlag = deleteFlag;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "PayOrder [applyNo=" + applyNo + ", orderNo=" + orderNo + ", queryNm=" + queryNm + ", payTime=" + payTime
+				+ ", amt=" + amt + ", payUrl=" + payUrl + ", status=" + status + ", payOrderNo=" + payOrderNo
+				+ ", deleteFlag=" + deleteFlag + "]";
+	}
+
 }
